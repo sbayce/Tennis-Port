@@ -1,8 +1,8 @@
 
 const Footer = () => {
   return (
-    <div className="bg-zinc-500 absolute bottom-0 w-full h-20">
-        
+    <div className="h-20 bg-slate-500">
+        <p>alo</p>
     </div>
   )
 }

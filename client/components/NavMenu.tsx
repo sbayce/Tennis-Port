@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import {
@@ -11,28 +10,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-const racketTypes: string[] = [
-  "Allround",
-  "Comfort",
-  "Junior",
-  "Tour"
-]
-const racketBrands: string[] = [
-  "Babolat",
-  "Dunlop",
-  "Head",
-  "Lacoste",
-  "Prince",
-  "PROKENNEX",
-  "Racket Roots",
-  "Tecnifibre",
-  "Wilson",
-  "Yonex",
-  "All brands"
-]
+import { racketBrands, racketTypes } from "@/app/page"
 
 function NavMenu() {
   return (
