@@ -9,7 +9,7 @@ const SideBar = () => {
         <h3 className="font-semibold mb-2">Racket Types</h3>
         <div className="flex flex-col gap-2 mb-4">
             {racketTypes.map(racketType => 
-            <div className="flex items-center justify-between">
+            <div key={racketType} className="flex items-center justify-between">
                 <label
                     htmlFor={racketType}
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
