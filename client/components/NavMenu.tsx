@@ -12,22 +12,23 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { racketBrands, racketTypes } from "@/app/page"
+import Link from "next/link"
 
 function NavMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Rackets</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold">Rackets</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <>
                     <h3 className="font-semibold">Types</h3>
-                    <div className="mt-4">
+                    <div className="mt-4 flex flex-col gap-2 text-sm">
                       {racketTypes.map(racketType => 
-                        <ListItem key={racketType} href={`/`} title={racketType} className="hover:text-yellow-400" />
+                        <Link key={racketType} href={`/?type=${racketType}`} className="hover:text-yellow-400">{racketType}</Link>
                       )}
                     </div>
                   </>
@@ -37,9 +38,9 @@ function NavMenu() {
                 <NavigationMenuLink asChild>
                   <>
                     <h3 className="font-semibold">Brands</h3>
-                    <div className="mt-4">
+                    <div className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
-                        <ListItem key={racketBrand} href={`/`} title={racketBrand} className="hover:text-yellow-400" />
+                        <Link key={racketBrand} href={`/?brand=${racketBrand}`} className="hover:text-yellow-400">{racketBrand}</Link>
                       )}
                     </div>
                   </>
@@ -49,16 +50,16 @@ function NavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Strings</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold">Strings</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <>
+            <div className="p-6">
               <h3 className="font-semibold">Brands</h3>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
                 {racketBrands.map((racketBrand) => (
-                  <ListItem key={racketBrand} title={racketBrand} href='/' className="hover:text-yellow-400" />
+                  <Link key={racketBrand} href={`/?brand=${racketBrand}`} className="hover:text-yellow-400">{racketBrand}</Link>
                 ))}
               </ul>
-            </>
+            </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
