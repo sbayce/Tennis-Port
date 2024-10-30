@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Tennis racket head (ellipse with reduced width) -->
+  <ellipse cx="100" cy="100" rx="70" ry="80" stroke="gray" stroke-width="8" fill="none" />
+
+  <!-- Diameter line -->
+  <line x1="60" y1="100" x2="140" y2="100" stroke="gray" stroke-width="5" />
+
+  <!-- Left arrowhead -->
+  <line x1="60" y1="100" x2="75" y2="90" stroke="gray" stroke-width="5" />
+  <line x1="60" y1="100" x2="75" y2="110" stroke="gray" stroke-width="5" />
+
+  <!-- Right arrowhead -->
+  <line x1="140" y1="100" x2="125" y2="90" stroke="gray" stroke-width="5" />
+  <line x1="140" y1="100" x2="125" y2="110" stroke="gray" stroke-width="5" />
+
+</svg>
