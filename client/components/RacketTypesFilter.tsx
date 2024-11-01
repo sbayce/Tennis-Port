@@ -32,7 +32,7 @@ const RacketTypesFilter = () => {
         } else {
             params.append('type', racketType);
         }
-        replace(`${pathName}?${params.toString()}`);
+        replace(`${pathName}?${params.toString()}`, {scroll: false});
     }
   return (
     <>

@@ -5,6 +5,7 @@ import { racketBrands } from "@/app/page"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
+import { motion, AnimatePresence } from 'framer-motion'
 
 const BrandsFilter = () => {
     const [search, setSearch] = useState('')
@@ -35,16 +36,17 @@ const BrandsFilter = () => {
         } else {
             params.append('brand', racketBrand);
         }
-        replace(`${pathName}?${params.toString()}`);
+        replace(`${pathName}?${params.toString()}`, {scroll: false});
     }
   return (
     <>
         <h3 className="font-semibold mb-2">Racket Brands</h3>
         <input onChange={(e) => setSearch(e.target.value)} type="text" className="border p-2 w-40 mb-2" placeholder="Search by brand." />
         <ScrollArea className="h-60 w-48">
+        <AnimatePresence>
             <div className="px-4">
                 {searchResults.map((racketBrand) => (
-                    <div key={racketBrand} className="flex items-center justify-between mb-2">
+                    <motion.div key={racketBrand} className="flex items-center justify-between mb-2" exit={{opacity: 0}}>
                         <label
                             htmlFor={racketBrand}
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -52,9 +54,10 @@ const BrandsFilter = () => {
                             {racketBrand}
                         </label>
                         <Checkbox onCheckedChange={() => handleCheck(racketBrand)} checked={initialCheckedBoxes.includes(racketBrand)} className="w-6 h-6" id={racketBrand} />
-                    </div>
+                    </motion.div>
                 ))}
             </div>
+        </AnimatePresence>
         </ScrollArea>
     </>
   )

@@ -112,6 +112,237 @@ const RACKET_DATA = [
     height: "16/19",
     weight: 305
   },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
+  {
+    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
+    brand: "https://logovectorseek.com/wp-content/uploads/2021/05/babolat-logo-vector.png",
+    type: "Allround",
+    name: "Nadal racket2",
+    price: 500,
+    rating: 5,
+    width: 645,
+    height: "16/19",
+    weight: 305
+  },
 ]
 
 export default function Home() {

@@ -1,6 +1,6 @@
-import DiameterIcon from '../icons/diameter-head.svg'
-import StringsIcon from '../icons/racket-strings.svg'
-import WeightIcon from '../icons/weight.svg'
+import DiameterIcon from '@/icons/diameter-head.svg'
+import StringsIcon from '@/icons/racket-strings.svg'
+import WeightIcon from '@/icons/weight.svg'
 
 type ProductsGridProps = {
     products: any[]
