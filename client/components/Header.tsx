@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
-import CartIcon from '@/icons/cart-outline.svg'
+import CartButton from './CartButton';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -31,14 +31,13 @@ const Header = () => {
   console.log("oapcity: ", searchOpacity);
 
   return (
-    <motion.div className="flex justify-between bg-white items-center mb-10 top-0 sticky z-20 px-2 sm:px-10 md:px-32 lg:px-auto overflow-hidden" style={{ height: headerHeight }}>
+    <motion.div className="flex justify-between bg-white items-center mb-10 top-0 sticky z-20 px-2 sm:px-10 md:px-32 lg:px-auto overflow-hidden border-b border-neutral-600]" style={{ height: headerHeight }}>
       <Link href="/">
         <motion.img 
           src="/logo.png" 
           className="w-48"
           animate={{scale: logoScale}}
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.1 }}
-          // style={{ scale: logoScale }}
         />
       </Link>
       <div>
@@ -49,7 +48,7 @@ const Header = () => {
           style={{opacity: searchOpacity}}
         />
       </div>
-      <motion.button className='flex flex-col items-center p-2 text-sm hover:text-yellow-500 transition-colors duration-100 ease-in-out'><CartIcon className='w-6' />Cart</motion.button>
+      <CartButton />
     </motion.div>
   );
 };

@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const BrandsFilter = () => {
     const [search, setSearch] = useState('')
-    const searchResults = racketBrands.filter((racketBrand) => racketBrand.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+    const searchResults = racketBrands.filter((racketBrand) => racketBrand.brand.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
     const searchParams = useSearchParams();
     const pathName = usePathname();
     const { replace } = useRouter();
@@ -43,17 +43,18 @@ const BrandsFilter = () => {
         <h3 className="font-semibold mb-2">Racket Brands</h3>
         <input onChange={(e) => setSearch(e.target.value)} type="text" className="border p-2 w-40 mb-2" placeholder="Search by brand." />
         <ScrollArea className="h-60 w-48">
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
             <div className="px-4">
                 {searchResults.map((racketBrand) => (
-                    <motion.div key={racketBrand} className="flex items-center justify-between mb-2" exit={{opacity: 0}}>
+                    <motion.div key={racketBrand.brand} className="flex items-center justify-between mb-2" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+                        {racketBrand.logo}
                         <label
-                            htmlFor={racketBrand}
+                            htmlFor={racketBrand.brand}
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         >
-                            {racketBrand}
+                            {racketBrand.brand}
                         </label>
-                        <Checkbox onCheckedChange={() => handleCheck(racketBrand)} checked={initialCheckedBoxes.includes(racketBrand)} className="w-6 h-6" id={racketBrand} />
+                        <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand)} checked={initialCheckedBoxes.includes(racketBrand.brand)} className="w-6 h-6" id={racketBrand.brand} />
                     </motion.div>
                 ))}
             </div>

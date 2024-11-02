@@ -40,7 +40,7 @@ function NavMenu() {
                     <h3 className="font-semibold">Brands</h3>
                     <div className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
-                        <Link key={racketBrand} href={`/?brand=${racketBrand}`} className="hover:text-yellow-400">{racketBrand}</Link>
+                        <Link key={racketBrand.brand} href={`/?brand=${racketBrand.brand}`} className="hover:text-yellow-400">{racketBrand.brand}</Link>
                       )}
                     </div>
                   </>
@@ -56,7 +56,7 @@ function NavMenu() {
               <h3 className="font-semibold">Brands</h3>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
                 {racketBrands.map((racketBrand) => (
-                  <Link key={racketBrand} href={`/?brand=${racketBrand}`} className="hover:text-yellow-400">{racketBrand}</Link>
+                  <Link key={racketBrand.brand} href={`/?brand=${racketBrand.brand}`} className="hover:text-yellow-400">{racketBrand.brand}</Link>
                 ))}
               </ul>
             </div>
