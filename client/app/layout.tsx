@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <CartContextProvider>
           <Header />
-          <div className="px-2 sm:px-10 md:px-32 lg:px-auto">
+          <div className="px-2 sm:px-10 md:px-20 lg:px-auto">
             {children}
           </div>
           <Footer />
