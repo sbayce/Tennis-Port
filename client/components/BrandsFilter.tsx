@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { motion, AnimatePresence } from 'framer-motion'
+import { Separator } from "./ui/separator"
 
 const BrandsFilter = () => {
     const [search, setSearch] = useState('')
@@ -45,8 +46,9 @@ const BrandsFilter = () => {
         <ScrollArea className="h-60 w-48">
         <AnimatePresence mode="popLayout">
             <div className="px-4">
-                {searchResults.map((racketBrand) => (
-                    <motion.div key={racketBrand.brand} className="flex items-center justify-between mb-2" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+                {searchResults.map((racketBrand, index) => (
+                    <>
+                    <motion.div key={racketBrand.brand} className="flex items-center justify-between my-2" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
                         {racketBrand.logo}
                         <label
                             htmlFor={racketBrand.brand}
@@ -56,6 +58,9 @@ const BrandsFilter = () => {
                         </label>
                         <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand)} checked={initialCheckedBoxes.includes(racketBrand.brand)} className="w-6 h-6" id={racketBrand.brand} />
                     </motion.div>
+                    {index !== searchResults.length-1 && <Separator />}
+                    </>
+                    
                 ))}
             </div>
         </AnimatePresence>
