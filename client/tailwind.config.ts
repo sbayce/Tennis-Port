@@ -69,10 +69,10 @@ const config: Config = {
   	},
 	screens: {
 		'sm': '640px',
-		'md': '768px',
-		'lg': '1024px',
+		'md': '700px',
+		'lg': '1000px',
 		'xl': '1280px',
-		'2xl': '1480px',
+		'2xl': '1400px',
 		'3xl': '1618px',
 	}
   },

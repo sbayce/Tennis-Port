@@ -1,3 +1,4 @@
+"use client"
 import NavMenu from "@/components/NavMenu";
 import MainDisplay from "@/components/MainDisplay";
 import SideBar from "@/components/SideBar";
@@ -13,6 +14,8 @@ import PrinceIcon from '@/icons/prince.svg'
 import ProkennexIcon from '@/icons/PROKENNEX.svg'
 import TecnifibreIcon from '@/icons/tecnifibre.svg'
 import YonexIcon from '@/icons/yonex.svg'
+import { useMediaQuery } from 'react-responsive'
+import { useEffect, useState } from "react";
 
 export const racketTypes: string[] = [
   "Allround",
@@ -260,13 +263,20 @@ const RACKET_DATA = [
 
 
 export default function Home() {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true); // Ensures the component has mounted before rendering based on screen size
+  }, []);
+
+  const isLgOrLarger = useMediaQuery({minWidth: 1000})
   return (
     <>
       <MainDisplay />
       <NavMenu />
       <ActiveFilters />
       <div className="flex gap-2">
-        <SideBar />
+        { hasMounted && isLgOrLarger && <SideBar /> }
         <ProductsGrid products={RACKET_DATA} />
       </div>
     </>
