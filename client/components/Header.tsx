@@ -1,43 +1,37 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from './CartButton';
 
 const Header = () => {
   const { scrollY } = useScroll();
-  const [logoScale, setLogoScale] = useState(1);
-  const [searchOpacity, setSearchOpacity] = useState(1);
-  const [headerHeight, setHeaderHeight] = useState(100);
-  let previousScrollY = 0; // Track the previous scroll position
+  const [scrollDirection,  setScrollDirection] = useState("")
+  const previousScrollY = useRef(0)
 
   useEffect(() => {
     const cleanup = scrollY.on("change", (current) => {
-      if (current > previousScrollY && logoScale > 0.7) {
-        setLogoScale(prev => Math.max(prev - 0.02, 0.7));
-        setSearchOpacity(prev => Math.max(prev - 0.07, 0));
-        setHeaderHeight(prev => Math.max(prev - 2, 70));
-      } else if (current < previousScrollY) {
-        setLogoScale(prev => Math.min(prev + 0.02, 1));
-        setSearchOpacity(prev => Math.min(prev + 0.07, 1));
-        setHeaderHeight(prev => Math.min(prev + 2, 100));
+      if (current > previousScrollY.current && scrollDirection !== 'down') {
+        setScrollDirection("down")
+      }else if (current < previousScrollY.current && scrollDirection !== 'up') {
+        setScrollDirection("up")
       }
-      previousScrollY = current; // Update the previous scroll position
+      previousScrollY.current = current; // Update the previous scroll position
     });
 
     return () => cleanup();
-  }, [scrollY]); // Only depend on scrollY
-
-  console.log("oapcity: ", searchOpacity);
+  }, [scrollY, scrollDirection]);
 
   return (
-    <motion.div className="flex justify-between bg-white items-center mb-10 top-0 sticky z-20 px-2 sm:px-10 md:px-32 lg:px-auto overflow-hidden border-b border-neutral-600]" style={{ height: headerHeight }}>
+    <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-2 
+      sm:px-10 md:px-32 lg:px-auto overflow-hidden border-b border-neutral-600]" transition={{duration: 0.2}} 
+      animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
       <Link href="/">
         <motion.img 
-          src="/logo.png" 
+          src="/tennis-port.png" 
           className="w-48"
-          animate={{scale: logoScale}}
-          transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.1 }}
+          animate={{scale: scrollDirection === 'up' || !scrollDirection ? 1 : 0.7}}
+          transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
       </Link>
       <div>
@@ -45,7 +39,8 @@ const Header = () => {
           type="text" 
           className="border p-2 w-96" 
           placeholder="Search for tennis stuff."
-          style={{opacity: searchOpacity}}
+          animate={{opacity: scrollDirection === 'up' || !scrollDirection ? 1 : 0}}
+          transition={{duration: 0.2}}
         />
       </div>
       <CartButton />
