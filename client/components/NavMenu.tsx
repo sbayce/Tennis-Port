@@ -13,6 +13,22 @@ import {
 } from "@/components/ui/navigation-menu"
 import { racketBrands, racketTypes } from "@/app/page"
 import Link from "next/link"
+import { motion } from "framer-motion"
+
+const staggerVariants = {
+  visible: {
+    transition: {
+      staggerChildren: 0.05,
+      duration: 0.1,
+      when: "beforeChildren"
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
+};
 
 function NavMenu() {
   return (
@@ -26,11 +42,13 @@ function NavMenu() {
                 <NavigationMenuLink asChild>
                   <>
                     <h3 className="font-semibold">Types</h3>
-                    <div className="mt-4 flex flex-col gap-2 text-sm">
+                    <motion.div variants={staggerVariants} initial="hidden" animate="visible" className="mt-4 flex flex-col gap-2 text-sm">
                       {racketTypes.map(racketType => 
-                        <Link key={racketType} href={`/?type=${racketType}`} className="hover:text-yellow-400">{racketType}</Link>
+                        <motion.div key={racketType} variants={itemVariants}>
+                          <Link href={`/?type=${racketType}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketType}</Link>
+                        </motion.div>
                       )}
-                    </div>
+                    </motion.div>
                   </>
                 </NavigationMenuLink>
               </li>
@@ -38,11 +56,13 @@ function NavMenu() {
                 <NavigationMenuLink asChild>
                   <>
                     <h3 className="font-semibold">Brands</h3>
-                    <div className="mt-4 flex flex-col gap-2 text-sm">
+                    <motion.div initial="hidden" animate="visible" variants={staggerVariants} className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
-                        <Link key={racketBrand.brand} href={`/?brand=${racketBrand.brand}`} className="hover:text-yellow-400">{racketBrand.brand}</Link>
+                        <motion.div key={racketBrand} variants={itemVariants}>
+                          <Link href={`/?brand=${racketBrand.brand}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
+                        </motion.div>
                       )}
-                    </div>
+                    </motion.div>
                   </>
                 </NavigationMenuLink>
               </li>
@@ -54,11 +74,13 @@ function NavMenu() {
           <NavigationMenuContent>
             <div className="p-6">
               <h3 className="font-semibold">Brands</h3>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
+              <motion.ul initial="hidden" animate="visible" variants={staggerVariants} className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
                 {racketBrands.map((racketBrand) => (
-                  <Link key={racketBrand.brand} href={`/?brand=${racketBrand.brand}`} className="hover:text-yellow-400">{racketBrand.brand}</Link>
+                  <motion.div key={racketBrand.brand} variants={itemVariants}>
+                    <Link href={`/?brand=${racketBrand.brand}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
+                  </motion.div>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>

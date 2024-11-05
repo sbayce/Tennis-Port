@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { motion, AnimatePresence } from 'framer-motion'
 import { Separator } from "./ui/separator"
+import FadeInMotionDiv from "./framer/FadeInMotionDiv"
 
 const BrandsFilter = () => {
     const [search, setSearch] = useState('')
@@ -40,15 +41,13 @@ const BrandsFilter = () => {
         replace(`${pathName}?${params.toString()}`, {scroll: false});
     }
   return (
-    <>
-        <h3 className="font-semibold mb-2">Racket Brands</h3>
+    <FadeInMotionDiv>
         <input onChange={(e) => setSearch(e.target.value)} type="text" className="border p-2 w-40 mb-2" placeholder="Search by brand." />
-        <ScrollArea className="h-60 w-48">
+        <ScrollArea className="h-60 pr-6">
         <AnimatePresence mode="popLayout">
-            <div className="px-4">
-                {searchResults.map((racketBrand, index) => (
-                    <>
-                    <motion.div key={racketBrand.brand} className="flex items-center justify-between my-2" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+            {searchResults.map((racketBrand, index) => (
+                <motion.div key={racketBrand.brand} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+                    <div className="flex items-center justify-between my-2">
                         {racketBrand.logo}
                         <label
                             htmlFor={racketBrand.brand}
@@ -56,16 +55,14 @@ const BrandsFilter = () => {
                         >
                             {racketBrand.brand}
                         </label>
-                        <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand)} checked={initialCheckedBoxes.includes(racketBrand.brand)} className="w-6 h-6" id={racketBrand.brand} />
-                    </motion.div>
+                        <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand)} checked={initialCheckedBoxes.includes(racketBrand.brand)} id={racketBrand.brand} />
+                    </div>
                     {index !== searchResults.length-1 && <Separator />}
-                    </>
-                    
-                ))}
-            </div>
+                </motion.div>
+            ))}
         </AnimatePresence>
         </ScrollArea>
-    </>
+    </FadeInMotionDiv>
   )
 }
 

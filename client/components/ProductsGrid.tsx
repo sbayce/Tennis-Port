@@ -55,9 +55,9 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                     <p className="text-lg font-bold text-gray-700">{product.price} <span className="text-sm">EGP</span></p>
                     
                     <motion.button 
-                        initial={{opacity: 0, y: 10}} 
+                        initial={{opacity: 0}} 
                         transition={{damping: 10, duration: 0.2}} 
-                        animate={{opacity: isHovered === product.name? 1 : 0, y: isHovered === product.name? 0 : 10}} 
+                        animate={{opacity: isHovered === product.name? 1 : 0, y: isHovered === product.name? 0 : 5}} 
                         onClick={() => handleAdd(product)} 
                         className='border font-semibold mt-2 text-sm hover:bg-[#C75828]
                         hover:text-white border-[#C75828] text-[#C75828] p-2 rounded-xl'>

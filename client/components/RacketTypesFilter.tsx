@@ -3,6 +3,7 @@ import { racketTypes } from "@/app/page"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
+import FadeInMotionDiv from "./framer/FadeInMotionDiv"
 
 const RacketTypesFilter = () => {
 
@@ -35,9 +36,7 @@ const RacketTypesFilter = () => {
         replace(`${pathName}?${params.toString()}`, {scroll: false});
     }
   return (
-    <>
-        <h3 className="font-semibold mb-2">Racket Types</h3>
-        <div className="flex flex-col gap-2 mb-4">
+        <FadeInMotionDiv className="flex flex-col gap-2 mb-4">
             {racketTypes.map(racketType => (
                 <div key={racketType} className="flex items-center justify-between">
                     <label
@@ -49,14 +48,12 @@ const RacketTypesFilter = () => {
                     <Checkbox
                         checked={checkedBoxes.includes(racketType)}
                         onCheckedChange={() => handleCheck(racketType)}
-                        className="w-6 h-6"
                         id={racketType}
                     />
                 </div>
             ))}
-        </div>
-    </>
-  )
+        </FadeInMotionDiv>
+    )
 }
 
 export default RacketTypesFilter
