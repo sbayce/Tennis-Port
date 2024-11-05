@@ -23,6 +23,24 @@ export const racketTypes: string[] = [
   "Junior",
   "Tour"
 ]
+export const racketWeights: string[] = [
+  "170",
+  "180",
+  "190",
+  "200",
+  "210",
+  "220",
+  "230",
+  "240",
+  "250",
+  "260",
+  "270",
+  "280",
+  "290",
+  "300",
+  "310"
+
+]
 export const racketBrands: any[] = [
   {
     brand: "Babolat",
@@ -65,8 +83,8 @@ export const racketBrands: any[] = [
 const RACKET_DATA = [
   {
     id: 1,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Tour",
     name: "Pure Drive Wimbledon Tour",
@@ -130,8 +148,8 @@ const RACKET_DATA = [
   },
   {
     id: 6,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Plus",
@@ -143,8 +161,8 @@ const RACKET_DATA = [
   },
   {
     id: 7,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Ultimate",
@@ -156,8 +174,8 @@ const RACKET_DATA = [
   },
   {
     id: 8,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Power",
@@ -169,8 +187,8 @@ const RACKET_DATA = [
   },
   {
     id: 9,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Supreme",
@@ -182,8 +200,8 @@ const RACKET_DATA = [
   },
   {
     id: 10,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Ace",
@@ -195,8 +213,8 @@ const RACKET_DATA = [
   },
   {
     id: 11,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Grand",
@@ -208,8 +226,8 @@ const RACKET_DATA = [
   },
   {
     id: 12,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Champion",
@@ -221,8 +239,8 @@ const RACKET_DATA = [
   },
   {
     id: 13,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Master",
@@ -234,8 +252,8 @@ const RACKET_DATA = [
   },
   {
     id: 14,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Fusion",
@@ -247,8 +265,8 @@ const RACKET_DATA = [
   },
   {
     id: 15,
-    image: "https://www.babolat.ca/cdn/shop/files/101516-Pure_Drive_Wimbledon-100-1-Face.png?v=1715871758",
-    image2: "https://media.babolat.com/image/upload/f_auto,q_auto,c_pad,w_1008,h_1008/v1698757943/Product_Media/2024/101516-Pure_Drive_Wimbledon-100-3-3_4_left.png",
+    image: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074311U_/WR074311U__947e55f0cb46856d1f5cc48543781b9c.png?dpr=2&fit=bounds&orient=1&quality=90&optimize=high&format=pjpg&auto=webp&enable=upscale&width=1912&height=962&bg-color=f5f5f5",
+    image2: "https://www.wilson.com/en-us/media/catalog/product/article_images/WR074111U_/WR074111U__aa6e7f8951545eb2b2fb25f27546f8d2.png?dpr=1&fit=bounds&orient=1&quality=95&optimize=high&format=pjpg&auto=webp&enable=upscale&width=778&height=950&canvas=778%2C950&bg-color=f5f5f5",
     brand: <BabolatIcon className='w-20 h-20' />,
     type: "Allround",
     name: "Nadal Racket Evolution",
@@ -274,10 +292,12 @@ export default function Home() {
     <>
       <MainDisplay />
       <NavMenu />
-      <ActiveFilters />
       <div className="flex gap-2">
         { hasMounted && isLgOrLarger && <SideBar /> }
-        <ProductsGrid products={RACKET_DATA} />
+        <div className="flex flex-col gap-8">
+          <ActiveFilters />
+          <ProductsGrid products={RACKET_DATA} />
+        </div>
       </div>
     </>
   );
