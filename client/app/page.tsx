@@ -16,6 +16,7 @@ import TecnifibreIcon from '@/icons/tecnifibre.svg'
 import YonexIcon from '@/icons/yonex.svg'
 import { useMediaQuery } from 'react-responsive'
 import { useEffect, useState } from "react";
+import SortMenu from "@/components/SortMenu";
 
 export const racketTypes: string[] = [
   "Allround",
@@ -295,7 +296,10 @@ export default function Home() {
       <div className="flex gap-2">
         { hasMounted && isLgOrLarger && <SideBar /> }
         <div className="flex flex-col gap-8">
-          <ActiveFilters />
+          <div className="flex justify-between">
+            <ActiveFilters />
+            <SortMenu />
+          </div>
           <ProductsGrid products={RACKET_DATA} />
         </div>
       </div>
