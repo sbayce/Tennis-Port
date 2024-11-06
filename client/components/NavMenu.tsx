@@ -26,8 +26,8 @@ const staggerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { damping: 10 } },
 };
 
 function NavMenu() {
@@ -58,7 +58,7 @@ function NavMenu() {
                     <h3 className="font-semibold">Brands</h3>
                     <motion.div initial="hidden" animate="visible" variants={staggerVariants} className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
-                        <motion.div key={racketBrand} variants={itemVariants}>
+                        <motion.div key={racketBrand.brand} variants={itemVariants}>
                           <Link href={`/?brand=${racketBrand.brand}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
                         </motion.div>
                       )}

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const FadeInWrapper = ({ children, ...props }: any) => {
+const FadeInMotionDiv = ({ children, ...props }: any) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -14,4 +14,4 @@ const FadeInWrapper = ({ children, ...props }: any) => {
   )
 }
 
-export default FadeInWrapper
+export default FadeInMotionDiv
