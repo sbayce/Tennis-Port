@@ -3,7 +3,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { racketBrands } from "@/app/page"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { motion, AnimatePresence } from 'framer-motion'
 import { Separator } from "./ui/separator"
@@ -16,16 +16,10 @@ const BrandsFilter = () => {
     const pathName = usePathname();
     const { replace } = useRouter();
     const initialCheckedBoxes = searchParams.getAll('brand');
-    const [checkedBoxes, setCheckedBoxes] = useState<string[]>(initialCheckedBoxes);
-
-    useEffect(() => {
-        setCheckedBoxes(searchParams.getAll('brand'));
-    }, [searchParams]);
+    const params = new URLSearchParams(searchParams);
 
     function handleCheck(racketBrand: string) {
-        const params = new URLSearchParams(searchParams);
-
-        // Toggle the racket type parameter
+        // Toggle the brand parameter
         if (params.has('brand')) {
             const types = params.getAll('brand');
             if (types.includes(racketBrand)) {
