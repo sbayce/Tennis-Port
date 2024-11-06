@@ -12,6 +12,7 @@ const PriceFilter = () => {
   const { replace } = useRouter()
   const minQuery = Number(searchParams.get("price.min")) || MIN_PRICE
   const maxQuery = Number(searchParams.get("price.max")) || MAX_PRICE
+  const params = new URLSearchParams(searchParams.toString())
   const [priceRange, setPriceRange] = useState<number[]>([minQuery, maxQuery])
   let previousMin = MIN_PRICE
   let previousMax = MAX_PRICE
@@ -44,22 +45,21 @@ const PriceFilter = () => {
       updatedPrice[index] = value
       return updatedPrice
     })
-    const params = new URLSearchParams(searchParams.toString())
-    if(type === 'min' && value === MIN_PRICE) {
-      params.delete('price.min')
+    
+    if(type === 'min' && value === MIN_PRICE || type === 'max' && value === MAX_PRICE) {
+      params.delete(`price.${type}`)
       return replace(`${path}?${params.toString()}`, {scroll: false})
     }
-    if(type === 'max' && value === MAX_PRICE) {
-      params.delete('price.max')
-      return replace(`${path}?${params.toString()}`, {scroll: false})
-    }
+
     params.set(`price.${type}`, String(value))
     replace(`${path}?${params.toString()}`, {scroll: false})
     console.log(params.toString())
   }
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>, ref: React.RefObject<HTMLInputElement>) {
-    if (e.key === "Enter") ref.current?.blur()
-  }
+
+function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>, ref: React.RefObject<HTMLInputElement>) {
+  if (e.key === "Enter") ref.current?.blur()
+}
+
 function handleOnChange(e: React.ChangeEvent<HTMLInputElement>, type: 'min' | 'max') {
   const value = type === 'max' && e.target.value === ''? MAX_PRICE : Number(e.target.value) // if no value entered at max -> defaults to MAX_PRICE
   setPriceRange(prev => {
@@ -70,13 +70,23 @@ function handleOnChange(e: React.ChangeEvent<HTMLInputElement>, type: 'min' | 'm
   })
 }
 
+function handleCommit(range: number[]) {
+  const min = range[0] === MIN_PRICE? null : String(range[0])
+  const max = range[1] === MAX_PRICE? null : String(range[1])
+  if(min) params.set('price.min', min)
+  if(max) params.set('price.max', max)
+  if(!min) params.delete('price.min')
+  if(!max) params.delete('price.max')
+  replace(`${path}?${params.toString()}`, {scroll: false})
+}
+
   console.log(priceRange)
   return (
       <FadeInMotionDiv className='flex flex-col gap-4 items-center px-2 mt-4'>
           <DualRangeSlider
             value={priceRange}
             onValueChange={setPriceRange}
-            onValueCommit={() => console.log("commit")}
+            onValueCommit={handleCommit}
             min={MIN_PRICE}
             max={MAX_PRICE}
             step={1}
