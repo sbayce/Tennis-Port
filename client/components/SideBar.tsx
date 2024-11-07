@@ -15,7 +15,7 @@ const SideBar = () => {
     const searchParams = useSearchParams()
     // extract the required search params ['type', 'brand', 'price'] without duplicates
     const allParams = Array.from(new Set(Array.from(searchParams.keys()).reduce((res: string[], k) => {
-        const required = ['type', 'brand', 'price']
+        const required = ['type', 'brand', 'price', 'weight']
         const param = k.split(".")[0]
         required.includes(param) && res.push(param) // split price params from 'price.max/price.min' to 'price'
         return res
