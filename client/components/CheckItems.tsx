@@ -15,6 +15,7 @@ const CheckItems = ({ listItems, paramName }: CheckItemsProps) => {
     const params = new URLSearchParams(searchParams);
 
     function toggleCheck(weight: string) {
+        params.delete("page") // remove existing 'page' param to fetch new data from page 1
         // Toggle the search parameter
         if (params.has(paramName)) {
             const weights = params.getAll(paramName);

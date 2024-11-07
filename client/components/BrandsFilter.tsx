@@ -19,6 +19,7 @@ const BrandsFilter = () => {
     const params = new URLSearchParams(searchParams);
 
     function handleCheck(racketBrand: string) {
+        params.delete("page") // remove existing 'page' param to fetch new data from page 1
         // Toggle the brand parameter
         if (params.has('brand')) {
             const types = params.getAll('brand');

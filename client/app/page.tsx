@@ -5,7 +5,6 @@ import SideBar from "@/components/SideBar";
 import ProductsGrid from "@/components/ProductsGrid";
 import ActiveFilters from "@/components/ActiveFilters";
 import BabolatIcon from '@/icons/babolat-logo-vector.svg'
-import WilsonIcon from '@/icons/wilson.svg'
 import WilsonRedIcon from '@/icons/wilson-red.svg'
 import DunlopIcon from '@/icons/dunlop.svg'
 import HeadIcon from '@/icons/head.svg'
@@ -17,6 +16,7 @@ import YonexIcon from '@/icons/yonex.svg'
 import { useMediaQuery } from 'react-responsive'
 import { useEffect, useState } from "react";
 import SortMenu from "@/components/SortMenu";
+import PaginationTab from "@/components/PaginationTab";
 
 export const racketTypes: string[] = [
   "Allround",
@@ -292,15 +292,15 @@ export default function Home() {
   return (
     <>
       <MainDisplay />
-      <NavMenu />
       <div className="flex gap-2">
         { hasMounted && isLgOrLarger && <SideBar /> }
-        <div className="flex flex-col gap-8">
-          <div className="flex justify-between">
+        <div className="flex flex-col gap-8 mb-20">
+          <div className="flex justify-between mt-4">
             <ActiveFilters />
             <SortMenu />
           </div>
           <ProductsGrid products={RACKET_DATA} />
+          <PaginationTab />
         </div>
       </div>
     </>

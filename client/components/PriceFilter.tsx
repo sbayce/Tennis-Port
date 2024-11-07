@@ -28,6 +28,7 @@ const PriceFilter = () => {
     // if( (type === 'min' && previousMin === value) || (type === 'max' && previousMax === value) ){
     //   return
     // }
+    params.delete("page") // remove existing 'page' param to fetch new data from page 1
 
     if(type === 'min' && value >= priceRange[1]){
       value = priceRange[1] - 1
@@ -71,6 +72,7 @@ function handleOnChange(e: React.ChangeEvent<HTMLInputElement>, type: 'min' | 'm
 }
 
 function handleCommit(range: number[]) {
+  params.delete("page") // remove existing 'page' param to fetch new data from page 1
   const min = range[0] === MIN_PRICE? null : String(range[0])
   const max = range[1] === MAX_PRICE? null : String(range[1])
   if(min) params.set('price.min', min)
