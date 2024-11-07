@@ -36,12 +36,12 @@ function NavMenu() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-semibold">Rackets</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+          <NavigationMenuContent className="w-full p-4">
+            <ul className="grid gap-3 p-6 w-screen lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <>
-                    <h3 className="font-semibold">Types</h3>
+                    <h3 className="font-semibold text-2xl">Types</h3>
                     <motion.div variants={staggerVariants} initial="hidden" animate="visible" className="mt-4 flex flex-col gap-2 text-sm">
                       {racketTypes.map(racketType => 
                         <motion.div key={racketType} variants={itemVariants}>
@@ -55,7 +55,7 @@ function NavMenu() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <>
-                    <h3 className="font-semibold">Brands</h3>
+                    <h3 className="font-semibold text-2xl">Brands</h3>
                     <motion.div initial="hidden" animate="visible" variants={staggerVariants} className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
                         <motion.div key={racketBrand.brand} variants={itemVariants}>
@@ -72,8 +72,8 @@ function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-semibold">Strings</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="p-6">
-              <h3 className="font-semibold">Brands</h3>
+            <div className="p-6 w-screen">
+              <h3 className="font-semibold text-2xl">Brands</h3>
               <motion.ul initial="hidden" animate="visible" variants={staggerVariants} className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
                 {racketBrands.map((racketBrand) => (
                   <motion.div key={racketBrand.brand} variants={itemVariants}>

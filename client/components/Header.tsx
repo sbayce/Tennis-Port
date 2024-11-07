@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from './CartButton';
+import NavMenu from "@/components/NavMenu";
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -24,7 +25,7 @@ const Header = () => {
 
   return (
     <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-2 
-      sm:px-10 md:px-32 lg:px-auto overflow-hidden border-b border-neutral-600]" transition={{duration: 0.2}} 
+      sm:px-10 md:px-32 lg:px-auto border-b border-neutral-600]" transition={{duration: 0.2}} 
       animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
       <Link href="/">
         <motion.img 
@@ -43,6 +44,7 @@ const Header = () => {
           transition={{duration: 0.2}}
         />
       </div>
+      <NavMenu />
       <CartButton />
     </motion.div>
   );
