@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 const CartButton = () => {
     const cartCtx = useCart()
   return (
-    <div>
+    <div className='mt-6'>
         {cartCtx?.numOfItems !== 0 && (
           <motion.div key={cartCtx?.numOfItems} 
           initial={{scale: 0.7}} animate={{scale: 1}} transition={{duration: 0.1}} 

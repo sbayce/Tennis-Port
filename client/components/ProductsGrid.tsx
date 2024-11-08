@@ -59,8 +59,8 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                         transition={{damping: 10, duration: 0.2}} 
                         animate={{opacity: isHovered === product.name? 1 : 0, y: isHovered === product.name? 0 : 5}} 
                         onClick={() => handleAdd(product)} 
-                        className='border font-semibold mt-2 text-sm hover:bg-[#C75828]
-                        hover:text-white border-[#C75828] text-[#C75828] p-2 rounded-xl'>
+                        className='border font-semibold mt-2 text-sm bg-[#C75828] text-white hover:bg-transparent
+                        hover:text-[#C75828] border-[#C75828] p-2 rounded-xl'>
                             Add to cart
                     </motion.button>
                 </div>

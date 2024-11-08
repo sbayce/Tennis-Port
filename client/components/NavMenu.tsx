@@ -32,7 +32,7 @@ const itemVariants = {
 
 function NavMenu() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="mt-6">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-semibold">Rackets</NavigationMenuTrigger>

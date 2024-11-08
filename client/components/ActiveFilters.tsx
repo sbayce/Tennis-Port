@@ -4,13 +4,14 @@ import Link from 'next/link'
 
 const ActiveFilters = () => {
     const searchParams = useSearchParams()
-    const filters = Array.from(searchParams.values())
-    console.log("filters:", filters)
+    const params = new URLSearchParams(searchParams)
+    params.delete("page") // avoid displaying 'page' & 'sort' params
+    params.delete("sort")  
+    const filters = Array.from(params.values())
     const { replace } = useRouter()
     const path = usePathname();
 
     function removeFilter(filter: string) {
-        console.log("filter: ", filter)
         const params = new URLSearchParams(searchParams.toString())
         params.entries().forEach(p => {
             if(p[1] === filter) {
