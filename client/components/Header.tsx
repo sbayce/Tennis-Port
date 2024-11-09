@@ -44,8 +44,10 @@ const Header = () => {
           transition={{duration: 0.2}}
         />
       </div>
-      <NavMenu />
-      <CartButton />
+      <div className='flex gap-6'>
+        <NavMenu />
+        <CartButton />
+      </div>
     </motion.div>
   );
 };

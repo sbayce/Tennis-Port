@@ -5,10 +5,25 @@ import WeightIcon from '@/icons/weight.svg'
 import { useCart } from '@/contexts/CartContext'
 import Item from '@/contexts/types/item'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { delay, motion } from 'framer-motion'
 
 type ProductsGridProps = {
     products: any[]
+}
+
+const fadeInVariant = {
+    hidden: {
+        opacity: 0,
+        y: 10
+    },
+    visible: (index: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            damping: 10,
+            delay: index * 0.05
+        }
+    })
 }
 
 const ProductsGrid = ({ products }: ProductsGridProps) => {
@@ -22,8 +37,8 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
     console.log("hover: ", isImageHovered)
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-14 w-full">
-        {products.map(product =>
-            <div key={product.name} className="flex flex-col xl:flex-col gap-4 items-center cursor-pointer" onMouseOver={() => setIsHovered(product.name)} onMouseLeave={() => setIsHovered(null)}>
+        {products.map((product, index) =>
+            <motion.div key={product.name} variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={index} className="flex flex-col xl:flex-col gap-4 items-center cursor-pointer" onMouseOver={() => setIsHovered(product.name)} onMouseLeave={() => setIsHovered(null)}>
                 <div className='relative w-full h-full overflow-hidden' onMouseOver={() => setIsImageHovered(product.name)} onMouseLeave={() => setIsImageHovered(null)}>
                     <motion.img initial={{opacity: 1}} animate={{ opacity: isImageHovered === product.name ? 0 : 1 }} transition={{duration: 0.1}} className={`w-full h-full max-h-[100%] max-w-[100%] object-cover`}
                             src={product.image}
@@ -64,7 +79,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                             Add to cart
                     </motion.button>
                 </div>
-            </div>
+            </motion.div>
         )}
     </div>
   )
