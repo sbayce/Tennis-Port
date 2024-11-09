@@ -1,5 +1,4 @@
 "use client"
-import NavMenu from "@/components/NavMenu";
 import MainDisplay from "@/components/MainDisplay";
 import SideBar from "@/components/SideBar";
 import ProductsGrid from "@/components/ProductsGrid";
@@ -13,8 +12,6 @@ import PrinceIcon from '@/icons/prince.svg'
 import ProkennexIcon from '@/icons/PROKENNEX.svg'
 import TecnifibreIcon from '@/icons/tecnifibre.svg'
 import YonexIcon from '@/icons/yonex.svg'
-import { useMediaQuery } from 'react-responsive'
-import { useEffect, useState } from "react";
 import SortMenu from "@/components/SortMenu";
 import PaginationTab from "@/components/PaginationTab";
 
@@ -282,18 +279,11 @@ const RACKET_DATA = [
 
 
 export default function Home() {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true); // Ensures the component has mounted before rendering based on screen size
-  }, []);
-
-  const isLgOrLarger = useMediaQuery({minWidth: 1000})
   return (
     <>
       <MainDisplay />
       <div className="flex gap-2">
-        { hasMounted && isLgOrLarger && <SideBar /> }
+        <SideBar />
         <div className="flex flex-col gap-8 mb-20">
           <div className="flex justify-between mt-4">
             <ActiveFilters />

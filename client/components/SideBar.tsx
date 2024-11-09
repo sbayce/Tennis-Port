@@ -22,7 +22,7 @@ const SideBar = () => {
     }, [])))
     return (
         <AnimatePresence mode="popLayout">
-            <div className="p-4 sticky h-screen top-24 flex flex-col gap-4">
+            <div className="p-4 sticky h-screen top-24 hidden flex-col gap-4 lg:flex">
                 <Accordion defaultValue={allParams} type="multiple" className="w-48">
                     <AccordionItem data-sta value="type">
                         <AccordionTrigger>Racket Types</AccordionTrigger>
