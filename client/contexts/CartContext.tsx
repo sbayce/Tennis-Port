@@ -13,7 +13,16 @@ type CartContextType = {
     setNumOfItems: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const CartContext = createContext<CartContextType | undefined>(undefined)
+export const CartContext = createContext<CartContextType>({
+    items: [],
+    total: 0,
+    numOfItems: 0,
+    addItem: () => {},
+    removeItem: () => {},
+    setItems: () => {},
+    setTotal: () => {},
+    setNumOfItems: () => {},
+})
 
 export function useCart() {
     return useContext(CartContext)
