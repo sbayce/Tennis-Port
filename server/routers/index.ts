@@ -1,15 +1,9 @@
 import { t } from "../trpc"
+import racketRouter from "./rackets"
 
-const appRouter = t.router({
-    alos: t.procedure.query(async (req) => {
-        const { prisma } = req.ctx
-        try{
-            const rackets = await prisma.racket.findMany({})
-            console.log("rackets: ", rackets)
-            return rackets
-        }catch(e: any){
-            console.log(e.message)
-        }
+const randomRouter = t.router({
+    sayAlo: t.procedure.query(() => {
+        return "aloo"
     }),
     logToServer: t.procedure.input(v => {
         if(typeof v === 'number') return v
@@ -19,5 +13,7 @@ const appRouter = t.router({
         return true
     })
 })
+
+const appRouter = t.mergeRouters(randomRouter, racketRouter)
 
 export default appRouter
