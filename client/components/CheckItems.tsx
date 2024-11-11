@@ -37,8 +37,8 @@ const CheckItems = ({ listItems, paramName }: CheckItemsProps) => {
         {listItems.map(listItem => (
             <div key={listItem} className="flex items-center gap-4">
                 <Checkbox
-                    checked={checkedBoxes.includes(listItem)}
-                    onCheckedChange={() => toggleCheck(listItem)}
+                    checked={checkedBoxes.includes(listItem.toLowerCase())}
+                    onCheckedChange={() => toggleCheck(listItem.toLowerCase())}
                     id={listItem}
                 />
                 <label

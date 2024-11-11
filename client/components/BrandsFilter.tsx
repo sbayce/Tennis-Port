@@ -50,7 +50,7 @@ const BrandsFilter = () => {
                         >
                             {racketBrand.brand}
                         </label>
-                        <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand)} checked={initialCheckedBoxes.includes(racketBrand.brand)} id={racketBrand.brand} />
+                        <Checkbox onCheckedChange={() => handleCheck(racketBrand.brand.toLowerCase())} checked={initialCheckedBoxes.includes(racketBrand.brand.toLowerCase())} id={racketBrand.brand} />
                     </div>
                     {index !== searchResults.length-1 && <Separator />}
                 </motion.div>
