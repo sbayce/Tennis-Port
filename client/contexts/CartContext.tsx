@@ -1,6 +1,6 @@
 "use client"
 import { createContext, ReactNode, useState, useContext } from "react"
-import Item from "@/contexts/types/item";
+import Item from "@/types/item";
 
 type CartContextType = {
     items: Item[]; // Replace `any` with a more specific type if possible

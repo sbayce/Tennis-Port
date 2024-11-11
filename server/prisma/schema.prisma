@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -8,27 +9,29 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(cuid()) @map("_id")
   email     String   @unique
   password  String
   name      String
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
-  orders    Order[]  @relation("UserOrders")
+  orders    Order[]
 }
 
 model Product {
-  id          String          @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  description String
-  price       Float
-  stock       Int
-  category    ProductCategory
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  Racket      Racket[]
-  Shoe        Shoe[]
-  OrderItem   OrderItem[]
+  id        String          @id @default(cuid()) @map("_id")
+  name      String
+  image     String
+  image2    String
+  brand     String
+  price     Float
+  stock     Int
+  category  ProductCategory
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  racket    Racket?
+  shoe      Shoe?
+  OrderItem OrderItem[]
 }
 
 enum ProductCategory {
@@ -37,24 +40,20 @@ enum ProductCategory {
 }
 
 model Racket {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  product   Product @relation(fields: [productId], references: [id])
-  productId String  @db.ObjectId
-  brand     String
-  headSize  Float
-  weight    Float
-  pattern   String // strings pattern
+  id        String  @id @default(cuid()) @map("_id")
+  product   Product @relation(fields: [productId], references: [id]) // No fields or references here
+  productId String  @unique
+  headSize  String
+  pattern   String // string pattern
+  weight    String
   type      String
 }
 
 model Shoe {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  product   Product    @relation(fields: [productId], references: [id])
-  productId String     @db.ObjectId
-  brand     String
-  size      Int
-  gender    ShoeGender
-  material  String
+  id        String  @id @default(cuid()) @map("_id")
+  product   Product @relation(fields: [productId], references: [id]) // No fields or references here
+  productId String  @unique
+  size      Float
   color     String
 }
 
@@ -65,20 +64,20 @@ enum ShoeGender {
 }
 
 model Order {
-  id          String      @id @default(auto()) @map("_id") @db.ObjectId
-  user        User        @relation("UserOrders", fields: [userId], references: [id])
-  userId      String      @db.ObjectId
+  id          String      @id @default(cuid()) @map("_id")
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String
   createdAt   DateTime    @default(now())
   items       OrderItem[]
   totalAmount Float
 }
 
 model OrderItem {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  id        String  @id @default(cuid()) @map("_id")
   order     Order   @relation(fields: [orderId], references: [id])
-  orderId   String  @db.ObjectId
+  orderId   String
   product   Product @relation(fields: [productId], references: [id])
-  productId String  @db.ObjectId
+  productId String
   quantity  Int
   price     Float
 }
