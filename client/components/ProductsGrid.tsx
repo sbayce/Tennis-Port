@@ -3,12 +3,12 @@ import DiameterIcon from '@/icons/diameter-head.svg'
 import StringsIcon from '@/icons/racket-strings.svg'
 import WeightIcon from '@/icons/weight.svg'
 import { useCart } from '@/contexts/CartContext'
-import Item from '@/contexts/types/item'
 import { useState } from 'react'
-import { delay, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import Product from '@/types/product'
 
 type ProductsGridProps = {
-    products: any[]
+    products: Product[]
 }
 
 const fadeInVariant = {
@@ -30,7 +30,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
     const cartCtx = useCart()
     const [isImageHovered, setIsImageHovered] = useState<string | null>(null)
     const [isHovered, setIsHovered] = useState<string | null>(null)
-    function handleAdd(product: Item) {
+    function handleAdd(product: any) {
         cartCtx?.addItem(product)
     }
     console.log(cartCtx?.items)
@@ -51,22 +51,22 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                     <div className="flex xl:flex-row flex-col items-center text-xs text-gray-500 absolute right-auto xl:right-0 bottom-0">
                         <div className='flex flex-col items-center'>
                             <DiameterIcon className='w-8 h-8' />
-                            <p>{product.width}</p>
+                            <p>{product.racket?.headSize}</p>
                         </div>
                         <div className='flex flex-col items-center'>
                             <StringsIcon className='w-8 h-8' />
-                            <p>{product.height}</p>
+                            <p>{product.racket?.pattern}</p>
                         </div>
                         <div className='flex flex-col items-center'>
                             <WeightIcon className='w-8 h-8' />
-                            <p>{product.weight}</p>
+                            <p>{product.racket?.weight}</p>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-0 w-full items-center xl:items-center relative text-center">
                     {product.brand}
                     <p className="text-zinc-900 text-md font-semibold">{product.name}</p>
-                    <p className="text-sm font-semibold">{product.type}</p>
+                    <p className="text-sm font-semibold">{product.racket?.type}</p>
                     <p className="text-lg font-bold text-gray-700">{product.price} <span className="text-sm">EGP</span></p>
                     
                     <motion.button 
