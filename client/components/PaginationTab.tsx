@@ -21,7 +21,7 @@ function PaginationTab() {
   }
   const path = usePathname()
     return (
-      <Pagination>
+      <Pagination className="mt-auto">
         <PaginationContent>
           <PaginationItem>
             {currentPage === 1? <ChevronLeft className="h-4 w-4 opacity-40 mr-4" /> : <PaginationPrevious href={`${path}?${params}${params.size > 0? "&" : ""}page=${currentPage-1}`} />}
