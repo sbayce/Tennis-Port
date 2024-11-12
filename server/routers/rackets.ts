@@ -1,5 +1,6 @@
 import { t } from "../trpc"
 import { z } from 'zod'
+import getRacketProcedure from "../queries/get-racket"
 
 const PAGE_SIZE = 12
 
@@ -57,7 +58,7 @@ const racketRouter = t.router({
             throw new Error("Failed to fetch rackets.")
         }
     }),
-
+    getRacket: getRacketProcedure
 })
 
 export default racketRouter
