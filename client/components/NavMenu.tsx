@@ -45,7 +45,7 @@ function NavMenu() {
                     <motion.div variants={staggerVariants} initial="hidden" animate="visible" className="mt-4 flex flex-col gap-2 text-sm">
                       {racketTypes.map(racketType => 
                         <motion.div key={racketType} variants={itemVariants}>
-                          <Link href={`/?type=${racketType}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketType}</Link>
+                          <Link href={`/?type=${racketType.toLowerCase()}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketType}</Link>
                         </motion.div>
                       )}
                     </motion.div>
@@ -59,7 +59,7 @@ function NavMenu() {
                     <motion.div initial="hidden" animate="visible" variants={staggerVariants} className="mt-4 flex flex-col gap-2 text-sm">
                       {racketBrands.map(racketBrand => 
                         <motion.div key={racketBrand.brand} variants={itemVariants}>
-                          <Link href={`/?brand=${racketBrand.brand}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
+                          <Link href={`/?brand=${racketBrand.brand.toLowerCase()}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
                         </motion.div>
                       )}
                     </motion.div>
@@ -70,14 +70,14 @@ function NavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-semibold">Strings</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold">Shoes</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="p-6 w-screen">
               <h3 className="font-semibold text-2xl">Brands</h3>
               <motion.ul initial="hidden" animate="visible" variants={staggerVariants} className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] text-sm">
                 {racketBrands.map((racketBrand) => (
                   <motion.div key={racketBrand.brand} variants={itemVariants}>
-                    <Link href={`/?brand=${racketBrand.brand}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
+                    <Link href={`/?brand=${racketBrand.brand.toLowerCase()}`} className="hover:text-zinc-500 transition-colors duration-200 ease-in-out">{racketBrand.brand}</Link>
                   </motion.div>
                 ))}
               </motion.ul>
