@@ -3,6 +3,7 @@ type Product = {
     name: string
     image: string
     image2: string
+    images: string[]
     brand: string
     price: number
     stock: number
