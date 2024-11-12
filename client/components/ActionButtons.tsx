@@ -1,0 +1,27 @@
+"use client"
+import { useCart } from "@/contexts/CartContext"
+import Product from "@/types/product"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+
+const ActionButtons = ({ racketData }: { racketData: Product }) => {
+    const { addItem } = useCart()
+    const searchParams = useSearchParams()
+    const gripSize = searchParams.get("grip")
+    const stringOption = searchParams.get("string")
+    const isOutOfStock = racketData.stock <= 0
+    if(isOutOfStock) return <div className="rounded-3xl bg-[#cfcfcf] p-4 w-full mx-4 pointer-events-none text-center text-[#202223] font-bold text-sm">Sold out</div>
+  return (
+    <div className="flex gap-2 mt-6">
+        <button onClick={() => addItem(racketData)} className="rounded-3xl bg-[#202223] p-4 w-full text-white font-bold text-sm">Add to cart</button>
+        <Link href={{ pathname: `/checkout/${racketData.id}`, query: {
+          productName: racketData.name,
+          image: racketData.image,
+          gripSize,
+          stringOption
+        } }} className="rounded-3xl bg-[#C75828] p-4 w-full text-white font-bold text-sm">Checkout</Link>
+    </div>
+  )
+}
+
+export default ActionButtons

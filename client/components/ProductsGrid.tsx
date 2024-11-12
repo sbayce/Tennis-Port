@@ -6,6 +6,7 @@ import { useCart } from '@/contexts/CartContext'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Product from '@/types/product'
+import Link from 'next/link'
 
 type ProductsGridProps = {
     products: Product[]
@@ -38,6 +39,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-14 w-full">
         {products.map((product, index) =>
+        <Link href={`product/${product.id}`}>
             <motion.div key={product.name} variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={index} className="flex flex-col xl:flex-col gap-4 items-center cursor-pointer" onMouseOver={() => setIsHovered(product.name)} onMouseLeave={() => setIsHovered(null)}>
                 <div className='relative w-full h-full overflow-hidden' onMouseOver={() => setIsImageHovered(product.name)} onMouseLeave={() => setIsImageHovered(null)}>
                     <motion.img initial={{opacity: 1}} animate={{ opacity: isImageHovered === product.name ? 0 : 1 }} transition={{duration: 0.1}} className={`w-full h-full max-h-[100%] max-w-[100%] object-cover`}
@@ -80,6 +82,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                     </motion.button>
                 </div>
             </motion.div>
+            </Link>
         )}
     </div>
   )
