@@ -15,11 +15,11 @@ const PreferenceSelection = () => {
 
     const handleGripChnage = (grip: string) => {
         params.set("grip", grip)
-        replace(`${path}?${params.toString()}`)
+        replace(`${path}?${params.toString()}`, {scroll: false})
     }
     const handleStringChange = (string: string) => {
         params.set("string", string)
-        replace(`${path}?${params.toString()}`)
+        replace(`${path}?${params.toString()}`, {scroll: false})
     }
 
   return (
