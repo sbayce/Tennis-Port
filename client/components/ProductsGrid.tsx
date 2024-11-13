@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Product from '@/types/product'
 import Link from 'next/link'
+import CartItem from '@/types/cart-item'
 
 type ProductsGridProps = {
     products: Product[]
@@ -31,8 +32,18 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
     const cartCtx = useCart()
     const [isImageHovered, setIsImageHovered] = useState<string | null>(null)
     const [isHovered, setIsHovered] = useState<string | null>(null)
-    function handleAdd(product: any) {
-        cartCtx?.addItem(product)
+    const handleAdd = (product: Product) => {
+        const cartItem: CartItem = {
+            id: product.id,
+            name: product.name,
+            brand: product.brand,
+            image: product.image,
+            price: product.price,
+            quantity: 1,
+            gripSize: "2",
+            stringOption: "unstrung"
+        }
+        cartCtx?.addItem(cartItem)
     }
     console.log(cartCtx?.items)
     console.log("hover: ", isImageHovered)
