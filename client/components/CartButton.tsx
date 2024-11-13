@@ -38,6 +38,8 @@ const CartButton = () => {
             <div>
               <p>{item.name}</p>
               <p className='text-sm'>{item.price} LE</p>
+              <p className='text-xs'>Grip: {item.gripSize}</p>
+              <p className='text-xs'>String: {item.stringOption}</p>
             </div>
             <p className=''>{item.quantity}</p>
           </div>)}
