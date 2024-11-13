@@ -4,6 +4,7 @@ import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from './CartButton';
 import NavMenu from "@/components/NavMenu";
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -35,15 +36,7 @@ const Header = () => {
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
       </Link>
-      <div>
-        <motion.input 
-          type="text" 
-          className="border p-2 w-96 mt-6 hidden lg:visible lg:flex ml-auto" 
-          placeholder="Search for tennis stuff."
-          animate={{opacity: scrollDirection === 'up' || !scrollDirection ? 1 : 0}}
-          transition={{duration: 0.2}}
-        />
-      </div>
+      <SearchBar scrollDirection={scrollDirection} />
       <div className='flex gap-6'>
         <NavMenu />
         <CartButton />
