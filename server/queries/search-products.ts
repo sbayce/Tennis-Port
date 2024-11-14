@@ -9,6 +9,7 @@ const searchProductsProcedure = t.procedure.input(z.string()).query(async (req) 
             id: true,
             name: true,
             brand: true,
+            image: true,
             price: true
         },
         where: {
