@@ -96,10 +96,12 @@ export default function Home() {
   const max = maxPrice? Number(maxPrice) : undefined
   const sort = searchParams.get("sort") || undefined
   const [rackets, setRackets] = useState<Product[]>([])
+  const [numOfPages, setNumOfPages] = useState<number>(0)
 
   const fetchRackets = async() => {
-    const racketData = await trpc.getRackets.query({page, filter: {brand, type, weight, price: {min, max}}, sort}) || []
+    const { racketData, numOfPages } = await trpc.getRackets.query({page, filter: {brand, type, weight, price: {min, max}}, sort}) || []
     setRackets(racketData)
+    setNumOfPages(numOfPages)
   }
 
   useEffect(() => {
@@ -118,7 +120,7 @@ export default function Home() {
             <SortMenu />
           </div>
           <ProductsGrid products={rackets} />
-          <PaginationTab />
+          <PaginationTab numOfPages={numOfPages} />
         </div>
       </div>
     </>
