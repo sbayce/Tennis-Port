@@ -5,6 +5,7 @@ import Link from 'next/link';
 import CartButton from './CartButton';
 import NavMenu from "@/components/NavMenu";
 import SearchBar from './SearchBar';
+import SearchMenu from './SearchMenu';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -39,6 +40,7 @@ const Header = () => {
       <SearchBar scrollDirection={scrollDirection} />
       <div className='flex gap-6'>
         <NavMenu />
+        <SearchMenu />
         <CartButton />
       </div>
     </motion.div>
