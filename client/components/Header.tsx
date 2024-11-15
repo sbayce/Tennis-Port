@@ -4,7 +4,6 @@ import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import CartButton from './CartButton';
 import NavMenu from "@/components/NavMenu";
-import SearchBar from './SearchBar';
 import SearchMenu from './SearchMenu';
 import NavDropDown from './NavDropDown';
 
@@ -42,7 +41,7 @@ const Header = () => {
       {/* <SearchBar scrollDirection={scrollDirection} /> */}
       <div className='flex gap-6 items-center'>
         
-        <NavMenu scrollDirection={scrollDirection} />
+        <NavMenu />
         <SearchMenu />
         <CartButton />
       </div>

@@ -8,7 +8,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -16,7 +15,7 @@ import {
 } from "@/components/ui/sheet"
 
 const CartButton = () => {
-    const { items, numOfItems, total } = useCart()
+    const { items, numOfItems } = useCart()
   return (
     <Sheet>
       <SheetTrigger asChild>

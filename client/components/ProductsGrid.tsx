@@ -1,7 +1,6 @@
 "use client"
 import DiameterIcon from '@/icons/diameter-head.svg'
 import StringsIcon from '@/icons/racket-strings.svg'
-import WeightIcon from '@/icons/weight.svg'
 import { Weight } from "lucide-react"
 import { useCart } from '@/contexts/CartContext'
 import { useState } from 'react'
@@ -34,7 +33,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
     const cartCtx = useCart()
     const [isImageHovered, setIsImageHovered] = useState<string | null>(null)
     const [isHovered, setIsHovered] = useState<string | null>(null)
-    const handleAdd = (product: Product, event: any) => {
+    const handleAdd = (product: Product, event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation()
         event.preventDefault()
         const cartItem: CartItem = {

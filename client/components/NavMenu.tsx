@@ -30,7 +30,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { damping: 10 } },
 };
 
-const NavMenu = ({ scrollDirection }: { scrollDirection: string }) => {
+const NavMenu = () => {
   return (
     // <motion.div animate={{display: scrollDirection === 'up' || !scrollDirection ? "flex" : "none", opacity: scrollDirection === 'up' || !scrollDirection ? 1 : 0}} transition={{duration: 0.2}}>
     <NavigationMenu className="hidden md:flex">
