@@ -28,7 +28,7 @@ const ActionButtons = ({ racketData }: { racketData: Product }) => {
 
     if(isOutOfStock) return <div className="rounded-3xl bg-[#cfcfcf] p-4 w-full mx-4 pointer-events-none text-center text-[#202223] font-bold text-sm">Sold out</div>
   return (
-    <div className="flex gap-2 mt-6">
+    <div className="flex flex-col md:flex-row gap-2 mt-6">
         <button onClick={() => handleAdd(racketData)} className="rounded-3xl bg-[#202223] p-4 w-full text-white font-bold text-sm">Add to cart</button>
         <Link href={{ pathname: `/checkout/${racketData.id}`, query: {
           productName: racketData.name,

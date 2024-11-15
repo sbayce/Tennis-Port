@@ -30,12 +30,15 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { damping: 10 } },
 };
 
-function NavMenu() {
+const NavMenu = ({ scrollDirection }: { scrollDirection: string }) => {
   return (
-    <NavigationMenu className="mt-6">
+    // <motion.div animate={{display: scrollDirection === 'up' || !scrollDirection ? "flex" : "none", opacity: scrollDirection === 'up' || !scrollDirection ? 1 : 0}} transition={{duration: 0.2}}>
+    <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-semibold">Rackets</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold">
+              Rackets
+            </NavigationMenuTrigger>
           <NavigationMenuContent className="w-full p-4">
             <ul className="grid gap-3 p-6 w-screen lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
@@ -86,6 +89,7 @@ function NavMenu() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
+    // </motion.div>
   )
 }
 

@@ -25,13 +25,13 @@ const PreferenceSelection = () => {
   return (
     <div className="flex flex-col gap-4">
         <h3>Grip Size:</h3>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
             {AVAILABLE_GRIPS.map((size) => <button onClick={() => handleGripChnage(size)} 
             className={`p-2 text-sm border rounded-lg ${gripSize === size? "bg-[#202223] border-none text-white" : undefined}`} 
             key={`grip-${size}`}>Grip {size}</button>)}
         </div>
         <h3>String Options:</h3>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
             {STRING_OPTIONS.map((option) => <button onClick={() => handleStringChange(option)} 
             className={`p-2 text-sm border rounded-lg ${string === option? "bg-[#202223] border-none text-white" : undefined}`} 
             key={option}>{option}</button>)}

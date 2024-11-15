@@ -2,6 +2,7 @@
 import DiameterIcon from '@/icons/diameter-head.svg'
 import StringsIcon from '@/icons/racket-strings.svg'
 import WeightIcon from '@/icons/weight.svg'
+import { Weight } from "lucide-react"
 import { useCart } from '@/contexts/CartContext'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -10,7 +11,8 @@ import Link from 'next/link'
 import CartItem from '@/types/cart-item'
 
 type ProductsGridProps = {
-    products: Product[]
+    products: Product[],
+    isLoading: boolean
 }
 
 const fadeInVariant = {
@@ -28,11 +30,13 @@ const fadeInVariant = {
     })
 }
 
-const ProductsGrid = ({ products }: ProductsGridProps) => {
+const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
     const cartCtx = useCart()
     const [isImageHovered, setIsImageHovered] = useState<string | null>(null)
     const [isHovered, setIsHovered] = useState<string | null>(null)
-    const handleAdd = (product: Product) => {
+    const handleAdd = (product: Product, event: any) => {
+        event.stopPropagation()
+        event.preventDefault()
         const cartItem: CartItem = {
             id: product.id,
             name: product.name,
@@ -47,8 +51,10 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
     }
     console.log(cartCtx?.items)
     console.log("hover: ", isImageHovered)
+    console.log("loading: ", isLoading)
+    if(products.length === 0 && !isLoading) return <h1 className='text-center text-2xl font-semibold'>No products found</h1>
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-14 w-full">
+    <div className={`grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-14 w-full ${isLoading && "opacity-40"}`}>
         {products.map((product, index) =>
         <Link href={`product/${product.id}`}>
             <motion.div key={product.name} variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={index} className="flex flex-col xl:flex-col gap-4 items-center cursor-pointer" onMouseOver={() => setIsHovered(product.name)} onMouseLeave={() => setIsHovered(null)}>
@@ -71,7 +77,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                             <p>{product.racket?.pattern}</p>
                         </div>
                         <div className='flex flex-col items-center'>
-                            <WeightIcon className='w-8 h-8' />
+                            <Weight className='w-8 h-8' strokeWidth={1} />
                             <p>{product.racket?.weight}</p>
                         </div>
                     </div>
@@ -86,7 +92,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                         initial={{opacity: 0}} 
                         transition={{damping: 10, duration: 0.2}} 
                         animate={{opacity: isHovered === product.name? 1 : 0, y: isHovered === product.name? 0 : 5}} 
-                        onClick={() => handleAdd(product)} 
+                        onClick={(e) => handleAdd(product, e)} 
                         className='border font-semibold mt-2 text-sm bg-[#C75828] text-white hover:bg-transparent
                         hover:text-[#C75828] border-[#C75828] p-2 rounded-xl'>
                             Add to cart

@@ -18,6 +18,7 @@ const PaginationTab = ({ numOfPages }: { numOfPages: number }) => {
     params.delete("page")
   }
   const path = usePathname()
+  if(numOfPages === 0) return
     return (
       <Pagination className="mt-auto">
         <PaginationContent>

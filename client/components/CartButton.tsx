@@ -20,13 +20,13 @@ const CartButton = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <div className=''>
+        <div className='relative'>
           <motion.div key={numOfItems} 
           initial={{scale: 0.7}} animate={{scale: 1}} transition={{duration: 0.1}} 
           >
-            {numOfItems !== 0 && <Badge className='bg-[#C75828]'>{numOfItems}</Badge>}
+          <Badge className={`absolute -top-4 ${numOfItems > 0? "bg-[#C75828]" : "bg-transparent"}`}>{numOfItems}</Badge>
         </motion.div>
-        <button className='flex flex-col items-center px-2 pb-2 text-sm hover:text-[#C75828] transition-colors duration-100 ease-in-out'><CartIcon className='w-6' />Cart</button>
+        <button className='flex flex-col items-center text-sm hover:text-[#C75828] transition-colors duration-100 ease-in-out'><CartIcon className='w-6' /></button>
       </div>
       </SheetTrigger>
       <SheetContent>

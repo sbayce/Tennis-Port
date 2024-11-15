@@ -6,6 +6,7 @@ import CartButton from './CartButton';
 import NavMenu from "@/components/NavMenu";
 import SearchBar from './SearchBar';
 import SearchMenu from './SearchMenu';
+import NavDropDown from './NavDropDown';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -29,6 +30,7 @@ const Header = () => {
     <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-2 
       sm:px-20 lg:px-20 border-b border-neutral-600]" transition={{duration: 0.2}} 
       animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
+        <NavDropDown />
       <Link href="/">
         <motion.img 
           src="/tennis-port.png" 
@@ -37,9 +39,10 @@ const Header = () => {
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
       </Link>
-      <SearchBar scrollDirection={scrollDirection} />
-      <div className='flex gap-6'>
-        <NavMenu />
+      {/* <SearchBar scrollDirection={scrollDirection} /> */}
+      <div className='flex gap-6 items-center'>
+        
+        <NavMenu scrollDirection={scrollDirection} />
         <SearchMenu />
         <CartButton />
       </div>
