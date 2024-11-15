@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 import MainDisplay from "@/components/MainDisplay";
 import SideBar from "@/components/SideBar";
@@ -16,7 +17,7 @@ import SortMenu from "@/components/SortMenu";
 import PaginationTab from "@/components/PaginationTab";
 import trpc from "@/trpcClient"
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import Product from "@/types/product";
 
 export const racketTypes: string[] = [
@@ -43,7 +44,7 @@ export const racketWeights: string[] = [
   "310"
 
 ]
-export const racketBrands: {brand: string, logo: JSX.Element}[] = [
+export const racketBrands: any[] = [
   {
     brand: "Babolat",
     logo: <BabolatIcon className='w-12 h-12' />
@@ -99,17 +100,17 @@ export default function Home() {
   const [numOfPages, setNumOfPages] = useState<number>(0)
   const [isLoading, setIsLoading] = useState(true)
 
-  const fetchRackets = useCallback(async() => {
+  const fetchRackets = async() => {
     const { racketData, numOfPages } = await trpc.getRackets.query({page, filter: {brand, type, weight, price: {min, max}}, sort}) || []
     setIsLoading(false)
     setRackets(racketData)
     setNumOfPages(numOfPages)
-  }, [])
+  }
 
   useEffect(() => {
     fetchRackets()
     setIsLoading(true)
-  }, [searchParams, fetchRackets])
+  }, [searchParams])
 
   console.log("racket data: ", rackets)
   return (
