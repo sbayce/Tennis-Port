@@ -38,7 +38,12 @@ const racketRouter = t.router({
         console.log("queryArgs: ", queryArgs)
         try{
             const [count, racketData] = await prisma.$transaction([
-                prisma.product.count(),
+                prisma.product.count({
+                    where: {
+                        category: { equals: 'RACKET' },
+                        ...queryArgs,
+                      },
+                }),
                 prisma.product.findMany({
                     where: {
                         category: { equals: 'RACKET'},
@@ -57,6 +62,7 @@ const racketRouter = t.router({
                 })
             ])
             const numOfPages = Math.ceil(count/PAGE_SIZE)
+            console.log("count: ", count)
             return { racketData, numOfPages }
         }catch(error: any){
             console.error("Error fetching rackets:", error.message)

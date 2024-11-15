@@ -1,6 +1,8 @@
 import { t } from "../trpc";
 import { z } from "zod";
 
+const MAX_SEARCH_RESULTS = 10
+
 const searchProductsProcedure = t.procedure.input(z.string()).query(async (req) => {
     const { prisma } = req.ctx
     const searchInput = req.input
@@ -28,6 +30,7 @@ const searchProductsProcedure = t.procedure.input(z.string()).query(async (req) 
                 }
             ]
         },
+        take: MAX_SEARCH_RESULTS
     })
     console.log("products found: ", products)
     return products
