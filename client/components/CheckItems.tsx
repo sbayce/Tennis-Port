@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import FadeInMotionDiv from "./framer/FadeInMotionDiv"
 import { Checkbox } from "./ui/checkbox"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
