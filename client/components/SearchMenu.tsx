@@ -81,9 +81,6 @@ const SearchMenu = () => {
         debouncedSearch(value)
     }, [])
 
-    const handleClose = (isOpen: boolean) => {
-        if(!isOpen) setSearchResults([])
-    }
     console.log("search results: ", searchResults)
   return (
         <Sheet>
