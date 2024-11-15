@@ -19,7 +19,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const app = express()
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({ origin: process.env.FRONTEND_URL }))
 
 // app.use((req, res, next) => {
 //     req.context = {
