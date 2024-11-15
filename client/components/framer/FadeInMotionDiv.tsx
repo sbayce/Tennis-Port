@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { motion } from 'framer-motion'
 
 const FadeInMotionDiv = ({ children, ...props }: any) => {

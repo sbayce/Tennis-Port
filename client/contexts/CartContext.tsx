@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 "use client"
 import { createContext, ReactNode, useState, useContext } from "react"
 import CartItem from "@/types/cart-item";
@@ -17,8 +18,8 @@ export const CartContext = createContext<CartContextType>({
     items: [],
     total: 0,
     numOfItems: 0,
-    addItem: (item: CartItem) => {},
-    removeItem: (id: string) => {},
+    addItem: () => {},
+    removeItem: () => {},
     setItems: () => {},
     setTotal: () => {},
     setNumOfItems: () => {},
