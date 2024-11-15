@@ -6,7 +6,7 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
-  import { racketTypes, racketBrands } from "@/app/page"
+  import { racketTypes, racketBrands } from "@/static-data/data"
   import { useEffect, useState } from "react"
   import { MenuIcon } from "lucide-react"
   import { motion } from "framer-motion"

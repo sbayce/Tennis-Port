@@ -11,7 +11,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { racketBrands, racketTypes } from "@/app/page"
+import { racketBrands, racketTypes } from "@/static-data/data"
 import Link from "next/link"
 import { motion } from "framer-motion"
 

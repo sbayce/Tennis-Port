@@ -1,7 +1,7 @@
 'use client'
 
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { racketBrands } from "@/app/page"
+import { racketBrands } from "@/static-data/data"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"

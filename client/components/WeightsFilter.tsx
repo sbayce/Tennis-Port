@@ -1,4 +1,4 @@
-import { racketWeights } from "@/app/page"
+import { racketWeights } from "@/static-data/data"
 import CheckItems from "./CheckItems"
 
 const WeightsFilter = () => {

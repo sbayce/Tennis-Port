@@ -1,4 +1,4 @@
-import { racketTypes } from "@/app/page"
+import { racketTypes } from "@/static-data/data"
 import CheckItems from "./CheckItems"
 
 const RacketTypesFilter = () => {
