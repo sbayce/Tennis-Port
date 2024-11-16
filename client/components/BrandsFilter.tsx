@@ -43,7 +43,9 @@ const BrandsFilter = () => {
             {searchResults.map((racketBrand, index) => (
                 <motion.div key={racketBrand.brand} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
                     <div className="flex items-center justify-between my-2">
-                        {racketBrand.logo}
+                        <div className="w-12 h-12">
+                            {racketBrand.logo}
+                        </div>
                         <label
                             htmlFor={racketBrand.brand}
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
