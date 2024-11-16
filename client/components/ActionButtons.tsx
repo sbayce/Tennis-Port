@@ -30,7 +30,8 @@ const ActionButtons = ({ racketData }: { racketData: Product }) => {
   return (
     <div className="flex flex-col md:flex-row gap-2 mt-6">
         <button onClick={() => handleAdd(racketData)} className="rounded-3xl bg-[#202223] p-4 w-full text-white font-bold text-sm">Add to cart</button>
-        <Link href={{ pathname: `/checkout/${racketData.id}`, query: {
+        <Link href={{ pathname: `/checkout`, query: {
+          id: racketData.id,
           productName: racketData.name,
           image: racketData.image,
           gripSize,

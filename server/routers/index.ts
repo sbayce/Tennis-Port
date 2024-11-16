@@ -1,5 +1,6 @@
 import { t } from "../trpc"
 import racketRouter from "./rackets"
+import checkoutRouter from "./checkout"
 
 const randomRouter = t.router({
     sayAlo: t.procedure.query(() => {
@@ -14,6 +15,6 @@ const randomRouter = t.router({
     })
 })
 
-const appRouter = t.mergeRouters(randomRouter, racketRouter)
+const appRouter = t.mergeRouters(randomRouter, racketRouter, checkoutRouter)
 
 export default appRouter

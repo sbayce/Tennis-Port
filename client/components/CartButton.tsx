@@ -3,7 +3,6 @@ import CartIcon from '@/icons/cart-outline.svg'
 import { useCart } from '@/contexts/CartContext'
 import { motion } from 'framer-motion'
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetClose,
@@ -13,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import Link from 'next/link'
 
 const CartButton = () => {
     const { items, numOfItems } = useCart()
@@ -44,7 +44,7 @@ const CartButton = () => {
           </div>)}
         <SheetFooter>
           <SheetClose asChild>
-            <Button className='bg-[#C75828]' type="submit">Checkout</Button>
+            <Link href={`checkout`} className='bg-[#C75828]' type="submit">Checkout</Link>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
