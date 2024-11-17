@@ -1,0 +1,16 @@
+{
+  "name": "my-turborepo",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "npm@10.7.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build", 
+    "lint": "turbo run lint"
+  },
+  "workspaces": ["apps/*", "packages/*"],
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "dependencies": {}
+}
