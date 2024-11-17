@@ -3,7 +3,7 @@ import { AppRouter } from 'trpc/routers/index'
 
 const trpc = createTRPCProxyClient<AppRouter>({
     links: [httpBatchLink({
-        url: String(process.env.NEXT_PUBLIC_BACKEND_URL)
+        url: String(`${process.env.NEXT_PUBLIC_BACKEND_URL}/trpc`)
     })]
 })
 export default trpc
