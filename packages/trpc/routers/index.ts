@@ -15,6 +15,6 @@ const randomRouter = t.router({
     })
 })
 
-const appRouter = t.mergeRouters(randomRouter, racketRouter, checkoutRouter)
+export const appRouter = t.mergeRouters(randomRouter, racketRouter, checkoutRouter)
 
-export default appRouter
+export type AppRouter = typeof appRouter

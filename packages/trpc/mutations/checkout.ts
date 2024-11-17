@@ -7,6 +7,7 @@ dotenv.config()
 const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
     typescript: true
 })
+console.log("eshta: ", process.env.STRIPE_SECRET_KEY)
 
 const checkoutProcedure = t.procedure.input(z.object({amount: z.number()})).mutation(async (req) => {
     const { amount } = req.input

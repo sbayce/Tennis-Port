@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
+import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
 
 const prisma = new PrismaClient()
 
-export const createContext = ({req, res}: {req: Request, res: Response}) => {
+export const createContext = ({req, res}: CreateExpressContextOptions) => {
     return {
         prisma,
         // userId: req.userId

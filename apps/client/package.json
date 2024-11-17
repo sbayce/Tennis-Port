@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -23,6 +22,7 @@
     "@stripe/react-stripe-js": "^2.9.0",
     "@stripe/stripe-js": "^4.10.0",
     "@svgr/webpack": "^8.1.0",
+    "trpc": "*",
     "@trpc/client": "^10.45.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

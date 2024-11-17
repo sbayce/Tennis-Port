@@ -4,7 +4,7 @@ import trpc from "@/trpcClient";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
-import { useSearchParams, useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useCart } from "@/contexts/CartContext";
 import Product from "@/types/product";
 
