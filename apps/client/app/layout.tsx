@@ -5,6 +5,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import CartContextProvider from "@/contexts/CartContext"
 import { Poppins } from 'next/font/google'
+import { Suspense } from "react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,11 +39,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased min-h-[100vh] flex flex-col`}
       >
         <CartContextProvider>
+          <Suspense>
           <Header />
           <div className="px-2 sm:px-10 lg:px-20 mt-28">
             {children}
           </div>
           <Footer />
+          </Suspense>
         </CartContextProvider>
       </body>
     </html>
