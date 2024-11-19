@@ -13,7 +13,7 @@ export type Shoe = {
     createdAt: string
     updatedAt: string
     shoe: {
-      size: string,
+      size: string[],
       type: typeof ShoeGender[keyof typeof ShoeGender]
     } | null
   }
