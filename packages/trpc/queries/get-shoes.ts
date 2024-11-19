@@ -29,7 +29,7 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
             : undefined,
         shoe: {
             type: filter?.type ? { in: filter.type } : undefined,
-            size: filter?.size ? { in: filter.size } : undefined,
+            size: filter?.size ? { hasSome: filter.size } : undefined,
         },
     }
     console.log("queryArgs: ", queryArgs)
