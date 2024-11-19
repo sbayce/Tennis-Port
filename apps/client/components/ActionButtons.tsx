@@ -1,6 +1,6 @@
 "use client"
 import { useCart } from "@/contexts/CartContext"
-import Product from "@/types/product"
+import { Product } from "@/types/product"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import CartItem from "@/types/cart-item"
