@@ -37,7 +37,9 @@ const NavMenu = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-semibold">
+            <Link href='/rackets'>
               Rackets
+            </Link>
             </NavigationMenuTrigger>
           <NavigationMenuContent className="w-full p-4">
             <ul className="grid gap-3 p-6 w-screen lg:grid-cols-[.75fr_1fr]">
@@ -73,7 +75,11 @@ const NavMenu = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="font-semibold">Shoes</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="font-semibold">
+            <Link href='/shoes'>
+              Shoes
+            </Link>
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="p-6 w-screen">
               <h3 className="font-semibold text-2xl">Brands</h3>
