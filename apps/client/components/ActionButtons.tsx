@@ -40,5 +40,4 @@ const ActionButtons = ({ racketData }: { racketData: Product }) => {
     </div>
   )
 }
-
 export default ActionButtons
