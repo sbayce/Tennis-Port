@@ -6,7 +6,7 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
-  import Product from "@/types/product"
+  import { Product } from "@/types/product"
   import { type CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
   
