@@ -41,18 +41,8 @@ export default function RacketsPage() {
   console.log("racket data: ", rackets)
   return (
     <>
-      <MainDisplay />
-      <div className="flex gap-2">
-        <SideBar />
-        <div className="flex flex-col gap-8 mb-20 w-full">
-          <div className="flex justify-between mt-4">
-            <ActiveFilters />
-            {rackets.length > 0 && <SortMenu />}
-          </div>
-          <ProductsGrid isLoading={isLoading} products={rackets} />
-          <PaginationTab numOfPages={numOfPages} />
-        </div>
-      </div>
+      <ProductsGrid isLoading={isLoading} products={rackets} />
+      <PaginationTab numOfPages={numOfPages} />
     </>
   );
 }

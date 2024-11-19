@@ -15,7 +15,7 @@ export default function ShoesPage() {
   const searchParams = useSearchParams()
   const page = Number(searchParams.get("page")) || 1
   const brand = searchParams.getAll("brand").length > 0? searchParams.getAll("brand") : undefined
-  const type = searchParams.getAll("type").length > 0? searchParams.getAll("type") as ("MALE" | "FEMALE" | "UNISEX")[] : undefined
+  const type = searchParams.getAll("type").length > 0? searchParams.getAll("type").map(type => type.toUpperCase()) as ("MALE" | "FEMALE" | "UNISEX")[] : undefined
   const size = searchParams.getAll("size").length > 0? searchParams.getAll("size") : undefined
   const minPrice = searchParams.get("price.min")?? undefined
   const min = minPrice? Number(minPrice) : undefined
@@ -41,18 +41,8 @@ export default function ShoesPage() {
   console.log("shoes data: ", shoes)
   return (
     <>
-      <MainDisplay />
-      <div className="flex gap-2">
-        <SideBar />
-        <div className="flex flex-col gap-8 mb-20 w-full">
-          <div className="flex justify-between mt-4">
-            <ActiveFilters />
-            {shoes.length > 0 && <SortMenu />}
-          </div>
-          <ProductsGrid isLoading={isLoading} products={shoes} />
-          <PaginationTab numOfPages={numOfPages} />
-        </div>
-      </div>
+      <ProductsGrid isLoading={isLoading} products={shoes} />
+      <PaginationTab numOfPages={numOfPages} />
     </>
   );
 }
