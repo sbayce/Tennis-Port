@@ -9,7 +9,7 @@ import PaginationTab from "@/components/PaginationTab";
 import trpc from "@/trpcClient"
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Product from "@/types/product";
+import { Racket } from "@/types/racket";
 
 export default function Home() {
   const searchParams = useSearchParams()
@@ -22,7 +22,7 @@ export default function Home() {
   const maxPrice = searchParams.get("price.max")?? undefined
   const max = maxPrice? Number(maxPrice) : undefined
   const sort = searchParams.get("sort") || undefined
-  const [rackets, setRackets] = useState<Product[]>([])
+  const [rackets, setRackets] = useState<Racket[]>([])
   const [numOfPages, setNumOfPages] = useState<number>(0)
   const [isLoading, setIsLoading] = useState(true)
 

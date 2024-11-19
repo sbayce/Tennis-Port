@@ -51,11 +51,11 @@ model Racket {
 }
 
 model Shoe {
-  id        String  @id @default(cuid()) @map("_id")
-  product   Product @relation(fields: [productId], references: [id]) // No fields or references here
-  productId String  @unique
-  size      Float
-  color     String
+  id        String     @id @default(cuid()) @map("_id")
+  product   Product    @relation(fields: [productId], references: [id]) // No fields or references here
+  productId String     @unique
+  size      String
+  type      ShoeGender
 }
 
 enum ShoeGender {

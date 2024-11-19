@@ -1,4 +1,7 @@
-type Product = {
+import { Racket } from "./racket"
+import { Shoe } from "./shoe"
+
+export type Product = {
     id: string
     name: string
     image: string
@@ -10,12 +13,6 @@ type Product = {
     category: typeof ProductCategory[keyof typeof ProductCategory]
     createdAt: string
     updatedAt: string
-    racket: {
-        headSize: string
-        pattern: string
-        weight: string
-        type: string
-    } | null
 }
 
 export const ProductCategory: {
@@ -25,5 +22,8 @@ export const ProductCategory: {
     RACKET: 'RACKET',
     SHOE: 'SHOE',
   }
-  
-export default Product
+
+// Type guard
+export const isRacket = (product: Racket | Shoe): product is Racket => {
+  return product.category === "RACKET"
+}
