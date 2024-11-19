@@ -2,9 +2,11 @@
 import FadeInMotionDiv from "./framer/FadeInMotionDiv"
 import { Checkbox } from "./ui/checkbox"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
+import { LabelCount } from "@/types/sidebar"
+import { capitalizeFirstChar } from "@/utils/capitalize-first-char"
 
 type CheckItemsProps = {
-    listItems: any[],
+    listItems: LabelCount,
     paramName: string
 }
 
@@ -36,18 +38,19 @@ const CheckItems = ({ listItems, paramName }: CheckItemsProps) => {
   return (
     <FadeInMotionDiv className="flex flex-col gap-2 mb-4">
         {listItems.map(listItem => (
-            <div key={listItem} className="flex items-center gap-4">
+            <div key={listItem.label} className="flex items-center gap-4">
                 <Checkbox
-                    checked={checkedBoxes.includes(listItem.toLowerCase())}
-                    onCheckedChange={() => toggleCheck(listItem.toLowerCase())}
-                    id={listItem}
+                    checked={checkedBoxes.includes(listItem.label.toLowerCase())}
+                    onCheckedChange={() => toggleCheck(listItem.label.toLowerCase())}
+                    id={listItem.label}
                 />
                 <label
-                    htmlFor={listItem}
+                    htmlFor={listItem.label}
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
-                    {listItem}
+                    {capitalizeFirstChar(listItem.label)}
                 </label>
+                <p className="">({listItem.count})</p>
             </div>
         ))}
     </FadeInMotionDiv>
