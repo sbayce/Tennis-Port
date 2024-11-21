@@ -1,5 +1,6 @@
 "use client"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
+import PreferenceButton from "./PreferenceButton"
 
 const ShoeSizeSelection = ({ shoeSizes }: { shoeSizes: string[] }) => {
     const path = usePathname()
@@ -13,11 +14,9 @@ const ShoeSizeSelection = ({ shoeSizes }: { shoeSizes: string[] }) => {
     }
   return (
     <>
-        <h3>Size:</h3>
+        <h3>Size: {selectedSize}</h3>
         <div className="flex gap-2 flex-wrap">
-            {shoeSizes.map((size) => <button onClick={() => handleSizeChange(size)} 
-            className={`p-2 text-sm border rounded-lg ${selectedSize === size? "bg-[#202223] border-none text-white" : undefined}`} 
-            key={`size-${size}`}>{size}</button>)}
+            {shoeSizes.map((size) => <PreferenceButton key={size} isActive={selectedSize === size} option={size} onClick={handleSizeChange} />)}
         </div>
     </>
   )

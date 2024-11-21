@@ -32,21 +32,33 @@ const CartButton = () => {
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
         </SheetHeader>
-          {items.map(item => <div key={item.id} className='flex gap-2 items-center'>
+          {items.length > 0? items.map(item => <div key={item.id} className='flex gap-2 items-center'>
             <img src={item.image} alt='item-image' className='w-24' />
             <div>
               <p>{item.name}</p>
               <p className='text-sm'>{item.price} LE</p>
-              <p className='text-xs'>Grip: {item.gripSize}</p>
-              <p className='text-xs'>String: {item.stringOption}</p>
+              {item.gripSize && <p className='text-xs'>Grip: {item.gripSize}</p>}
+              {item.stringOption && <p className='text-xs'>String: {item.stringOption}</p>}
+              {item.size && <p className='text-xs'>Size: {item.size}</p>}
+              {item.type && <p className='text-xs'>{item.type}</p>}
             </div>
-            <p className=''>{item.quantity}</p>
-          </div>)}
-        <SheetFooter>
+            <div className='flex flex-col gap-2 ml-auto mr-4 text-xs '>
+              <div className='border border-zinc-300 rounded-md py-1 px-2 text-center mx-2'>{item.quantity}</div>
+              <p>remove</p>
+            </div>
+          </div>)
+          :
+          <div className='flex flex-col gap-2 items-center justify-center h-full'>
+            <h3 className='text-center text-2xl font-semibold'>Your cart is empty</h3>
+            <Link href={`rackets`} className='bg-[#C75828] p-4 rounded-[50px] font-semibold text-white text-center'>Continue shopping</Link>
+          </div>
+          }
+          {items.length > 0 && <SheetFooter>
           <SheetClose asChild>
-            <Link href={`checkout`} className='bg-[#C75828]' type="submit">Checkout</Link>
+            <Link href={`checkout`} className='bg-[#C75828] p-4 rounded-[50px] font-semibold text-white text-center'>Checkout</Link>
           </SheetClose>
-        </SheetFooter>
+        </SheetFooter>}
+        
       </SheetContent>
     </Sheet>
     

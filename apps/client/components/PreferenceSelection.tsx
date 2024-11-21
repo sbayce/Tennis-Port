@@ -1,5 +1,6 @@
 "use client"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
+import PreferenceButton from "./PreferenceButton"
 
 const AVAILABLE_GRIPS = ["2", "3", "4", "5"]
 const STRING_OPTIONS = ["unstrung", "strung"]
@@ -26,15 +27,11 @@ const PreferenceSelection = () => {
     <div className="flex flex-col gap-4">
         <h3>Grip Size:</h3>
         <div className="flex gap-2 flex-wrap">
-            {AVAILABLE_GRIPS.map((size) => <button onClick={() => handleGripChnage(size)} 
-            className={`p-2 text-sm border rounded-lg ${gripSize === size? "bg-[#202223] border-none text-white" : undefined}`} 
-            key={`grip-${size}`}>Grip {size}</button>)}
+            {AVAILABLE_GRIPS.map((size) => <PreferenceButton key={size} option={size} isActive={gripSize === size} onClick={handleGripChnage} />)}
         </div>
         <h3>String Options:</h3>
         <div className="flex gap-2 flex-wrap">
-            {STRING_OPTIONS.map((option) => <button onClick={() => handleStringChange(option)} 
-            className={`p-2 text-sm border rounded-lg ${string === option? "bg-[#202223] border-none text-white" : undefined}`} 
-            key={option}>{option}</button>)}
+            {STRING_OPTIONS.map((option) => <PreferenceButton key={option} option={option} isActive={string === option} onClick={handleStringChange} />)}
         </div>
     </div>
   )

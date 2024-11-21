@@ -43,8 +43,13 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
             image: product.image,
             price: product.price,
             quantity: 1,
-            gripSize: "2",
-            stringOption: "unstrung"
+        }
+        if(isRacket(product)) {
+            cartItem.gripSize = "2"
+            cartItem.stringOption = "unstrung"
+        }else{
+            cartItem.size = product.shoe?.size[0]
+            cartItem.type = product.shoe?.type
         }
         cartCtx?.addItem(cartItem)
     }
