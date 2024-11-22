@@ -16,6 +16,7 @@ model User {
   isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
   orders    Order[]
+  addresses Adress[]
 }
 
 model Product {
@@ -66,11 +67,15 @@ enum ShoeGender {
 
 model Order {
   id          String      @id @default(cuid()) @map("_id")
-  user        User        @relation(fields: [userId], references: [id])
+  user        User?        @relation(fields: [userId], references: [id])
   userId      String
   createdAt   DateTime    @default(now())
   items       OrderItem[]
   totalAmount Float
+  customerEmail String?
+  adress Adress @relation(fields: [adressId], references: [id])
+  adressId String
+  status OrderStatus
 }
 
 model OrderItem {
@@ -81,4 +86,36 @@ model OrderItem {
   productId String
   quantity  Int
   price     Float
+  gripOption GripOption?
+  stringOption StringOption?
+  shoeSize String?
+}
+
+model Adress {
+  id String  @id @default(cuid()) @map("_id")
+  user User? @relation(fields: [userId], references: [id])
+  userId String
+  orders Order[]
+  adress1 String
+  adress2 String?
+  country String
+  postalCode String
+}
+
+enum GripOption {
+  ONE
+  TWO
+  THREE
+  FOUR
+}
+enum StringOption {
+  STRUNG
+  UNSTRUNG
+}
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
 }

@@ -30,8 +30,11 @@ const ProductCheckoutPage = () => {
       try {
         const productData = await trpc.getProduct.query(productId)
         const amount = params.size > 0? Number(productData?.price) : total
-        const productIds = params.size > 0? [productId] : items.map(item => item.id)
-        const res = await trpc.checkout.mutate({ productIds, amount });
+        const checkoutProducts = params.size > 0? [{ productId, quantity: 1 }] : items.map(item => ({
+          productId: item.id,
+          quantity: item.quantity
+        }))
+        const res = await trpc.checkout.mutate({ checkoutProducts, amount });
         console.log("res: ", res)
         if(productData) setProductData(productData)
         setClientSecret(res.clientSecret);

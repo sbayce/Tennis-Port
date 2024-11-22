@@ -7,13 +7,17 @@ const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
 })
 console.log("eshta: ", process.env.STRIPE_SECRET_KEY)
 
-const checkoutProcedure = t.procedure.input(z.object({productIds: z.array(z.string()), amount: z.number()})).mutation(async (req) => {
-    const { productIds, amount } = req.input
+const checkoutProcedure = t.procedure.input(z.object({checkoutProducts: z.array(z.object({
+    productId: z.string(),
+    quantity: z.number()
+})), amount: z.number()})).mutation(async (req) => {
+    const { checkoutProducts, amount } = req.input
     // create a dynamic metadeta obj for cases where users buy multiple products
-    const metadata = productIds.reduce((acc, id, index) => {
-        acc[`product_${index + 1}`] = id
-        return acc
-      }, {} as Record<string, string>)
+    const metadata = checkoutProducts.reduce((acc, { productId, quantity }, index) => {
+        acc[`product_${index + 1}_id`] = productId;
+        acc[`product_${index + 1}_quantity`] = quantity.toString();
+        return acc;
+      }, {} as Record<string, string>);
     try{
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount*100,

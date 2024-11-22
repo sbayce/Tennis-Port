@@ -6,10 +6,28 @@ const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
     typescript: true
 })
 
-const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_intent: string } }) => {
+const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_intent: string, payment_intent_client_secret: string } }) => {
     const paymentIntent = await stripe.paymentIntents.retrieve(searchParams.payment_intent)
+    // console.log(await stripe..retrieve(searchParams.payment_intent_client_secret))
     if(!paymentIntent.metadata) return notFound()
-    const productIds = Object.values(paymentIntent.metadata).map(id => id)
+
+    const productIds: string[] = [];
+    const purchasedProducts: { productId: string; quantity: number }[] = [];
+
+    // Loop through the metadata keys
+    for (let i = 1; paymentIntent.metadata[`product_${i}_id`]; i++) {
+        const productId = paymentIntent.metadata[`product_${i}_id`];
+        const quantity = parseInt(paymentIntent.metadata[`product_${i}_quantity`], 10);
+
+        // Populate arrays
+        productIds.push(productId);
+        purchasedProducts.push({ productId, quantity });
+    }
+    console.log("purchased: ", purchasedProducts)
+    console.log("product ids: ", productIds)
+    // console.log("email: ", paymentIntent.)
+    console.log("adress: ", paymentIntent.shipping?.address)
+    console.log("name: ", paymentIntent.shipping?.name)
     const products = await trpc.getProductsByIds.query(productIds)
     if(products.length === 0) return notFound()
     console.log(products)
