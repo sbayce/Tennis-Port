@@ -10,5 +10,8 @@
       "persistent": true
     },
     "lint": {}
-  }
+  },
+  "globalEnv": [
+    "STRIPE_SECRET_KEY"
+  ]
 }
