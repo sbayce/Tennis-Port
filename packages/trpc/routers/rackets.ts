@@ -3,6 +3,7 @@ import { z } from 'zod'
 import getProductPrecedure from "../queries/get-product"
 import searchProductsProcedure from "../queries/search-products"
 import getAvailabeRacketsProcedure from '../queries/get-available-rackets'
+import getProductsByIdsPrecedure from '../queries/get-products-by-ids'
 
 const PAGE_SIZE = 12
 
@@ -72,7 +73,8 @@ const racketRouter = t.router({
     }),
     getProduct: getProductPrecedure,
     searchProducts: searchProductsProcedure,
-    getAvailableRackets: getAvailabeRacketsProcedure
+    getAvailableRackets: getAvailabeRacketsProcedure,
+    getProductsByIds: getProductsByIdsPrecedure
 })
 
 export default racketRouter

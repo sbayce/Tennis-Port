@@ -1,6 +1,7 @@
 import { t } from "../trpc"
 import racketRouter from "./rackets"
 import shoesRouter from './shoes'
+import checkoutRouter from './checkout'
 
 const randomRouter = t.router({
     sayAlo: t.procedure.query(() => {
@@ -15,6 +16,6 @@ const randomRouter = t.router({
     })
 })
 
-export const appRouter = t.mergeRouters(randomRouter, racketRouter, shoesRouter) // ,checkoutRouter
+export const appRouter = t.mergeRouters(randomRouter, racketRouter, shoesRouter, checkoutRouter)
 
 export type AppRouter = typeof appRouter
