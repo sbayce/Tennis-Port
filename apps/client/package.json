@@ -22,7 +22,6 @@
     "@stripe/react-stripe-js": "^2.9.0",
     "@stripe/stripe-js": "^4.10.0",
     "@svgr/webpack": "^8.1.0",
-    "trpc": "*",
     "@trpc/client": "^10.45.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -35,8 +34,10 @@
     "react": "^18",
     "react-dom": "^18",
     "react-responsive": "^10.0.0",
+    "stripe": "^17.4.0",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "trpc": "*"
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.9",

@@ -25,7 +25,6 @@ const ProductCheckoutPage = () => {
   const { items, total } = useCart()
 
   useEffect(() => {
-    // Fetch the client secret from your backend
     const fetchClientSecret = async () => {
       try {
         const productData = await trpc.getProduct.query(productId)
@@ -48,7 +47,6 @@ const ProductCheckoutPage = () => {
   console.log(items)
 
   if (!clientSecret) {
-    // Show a loading state while fetching the client secret
     return <div>Loading...</div>;
   }
   

@@ -1,6 +1,5 @@
 "use client"
 import { LinkAuthenticationElement, PaymentElement, useElements, useStripe, AddressElement } from "@stripe/react-stripe-js";
-// import trpc from "@/trpcClient";
 import { useRef, useState } from "react";
 
 const CheckoutForm = ({ amount }: { amount: number }) => {
@@ -14,14 +13,13 @@ const CheckoutForm = ({ amount }: { amount: number }) => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            if (!stripe || !elements) return; // Ensure Stripe and Elements are initialized
+            if (!stripe || !elements) return
             setIsLoading(true);
 
-            // Confirm the payment using PaymentElement
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
-                    return_url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/stripe/purchase-success`, // Optional: Redirect URL after payment
+                    return_url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/stripe/purchase-success`,
                 },
             });
 

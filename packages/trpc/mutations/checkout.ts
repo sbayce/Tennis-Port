@@ -5,7 +5,7 @@ import Stripe from "stripe"
 const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
     typescript: true
 })
-console.log("eshta: ", process.env.STRIPE_SECRET_KEY)
+console.log(process.env.STRIPE_SECRET_KEY)
 
 const checkoutProcedure = t.procedure.input(z.object({checkoutProducts: z.array(z.object({
     productId: z.string(),

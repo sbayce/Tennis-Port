@@ -2,25 +2,59 @@ import { t } from "../trpc"
 import { z } from "zod"
 
 const createOrderProcedure = t.procedure.input(z.object({
-    productIds: z.array(z.string()), 
-    total: z.number(),
-    products: z.array(z.object({ productId: z.string(), quantity: z.number() }))
-})).mutation(async (req) => {
-    const { prisma } = req.ctx
-    const { productIds, total, products } = req.input
-    try{
-        // const order = await prisma.order.create({
-        //     data: {
-        //         items: {
-        //             createMany: {
-        //                 data: productIds.map(productId => ({
-        //                     productId,
-
-        //                 }))
-        //             }
-        //         }
-        //     }
-        // })
+    customerEmail: z.string(),
+    amount: z.number(),
+    productIds: z.array(z.string()),
+    purchasedProducts: z.array(
+        z.object({
+            productId: z.string(),
+            quantity: z.number()
+        })
+    ),
+    adress: z.object({
+        city: z.string(),
+        country: z.string(),
+        line1: z.string(),
+        line2: z.string(),
+        postal_code: z.string(),
+        state: z.string()
+    })
+    })).mutation(async (req) => {
+        console.log("request: ", req)
+        try{
+            const { prisma } = req.ctx
+            const { customerEmail, productIds, amount, purchasedProducts, adress } = req.input
+            
+            console.log("customerEmail: ", customerEmail)
+            console.log("amount: ", amount)
+            console.log("productIds: ", productIds)
+            console.log("purchasedProducts: ", purchasedProducts)
+            const order = await prisma.order.create({
+                data: {
+                    items: {
+                        createMany: {
+                            data: purchasedProducts.map(product => ({
+                                productId: product.productId,
+                                quantity: product.quantity,
+                                price: 8787,
+                            }))
+                        }
+                    },
+                    customerEmail,
+                    status: "PENDING",
+                    totalAmount: amount,
+                    adress: {
+                        create: {
+                            adress1: adress.line1,
+                            adress2: adress.line2 || undefined,
+                            country: adress.country,
+                            city: adress.city,
+                            postalCode: adress.postal_code
+                        }
+                    }
+                }
+            })
+        console.log("created order: ", order)
     }catch(error: any) {
         console.log("Order creation failed: ", error.message)
         return { status: 500, message: error.message }
