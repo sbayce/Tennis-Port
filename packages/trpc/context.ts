@@ -6,8 +6,11 @@ const prisma = new PrismaClient()
 export const createContext = ({req, res}: CreateExpressContextOptions) => {
     return {
         prisma,
-        // userId: req.userId
+        req,
+        res,
+        userId: undefined as string | undefined,
+        role: undefined as string | undefined,
     }
 }
 
-export type Context = ReturnType<typeof createContext>
+export type Context = Awaited<ReturnType<typeof createContext>>
