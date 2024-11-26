@@ -30,7 +30,7 @@ const Header = () => {
       sm:px-20 lg:px-20 border-b border-neutral-600]" transition={{duration: 0.2}} 
       animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
         <NavDropDown />
-      <Link href="/">
+      <Link href="/rackets">
         <motion.img 
           src="/tennis-port.png" 
           className="w-48"

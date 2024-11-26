@@ -29,7 +29,6 @@ const SortMenu = () => {
         </SelectTrigger>
         <SelectContent>
             <SelectItem value="featured">Featured</SelectItem>
-            <SelectItem value="best-selling">Best selling</SelectItem>
             <SelectItem value="ascending">Alphabetically, A-Z</SelectItem>
             <SelectItem value="descending">Alphabetically, Z-A</SelectItem>
             <SelectItem value="low-high">Pice, low to high</SelectItem>

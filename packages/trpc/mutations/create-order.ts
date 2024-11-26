@@ -29,14 +29,24 @@ const createOrderProcedure = t.procedure.input(z.object({
             console.log("amount: ", amount)
             console.log("productIds: ", productIds)
             console.log("purchasedProducts: ", purchasedProducts)
+            const productPrices = await prisma.product.findMany({
+                where: {
+                    id: {
+                        in: productIds
+                    }
+                },
+                select: {
+                    price: true
+                }
+            })
             const order = await prisma.order.create({
                 data: {
                     items: {
                         createMany: {
-                            data: purchasedProducts.map(product => ({
+                            data: purchasedProducts.map((product, i) => ({
                                 productId: product.productId,
                                 quantity: product.quantity,
-                                price: 8787,
+                                price: productPrices[i].price,
                             }))
                         }
                     },

@@ -44,7 +44,7 @@ const CartButton = () => {
             </div>
             <div className='flex flex-col gap-2 ml-auto mr-4 text-xs '>
               <div className='border border-zinc-300 rounded-md py-1 px-2 text-center mx-2'>{item.quantity}</div>
-              <p>remove</p>
+              {/* <p>remove</p> */}
             </div>
           </div>)
           :
@@ -55,7 +55,7 @@ const CartButton = () => {
           }
           {items.length > 0 && <SheetFooter>
           <SheetClose asChild>
-            <Link href={`checkout`} className='bg-[#C75828] p-4 rounded-[50px] font-semibold text-white text-center'>Checkout</Link>
+            <Link href={`/checkout`} className='bg-[#C75828] p-4 rounded-[50px] font-semibold text-white text-center'>Checkout</Link>
           </SheetClose>
         </SheetFooter>}
         

@@ -4,12 +4,14 @@ import { Product } from "@/types/product"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import CartItem from "@/types/cart-item"
+import { isRacket } from "@/types/product"
 
 const ActionButtons = ({ productData }: { productData: Product }) => {
     const { addItem } = useCart()
     const searchParams = useSearchParams()
     const gripSize = searchParams.get("grip") || "2"
     const stringOption = searchParams.get("string") || "unstrung"
+    const shoeSize = searchParams.get("size") || productData.shoe?.size[0]
     const isOutOfStock = productData.stock <= 0
 
     const handleAdd = () => {
@@ -20,10 +22,25 @@ const ActionButtons = ({ productData }: { productData: Product }) => {
         image: productData.image,
         price: productData.price,
         quantity: 1,
-        gripSize,
-        stringOption
-      }
-      addItem(cartItem)
+    }
+    if(isRacket(productData)) {
+        cartItem.gripSize = gripSize
+        cartItem.stringOption = stringOption
+    }else{
+        cartItem.size = shoeSize
+    }
+    addItem(cartItem)
+      // const cartItem: CartItem = {
+      //   id: productData.id,
+      //   name: productData.name,
+      //   brand: productData.brand,
+      //   image: productData.image,
+      //   price: productData.price,
+      //   quantity: 1,
+      //   gripSize,
+      //   stringOption
+      // }
+      // addItem(cartItem)
     }
 
     if(isOutOfStock) return <div className="rounded-3xl bg-[#cfcfcf] p-4 w-full mx-4 pointer-events-none text-center text-[#202223] font-bold text-sm">Sold out</div>

@@ -8,9 +8,9 @@ const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
 
 const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_intent: string, payment_intent_client_secret: string } }) => {
     const paymentIntent = await stripe.paymentIntents.retrieve(searchParams.payment_intent)
-    // console.log(await stripe..retrieve(searchParams.payment_intent_client_secret))
     if(!paymentIntent.metadata) return notFound()
 
+    const total = paymentIntent.amount/100
     const productIds: string[] = [];
     const purchasedProducts: { productId: string; quantity: number }[] = [];
 
@@ -33,14 +33,14 @@ const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_i
     console.log(products)
 
   return (
-    <div>
+    <div className="mt-4">
         <h1 className="text-3xl font-semibold text-center">Payment Success</h1>
-        <div className="grid grid-cols-3 gap-4">
-            {products.map(product => 
+        <div className="grid grid-cols-2 gap-4 mt-6">
+            {products.map((product, i) => 
                 <div key={product.id} className="flex gap-2 items-center">
                 <div className="relative border rounded-lg">
                     <div className="rounded-full w-4 h-4 flex items-center justify-center absolute text-white text-sm bg-[#202223] top-0 right-0">
-                        {/* {item.quantity} */}
+                        {purchasedProducts[i].quantity}
                     </div>
                     <img className="h-20 w-20" src={product.image} alt="product-img" />
                 </div>
@@ -55,7 +55,7 @@ const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_i
             )}
             </div>
             <div className="flex gap-2 items-center text-xl mt-4">
-                <h3 className="font-semibold">Total:</h3>
+                <h3 className="font-semibold">Total: {total} <span className="text-sm font-normal">EGP</span></h3>
                 {/* <p>{productData? productData.price : total}</p> */}
             </div>
     </div>
