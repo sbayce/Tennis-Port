@@ -5,9 +5,10 @@ import { AppRouter } from 'trpc/routers/index'
 let accessToken: string | undefined
 let refreshToken: string | undefined
 
-export function setToken(accessToken: string | undefined, refreshToken: string |undefined) {
-    accessToken = accessToken
-    refreshToken = refreshToken
+export function setToken(at: string | undefined, rt: string |undefined) {
+    accessToken = at
+    refreshToken = rt
+    console.log("token updated: ", accessToken)
 }
 
 const trpc = createTRPCProxyClient<AppRouter>({

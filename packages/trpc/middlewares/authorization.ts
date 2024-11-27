@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 
 export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
     const { req, res } = ctx
-    console.log("Cookies&&&&&&&&&&&&&&&&&&&&: ", req.headers);
-    const token = req.headers.accessToken as string
+    console.log("Cookies&&&&&&&&&&&&&&&&&&&&: ", req.headers.accesstoken);
+    const token = req.headers.accesstoken as string
     console.log("token ", token);
     if (!token) {
         throw new TRPCError({ code: "UNAUTHORIZED", message: "User not logged in" })
