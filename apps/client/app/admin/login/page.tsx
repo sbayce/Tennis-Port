@@ -2,11 +2,12 @@
 import { useState } from "react";
 import trpc from "@/trpcClient";
 import { setToken } from "@/trpcClient";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const AdminPage = () => {
-  // State for form fields
+const AdminLoginPage = () => {
+  const { replace } = useRouter()
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -20,61 +21,53 @@ const AdminPage = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Send form data to tRPC backend
-      const { token: {accessToken, refreshToken} } = await trpc.registerAdmin.mutate({
-        name: formData.name,
+      const { token: {accessToken, refreshToken} } = await trpc.adminLogin.mutate({
         email: formData.email,
         password: formData.password
       })
       console.log("setting these: ", accessToken, refreshToken)
       setToken(accessToken, refreshToken)
-      alert("Admin registered successfully!");
+      toast.success("Admin logged in successfully!");
+      replace('/admin')
     } catch (error: any) {
-      alert(`Error: ${error.message}`);
+      toast.error(error.message);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
+    <div className="flex flex-1">
+      <div className="bg-[#202223] text-center pt-20 text-3xl font-semibold text-white w-full">
+        <h1>Admin Login</h1>
+      </div>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full p-20">
+        <div className="flex flex-col">
           <label htmlFor="email">Email</label>
           <input
             id="email"
             name="email"
             type="email"
+            className="focus:outline-none border-b-2 border-opacity-30 focus:border-b-[#202223] transition-colors duration-300"
             value={formData.email}
             onChange={handleChange}
             required
           />
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="password">Password</label>
           <input
             id="password"
             name="password"
             type="password"
+            className="focus:outline-none border-b-2 border-opacity-30 focus:border-b-[#202223] transition-colors duration-300"
             value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit">
+        <button type="submit" className="self-start py-2 px-4 bg-[#202223] font-semibold text-sm text-white rounded-lg">
           Register
         </button>
       </form>
@@ -82,4 +75,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default AdminLoginPage;
