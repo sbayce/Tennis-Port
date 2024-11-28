@@ -9,8 +9,7 @@ export const publicProcedure = t.procedure
 
 export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
     const { req, res } = ctx
-    console.log("Cookies&&&&&&&&&&&&&&&&&&&&: ", req.headers.accesstoken);
-    const token = req.headers.accesstoken as string
+    const token = req.headers['accesstoken']?.toString() ?? req.cookies.accessToken;
     console.log("token ", token);
     if (!token) {
         throw new TRPCError({ code: "UNAUTHORIZED", message: "User not logged in" })
