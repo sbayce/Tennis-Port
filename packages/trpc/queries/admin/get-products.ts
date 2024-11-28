@@ -22,6 +22,7 @@ const getProductsProcedure = adminProcedure.input(
             id: true,
             name: true,
             brand: true,
+            category: true,
             image: true,
             price: true,
             stock: true,
