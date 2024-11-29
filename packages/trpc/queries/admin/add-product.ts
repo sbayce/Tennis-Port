@@ -3,7 +3,7 @@ import { newProductSchema } from '../../schemas/add-product'
 
 export const addProductProcedure = adminProcedure.input(newProductSchema).mutation(async (req) => {
     const { prisma } = req.ctx
-    const { name, brand, price, stock, image, image2, images, category, headSize, pattern, size, type, weight } = req.input
+    const { name, brand, price, stock, image, image2, images, category, racketType, headSize, pattern, size, shoeType, weight } = req.input
     let productData: any = {
         name,
         brand,
@@ -19,7 +19,7 @@ export const addProductProcedure = adminProcedure.input(newProductSchema).mutati
         create: {
             headSize: headSize || "",
             pattern: pattern || "",
-            type: type || "",
+            type: racketType || "",
             weight: weight || "",
         },
         };
@@ -29,7 +29,7 @@ export const addProductProcedure = adminProcedure.input(newProductSchema).mutati
         productData.shoe = {
         create: {
             size: [],
-            type: type || "",
+            type: shoeType || "",
         },
         };
     }
