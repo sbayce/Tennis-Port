@@ -14,7 +14,7 @@ import Link from "next/link"
   export function AdminSidebar() {
     return (
       <Sidebar>
-        <SidebarHeader className="font-semibold">Admin Port</SidebarHeader>
+        <SidebarHeader className="font-semibold"><Link href="/admin">Admin Port</Link></SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>Products</SidebarGroupLabel>
