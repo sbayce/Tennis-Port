@@ -1,11 +1,11 @@
-import { racketWeights } from "@/static-data/data"
-import CheckItems from "./CheckItems"
+// import { racketWeights } from "@/static-data/data"
+// import CheckItems from "./CheckItems"
 
-const WeightsFilter = () => {
+// const WeightsFilter = () => {
 
-  return (
-        <CheckItems listItems={racketWeights} paramName="weight" />
-    )
-}
+//   return (
+//         <CheckItems listItems={racketWeights} paramName="weight" />
+//     )
+// }
 
-export default WeightsFilter
+// export default WeightsFilter

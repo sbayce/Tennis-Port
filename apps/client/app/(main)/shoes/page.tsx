@@ -1,10 +1,6 @@
 /* eslint-disable */
 "use client"
-import MainDisplay from "@/components/MainDisplay";
-import SideBar from "@/components/SideBar";
 import ProductsGrid from "@/components/ProductsGrid";
-import ActiveFilters from "@/components/ActiveFilters";
-import SortMenu from "@/components/SortMenu";
 import PaginationTab from "@/components/PaginationTab";
 import trpc from "@/trpcClient"
 import { useSearchParams } from "next/navigation";
