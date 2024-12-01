@@ -1,13 +1,12 @@
 "use client"
 import { LinkAuthenticationElement, PaymentElement, useElements, useStripe, AddressElement } from "@stripe/react-stripe-js";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const CheckoutForm = ({ amount }: { amount: number }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState<string | undefined>("")
-    const emailRef = useRef()
     console.log(amount)
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +42,7 @@ const CheckoutForm = ({ amount }: { amount: number }) => {
   return (
         <form className="ml-auto" onSubmit={onSubmit}>
             <PaymentElement />
-            <LinkAuthenticationElement onChange={(e: any) => emailRef.current = e.target.value} />
+            <LinkAuthenticationElement />
             <AddressElement options={{ mode: "shipping" }} />
             {errorMessage && <p className="text-destructive">{errorMessage}</p>}
             <button className="mt-10 rounded-lg bg-[#202223] text-white p-2 text-sm w-full" disabled={stripe === null || elements === null || isLoading} type="submit">{isLoading? "Purchasing..." : "Purchase"}</button>

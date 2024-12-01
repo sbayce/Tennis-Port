@@ -16,9 +16,12 @@ const page = async() => {
   let products: ProductItem[] | undefined
   try{
     products = await trpc.getProducts.query()
-  }catch(error: any) {
-    console.log("client error")
-    errorMessage = error.message
+  }catch(error) {
+    if (error instanceof Error) {
+      errorMessage = error.message;
+  } else {
+      errorMessage = "An unknown error occurred.";
+  }
   }
   if(errorMessage) return <h1 className="text-center font-semibold text-2xl">Access Denied {errorMessage}</h1>
   return (

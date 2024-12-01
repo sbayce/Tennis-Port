@@ -32,8 +32,12 @@ const AdminLoginPage = () => {
       setToken(accessToken, refreshToken)
       toast.success("Admin logged in successfully!");
       replace('/admin')
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
   };
 

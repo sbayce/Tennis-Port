@@ -2,6 +2,8 @@ import { Racket } from "./racket"
 import { Shoe } from "./shoe"
 import { RacketInfo } from "./racket"
 
+export type ShoeGender = 'MALE' | 'FEMALE' | 'UNISEX'
+
 export type Product = {
     id: string
     name: string
@@ -17,18 +19,8 @@ export type Product = {
     racket: RacketInfo,
     shoe: {
       size: string[],
-      type: typeof ShoeGender[keyof typeof ShoeGender]
+      type: ShoeGender
     } | null
-}
-
-const ShoeGender: {
-  MALE: 'MALE'
-  FEMALE: 'FEMALE',
-  UNISEX: "UNISEX"
-} = {
-  MALE: 'MALE',
-  FEMALE: 'FEMALE',
-  UNISEX: "UNISEX"
 }
 
 export const ProductCategory: {
