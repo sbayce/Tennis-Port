@@ -11,7 +11,7 @@ export const addProductProcedure = adminProcedure.input(newProductSchema).mutati
         stock: Number(stock),
         image: image || "",
         image2: image2 || "",
-        images: [],
+        images: images || [],
         category
     }
     if (category === "RACKET") {
@@ -22,16 +22,16 @@ export const addProductProcedure = adminProcedure.input(newProductSchema).mutati
             type: racketType || "",
             weight: weight || "",
         },
-        };
+        }
     }
 
     if (category === "SHOE") {
         productData.shoe = {
         create: {
-            size: [],
-            type: shoeType || "",
+            size: size || [],
+            type: shoeType || "MALE",
         },
-        };
+        }
     }
 
     const product = await prisma.product.create({
