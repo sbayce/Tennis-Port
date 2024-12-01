@@ -19,13 +19,13 @@ const MainDisplay = () => {
     <Carousel plugins={[plugin.current]}>
         <CarouselContent>
             <CarouselItem>
-                <img src="/wilson.webp" alt="rf-wilson" className="w-full h-96 object-cover" />
+                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/wilson.webp" alt="rf-wilson" className="w-full h-96 object-cover" />
             </CarouselItem>
             <CarouselItem>
-                <img src="/prince.jpg" alt="prince" className="w-full h-96 object-cover" />
+                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/prince.jpg" alt="prince" className="w-full h-96 object-cover" />
             </CarouselItem>
             <CarouselItem>
-                <img src="/head.webp" alt="head" className="w-full h-96 object-cover" />
+                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/head.webp" alt="head" className="w-full h-96 object-cover" />
             </CarouselItem>
         </CarouselContent>
         <CarouselPrevious />
