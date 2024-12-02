@@ -8,6 +8,7 @@ import CartItem from '@/types/cart-item'
 import RacketInformation from './RacketInformation'
 import { Racket } from '@/types/racket'
 import { isRacket } from '@/types/product'
+import { toast } from 'sonner'
 
 type ProductsGridProps = {
     products: Racket[] | Shoe[],
@@ -52,6 +53,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
             cartItem.type = product.shoe?.type
         }
         cartCtx?.addItem(cartItem)
+        toast.success("Item added")
     }
     console.log(cartCtx?.items)
     console.log("hover: ", isImageHovered)

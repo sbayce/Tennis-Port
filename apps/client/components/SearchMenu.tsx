@@ -13,6 +13,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Search } from "lucide-react"
 import Link from "next/link"
+import ProductNameLink from "./ProductNameLink"
   
   type SearchResult = {
       id: string,
@@ -102,7 +103,7 @@ const SearchMenu = () => {
                                 <motion.div variants={ProductVariant} className="flex flex-col xs:flex-row gap-2 mt-4 items-center">
                                         <img className="w-32 h-32" src={product.image} />
                                         <div className="flex flex-col gap-1">
-                                            <p className="font-semibold">{product.name}</p>
+                                            <ProductNameLink productId={product.id} name={product.name} />
                                             <p className="text-xs">{product.brand}</p>
                                             <p className="text-sm">{product.price} EGP</p>
                                         </div>
