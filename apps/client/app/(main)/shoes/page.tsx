@@ -23,12 +23,15 @@ export default function ShoesPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchShoes = async() => {
-    const { shoesData, numOfPages } = await trpc.getShoes.query({page, filter: {brand, type, size, price: {min, max}}, sort}) || []
-    setIsLoading(false)
-    setShoes(shoesData)
-    setNumOfPages(numOfPages)
+    try{
+      const { shoesData, numOfPages } = await trpc.getShoes.query({page, filter: {brand, type, size, price: {min, max}}, sort}) || []
+      setIsLoading(false)
+      setShoes(shoesData)
+      setNumOfPages(numOfPages)
+    }catch(error: any) {
+      console.log(error.message)
+    }
   }
-
   useEffect(() => {
     fetchShoes()
     setIsLoading(true)

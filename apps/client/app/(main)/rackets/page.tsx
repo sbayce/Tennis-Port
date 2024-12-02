@@ -27,12 +27,15 @@ export default function RacketsPage() {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchRackets = async() => {
-    const { racketData, numOfPages } = await trpc.getRackets.query({page, filter: {brand, type, weight, price: {min, max}}, sort}) || []
-    setIsLoading(false)
-    setRackets(racketData)
-    setNumOfPages(numOfPages)
+    try{
+      const { racketData, numOfPages } = await trpc.getRackets.query({page, filter: {brand, type, weight, price: {min, max}}, sort}) || []
+      setIsLoading(false)
+      setRackets(racketData)
+      setNumOfPages(numOfPages)
+    }catch(error: any) {
+      console.log(error.message)
+    }
   }
-
   useEffect(() => {
     fetchRackets()
     setIsLoading(true)
