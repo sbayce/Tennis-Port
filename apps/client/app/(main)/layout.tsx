@@ -5,17 +5,8 @@ import Footer from "../../components/Footer"
 import CartContextProvider from "@/contexts/CartContext"
 import { Poppins } from 'next/font/google'
 import { Suspense } from "react"
+import { Toaster } from "@/components/ui/sonner"
 
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// })
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// })
 const poppins = Poppins({
   weight: ['400', '700'],
   subsets: ['latin'],
@@ -39,6 +30,7 @@ export default function RootLayout({
       >
         <CartContextProvider>
           <Suspense>
+          <Toaster richColors position="top-center" />
           <Header />
           <div className="px-2 sm:px-10 lg:px-20 mt-28">
             {children}

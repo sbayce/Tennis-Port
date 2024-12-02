@@ -10,12 +10,5 @@
       "persistent": true
     },
     "lint": {}
-  },
-  "globalEnv": [
-    "STRIPE_SECRET_KEY",
-    "ACCESS_SECRET",
-    "ACCESS_EXPIRATION",
-    "REFRESH_SECRET",
-    "REFRESH_EXPIRATION"
-  ]
+  }
 }

@@ -45,7 +45,7 @@ const ProductCheckoutPage = () => {
   }, []);
 
   console.log(items)
-
+  console.log("total: ", total)
   if (!clientSecret) {
     return <div>Loading...</div>;
   }
