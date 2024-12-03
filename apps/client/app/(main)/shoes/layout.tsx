@@ -3,6 +3,7 @@ import SideBar from "@/components/SideBar"
 import ActiveFilters from "@/components/ActiveFilters"
 import trpc from "@/trpcClient"
 import SortMenu from "@/components/SortMenu"
+import MobileFilterButton from "@/components/MobileFilterButton"
 
 export default async function ShoesPageLayout({
   children,
@@ -23,9 +24,9 @@ export default async function ShoesPageLayout({
           <div className="flex justify-between mt-4">
             <ActiveFilters />
             <SortMenu />
-            {/* {rackets.length > 0 && <SortMenu />} */}
           </div>
           {children}
+          <MobileFilterButton data={sidebarData} />
         </div>
       </div>
     </>

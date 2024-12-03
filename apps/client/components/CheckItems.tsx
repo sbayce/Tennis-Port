@@ -7,10 +7,11 @@ import { capitalizeFirstChar } from "@/utils/capitalize-first-char"
 
 type CheckItemsProps = {
     listItems: LabelCount,
-    paramName: string
+    paramName: string,
+    addMobileFilter?: any
 }
 
-const CheckItems = ({ listItems, paramName }: CheckItemsProps) => {
+const CheckItems = ({ listItems, paramName, addMobileFilter }: CheckItemsProps) => {
     const searchParams = useSearchParams();
     const pathName = usePathname();
     const { replace } = useRouter();
@@ -34,16 +35,32 @@ const CheckItems = ({ listItems, paramName }: CheckItemsProps) => {
         }
         replace(`${pathName}?${params.toString()}`, {scroll: false});
     }
-
+    const handleCheck = (label: string) => {
+        if(addMobileFilter) {
+            addMobileFilter({
+                key: paramName,
+                value: label
+            })
+            return
+        }
+        toggleCheck(label)
+    }
   return (
     <FadeInMotionDiv className="flex flex-col gap-2 mb-4">
         {listItems.map(listItem => (
             <div key={listItem.label} className="flex items-center gap-4">
-                <Checkbox
-                    checked={checkedBoxes.includes(listItem.label.toLowerCase())}
-                    onCheckedChange={() => toggleCheck(listItem.label.toLowerCase())}
-                    id={listItem.label}
-                />
+                {addMobileFilter ? 
+                    <Checkbox
+                        onCheckedChange={() => handleCheck(listItem.label.toLowerCase())}
+                        id={listItem.label}
+                    />
+                    :
+                    <Checkbox
+                        checked={checkedBoxes.includes(listItem.label.toLowerCase())}
+                        onCheckedChange={() => handleCheck(listItem.label.toLowerCase())}
+                        id={listItem.label}
+                    />
+                }
                 <label
                     htmlFor={listItem.label}
                     className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
