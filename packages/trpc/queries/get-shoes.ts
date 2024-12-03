@@ -34,7 +34,7 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
     }
     console.log("queryArgs: ", queryArgs)
     try{
-        const [count, shoesData] = await prisma.$transaction([
+        const [productCount, shoesData] = await prisma.$transaction([
             prisma.product.count({
                 where: {
                     category: { equals: 'SHOE' },
@@ -58,9 +58,9 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
                 take: PAGE_SIZE
             })
         ])
-        const numOfPages = Math.ceil(count/PAGE_SIZE)
-        console.log("count: ", count)
-        return { shoesData, numOfPages }
+        const numOfPages = Math.ceil(productCount/PAGE_SIZE)
+        console.log("productCount: ", productCount)
+        return { shoesData, numOfPages, productCount }
     }catch(error: any){
         console.error("Error fetching shoes:", error.message)
         throw new Error("Failed to fetch shoes.")

@@ -20,13 +20,15 @@ export default function ShoesPage() {
   const sort = searchParams.get("sort") || undefined
   const [shoes, setShoes] = useState<Shoe[]>([])
   const [numOfPages, setNumOfPages] = useState<number>(0)
+  const [productCount, setProductCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchShoes = async() => {
     try{
-      const { shoesData, numOfPages } = await trpc.getShoes.query({page, filter: {brand, type, size, price: {min, max}}, sort}) || []
+      const { shoesData, numOfPages, productCount } = await trpc.getShoes.query({page, filter: {brand, type, size, price: {min, max}}, sort}) || []
       setIsLoading(false)
       setShoes(shoesData)
+      setProductCount(productCount)
       setNumOfPages(numOfPages)
     }catch(error: any) {
       console.log(error.message)
@@ -40,7 +42,10 @@ export default function ShoesPage() {
   console.log("shoes data: ", shoes)
   return (
     <>
-      <ProductsGrid isLoading={isLoading} products={shoes} />
+      <div>
+        {!isLoading && productCount > 0 && <p className="text-center text-sm mb-4">{productCount} products</p>}
+        <ProductsGrid isLoading={isLoading} products={shoes} />
+      </div>
       <PaginationTab numOfPages={numOfPages} />
     </>
   );
