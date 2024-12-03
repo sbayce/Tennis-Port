@@ -78,10 +78,10 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
                     
                 </div>
                 <div className="flex flex-col gap-0 w-full items-center xl:items-center relative text-center">
-                    {product.brand}
-                    <p className="text-zinc-900 text-md font-semibold">{product.name}</p>
+                    <p className='text-xs md:text-sm'>{product.brand}</p>
+                    <p className="text-zinc-900 text-sm md:text-base font-semibold">{product.name}</p>
                     {isRacket(product) && <p className="text-sm font-semibold">{product.racket?.type}</p>}
-                    <p className="text-lg font-bold text-gray-700">{product.price} <span className="text-sm">EGP</span></p>
+                    <p className="text-sm md:text-base text-gray-500">{product.price} <span className="text-sm">EGP</span></p>
                     
                     <motion.button 
                         initial={{opacity: 0}} 

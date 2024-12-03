@@ -27,7 +27,7 @@ const Header = () => {
 
   return (
     <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-4 
-      sm:px-20 lg:px-20 border-b border-neutral-600]" transition={{duration: 0.2}} 
+      sm:px-10 lg:px-20 border-b border-neutral-600]" transition={{duration: 0.2}} 
       animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
         <NavDropDown />
       <Link href="/rackets">

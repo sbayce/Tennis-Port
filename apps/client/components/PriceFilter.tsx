@@ -93,13 +93,13 @@ function handleCommit(range: number[]) {
             max={MAX_PRICE}
             step={1}
           />
-          <div className="flex gap-2">
+          <div className="flex gap-4 items-center">
               <input ref={minInputRef} value={priceRange[0] !== MIN_PRICE ? priceRange[0] : ""} 
                 onChange={(e) => handleOnChange(e, "min")} placeholder={String(MIN_PRICE)} 
                 onKeyDown={(e) => handleKeyDown(e, minInputRef)} onBlur={(e) => handleChange(e, "min")} 
                 min={MIN_PRICE} max={MAX_PRICE} className="border rounded-xl py-3 px-2 w-20 text-sm text-center" 
                 type="number" name="min-price" />
-
+              <p className="text-xs">to</p>
               <input ref={maxInputRef} value={priceRange[1] !== MAX_PRICE ? priceRange[1] : ""} 
                 onChange={(e) => handleOnChange(e, "max")} placeholder={String(MAX_PRICE)} 
                 onKeyDown={(e) => handleKeyDown(e, maxInputRef)} onBlur={(e) => handleChange(e, "max")} 
