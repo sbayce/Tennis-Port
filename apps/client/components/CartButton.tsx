@@ -43,7 +43,7 @@ const CartButton = () => {
         <button className='flex flex-col items-center text-sm hover:text-[#C75828] transition-colors duration-100 ease-in-out'><CartIcon className='w-6' /></button>
       </div>
       </SheetTrigger>
-      <SheetContent className='min-w-[600px] rounded-xl h-[96%] mt-4 mr-4'>
+      <SheetContent className='w-[95%] md:w-[600px] md:min-w-[600px] rounded-xl h-[96%] mt-4 mr-3 text-sm md:text-base'>
         <SheetHeader>
           <SheetTitle>Cart</SheetTitle>
         </SheetHeader>
@@ -60,7 +60,7 @@ const CartButton = () => {
                   {item.size && <p className='text-xs'>Size: {item.size}</p>}
                   {item.type && <p className='text-xs'>{item.type}</p>}
                 </div>
-                <div className='flex gap-2 ml-auto mr-4 text-xs items-center'>
+                <div className='flex flex-col md:flex-row ml-auto mr-4 text-xs items-center'>
                   <button onClick={() => handleDecrement(item.id)} className='hover:opacity-70 p-2'>-</button>
                   <div className='border border-zinc-300 rounded-md py-1 px-2 text-center mx-2'>
                   <AnimatePresence mode="wait">
@@ -88,8 +88,8 @@ const CartButton = () => {
           </div>
           :
           <div className='flex flex-col gap-2 items-center justify-center h-full'>
-            <h3 className='text-center text-2xl font-semibold'>Your cart is empty</h3>
-            <Link href={`rackets`} className='bg-[#C75828] p-4 rounded-[50px] font-semibold text-white text-center'>Continue shopping</Link>
+            <h3 className='text-center text-lg md:text-2xl font-semibold'>Your cart is empty</h3>
+            <Link href={`rackets`} className='bg-[#C75828] p-4 rounded-[50px] text-md font-semibold text-white text-center'>Continue shopping</Link>
           </div>
           }
       </SheetContent>

@@ -26,21 +26,20 @@ const Header = () => {
   }, [scrollY, scrollDirection]);
 
   return (
-    <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-2 
+    <motion.div className="flex justify-between bg-white items-center top-0 fixed w-full z-20 px-4 
       sm:px-20 lg:px-20 border-b border-neutral-600]" transition={{duration: 0.2}} 
       animate={{height: scrollDirection === 'up' || !scrollDirection ? 100 : 70}}>
         <NavDropDown />
       <Link href="/rackets">
         <motion.img 
           src="/tennis-port.png" 
-          className="w-48"
+          className="w-28 md:w-48"
           animate={{scale: scrollDirection === 'up' || !scrollDirection ? 1 : 0.7}}
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
       </Link>
       {/* <SearchBar scrollDirection={scrollDirection} /> */}
-      <div className='flex gap-6 items-center'>
-        
+      <div className='flex gap-3 md:gap-6 items-center'>
         <NavMenu />
         <SearchMenu />
         <CartButton />

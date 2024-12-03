@@ -4,8 +4,6 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
   } from "@/components/ui/carousel"
 import Autoplay from 'embla-carousel-autoplay'
 import { useRef } from "react"
@@ -28,8 +26,8 @@ const MainDisplay = () => {
                 <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/head.webp" alt="head" className="w-full h-96 object-cover" />
             </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        {/* <CarouselPrevious />
+        <CarouselNext /> */}
     </Carousel>
 
   )

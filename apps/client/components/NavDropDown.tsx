@@ -42,7 +42,7 @@ const NavDropDown = () => {
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
-            {currentPage === 0 && <div className="flex flex-col gap-4 text-3xl font-semibold items-start">
+            {currentPage === 0 && <div className="flex flex-col gap-4 text-2xl font-semibold items-start">
                 <button onClick={() => setCurrentPage(1)}>Rackets</button>
                 <button onClick={() => setCurrentPage(2)}>Shoes</button>
             </div>}

@@ -30,9 +30,12 @@ import ProductNameLink from "./ProductNameLink"
     },
     visible: {
         opacity: 1,
-        height: 700,
+        height: "70vh",
         transition: {
             when: "beforeChildren",
+            type: "spring",
+            damping: 7,
+            mass: 0.1,
         }
     },
     exit: {
@@ -40,6 +43,9 @@ import ProductNameLink from "./ProductNameLink"
         height: 0,
         transition: {
             when: "afterChildren",
+            type: "spring",
+            damping: 7,
+            mass: 0.1,
         }
     }
   }
@@ -86,22 +92,22 @@ const SearchMenu = () => {
   return (
         <Sheet>
             <SheetTrigger><Search /></SheetTrigger>
+            <SheetContent className="pb-0 w-[97%] mx-auto rounded-xl p-4 md:p-6" side="top">
             <SheetHeader>
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
-            <SheetContent className="pb-0" side="top">
-                <div className="mx-10 mb-10">
-                    <input value={searchInput} onChange={(e) => handleChange(e.target.value)} className={`w-full text-2xl p-2 border-b-2 border-opacity-30 focus:outline-none
+                <div className="mx-4 md:mx-10 mb-4 md:mb-10">
+                    <input value={searchInput} onChange={(e) => handleChange(e.target.value)} className={`w-full text-md md:text-2xl p-0 md:p-2 border-b-2 border-opacity-30 focus:outline-none
                         focus:border-b-[#202223] transition-colors duration-300`} type="text" placeholder="Search for..." />
                 </div>
-                <AnimatePresence>
+                        <AnimatePresence>
                     {searchResults.length > 0 && 
                         <motion.div key="products-list" variants={ProductsVariant} initial="hidden" animate="visible" exit="exit">
-                            <ScrollArea className="h-[700px]">
+                            <ScrollArea className="h-full md:max-h-[700px]">
                                 {searchResults.map(product => <Link key={product.id} href={`/product/${product.id}`}>
-                                <motion.div variants={ProductVariant} className="flex flex-col xs:flex-row gap-2 mt-4 items-center">
-                                        <img className="w-32 h-32" src={product.image} />
+                                <motion.div variants={ProductVariant} className="flex gap-2 mt-4 items-center text-sm md:text-base">
+                                        <img className="w-20 h-20 md:w-24 md:h-24" src={product.image} />
                                         <div className="flex flex-col gap-1">
                                             <ProductNameLink productId={product.id} name={product.name} />
                                             <p className="text-xs">{product.brand}</p>

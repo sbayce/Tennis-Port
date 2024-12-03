@@ -17,8 +17,8 @@ const page = async ({params}: { params: Promise<{ productId: string }> }) => {
     <div className="flex flex-col lg:flex-row gap-20 py-16">
         <ProductCarousel productData={productData} />
         <div className="flex flex-col gap-2 w-full">
-            <h1 className="text-5xl font-bold">{productData.name}</h1>
-            <h3 className="text-2xl italic">{productData.brand}</h3>
+            <h1 className="text-3xl md:text-5xl font-bold">{productData.name}</h1>
+            <h3 className="text-xl md:text-2xl italic">{productData.brand}</h3>
             <p>{productData.price} <span className="text-sm">EGP</span></p>
             <Separator />
             {productData.racket && <PreferenceSelection />}
