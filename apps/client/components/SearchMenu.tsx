@@ -9,11 +9,12 @@ import {
   import { ScrollArea } from "./ui/scroll-area"
   import debounce from 'lodash.debounce'
   import trpc from "@/trpcClient"
-  import { useCallback, useState } from "react"
+  import { useCallback, useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search } from "lucide-react"
 import Link from "next/link"
 import ProductNameLink from "./ProductNameLink"
+import { usePathname } from "next/navigation"
   
   type SearchResult = {
       id: string,
@@ -70,6 +71,8 @@ import ProductNameLink from "./ProductNameLink"
 const SearchMenu = () => {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([])
     const [searchInput, setSearchInput] = useState("")
+    const [open, setOpen] = useState(false)
+    const path = usePathname()
 
     const searchProducts = async (searchInput: string) => {
         const results = await trpc.searchProducts.query(searchInput)
@@ -88,18 +91,22 @@ const SearchMenu = () => {
         debouncedSearch(value)
     }, [])
 
+    useEffect(() => {
+        setOpen(false)
+    }, [path])
+
     console.log("search results: ", searchResults)
   return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger><Search /></SheetTrigger>
-            <SheetContent className="pb-0 w-[97%] mx-auto rounded-xl p-4 md:p-6" side="top">
+            <SheetContent className="pb-0 w-[97%] mx-auto rounded-b-xl p-4 md:p-6" side="top">
             <SheetHeader>
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
                 <div className="mx-4 md:mx-10 mb-4 md:mb-10">
                     <input value={searchInput} onChange={(e) => handleChange(e.target.value)} className={`w-full text-md md:text-2xl p-0 md:p-2 border-b-2 border-opacity-30 focus:outline-none
-                        focus:border-b-[#202223] transition-colors duration-300`} type="text" placeholder="Search for..." />
+                        focus:border-b-[#202223] transition-colors duration-300 rounded-none`} type="text" placeholder="Search for..." />
                 </div>
                         <AnimatePresence>
                     {searchResults.length > 0 && 

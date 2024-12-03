@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CartIcon from '@/icons/cart-outline.svg'
 import { useCart } from '@/contexts/CartContext'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -14,10 +14,13 @@ import {
 import Link from 'next/link'
 import ProductNameLink from './ProductNameLink'
 import CartItem from '@/types/cart-item'
+import { usePathname } from 'next/navigation'
 
 const CartButton = () => {
     const { items, numOfItems, total, addItem, removeItem } = useCart()
+    const [open, setOpen] = useState(false)
     const [prevCount, setPrevCount] = useState(numOfItems)
+    const path = usePathname()
     const handleDecrement = (id: string) => {
       removeItem(id)
       setPrevCount(numOfItems)
@@ -26,14 +29,15 @@ const CartButton = () => {
       addItem(item)
       setPrevCount(numOfItems)
     }
-    console.log("prev: ", prevCount)
-    console.log("num: ", numOfItems)
+    useEffect(() => {
+      setOpen(false)
+    }, [path])
   return (
     
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <div className='relative'>
-              <Badge className={`absolute -top-4 ${numOfItems > 0? "bg-[#C75828]" : "bg-transparent"}`}>
+              <Badge className={`absolute -top-5 -right-1.5 ${numOfItems > 0? "bg-[#C75828]" : "bg-transparent"}`}>
               <AnimatePresence mode='wait'>
                 <motion.p className='mt-0.5' key={numOfItems} initial={{y: 20, opacity: 0}} 
                       animate={{y: 0, opacity: 1}} exit={{y: -20, opacity: 0}} 

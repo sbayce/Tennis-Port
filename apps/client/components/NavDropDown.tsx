@@ -11,6 +11,7 @@ import {
   import { MenuIcon } from "lucide-react"
   import { motion } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const ListVariant = {
     hidden: {
@@ -29,22 +30,29 @@ const ListVariant = {
 const NavDropDown = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [open, setOpen] = useState(false)
+    const path = usePathname()
 
     useEffect(() => {
         if(!open) setCurrentPage(0)
     }, [open])
 
+    useEffect(() => {
+        setOpen(false)
+    }, [path])
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="flex md:hidden"><MenuIcon /></SheetTrigger>
-        <SheetContent className="flex min-h-[500px] rounded-t-xl" side="bottom">
+        <SheetContent className="max-h-[60%] min-h-[60%] ml-3 max-w-[95%] min-w-[95%] rounded-t-xl flex" side="bottom">
             <SheetHeader>
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
             {currentPage === 0 && <div className="flex flex-col gap-4 text-2xl font-semibold items-start">
-                <button onClick={() => setCurrentPage(1)}>Rackets</button>
-                <button onClick={() => setCurrentPage(2)}>Shoes</button>
+                {/* <button onClick={() => setCurrentPage(1)}>Rackets</button>
+                <button onClick={() => setCurrentPage(2)}>Shoes</button> */}
+                <Link href={`/rackets`}>Rackets</Link>
+                <Link href={`/shoes`}>Shoes</Link>
             </div>}
             {currentPage === 1 && <div className="flex flex-col gap-4">
                 <motion.div variants={ListVariant} initial="hidden" animate="visible" className="flex flex-col gap-4 font-semibold items-start">
