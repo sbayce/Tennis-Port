@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from 'stripe'
 import trpc from "@/trpcClient";
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!)
+const stripe = new Stripe(String(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY))
 
 export async function POST(req: NextRequest) {
     const event = await stripe.webhooks.constructEvent(

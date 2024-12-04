@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Stripe from "stripe";
 import trpc from "@/trpcClient";
 
-const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
+const stripe = new Stripe(String(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY), {
     typescript: true
 })
 
