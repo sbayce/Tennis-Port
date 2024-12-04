@@ -4,14 +4,16 @@ import { Checkbox } from "./ui/checkbox"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { LabelCount } from "@/types/sidebar"
 import { capitalizeFirstChar } from "@/utils/capitalize-first-char"
+import { MobileFilter } from "./MobileFilterMenu"
 
 type CheckItemsProps = {
     listItems: LabelCount,
     paramName: string,
-    addMobileFilter?: any
+    addMobileFilter?: any,
+    mobileFilters?: MobileFilter[]
 }
 
-const CheckItems = ({ listItems, paramName, addMobileFilter }: CheckItemsProps) => {
+const CheckItems = ({ listItems, paramName, addMobileFilter, mobileFilters }: CheckItemsProps) => {
     const searchParams = useSearchParams();
     const pathName = usePathname();
     const { replace } = useRouter();
@@ -49,8 +51,9 @@ const CheckItems = ({ listItems, paramName, addMobileFilter }: CheckItemsProps) 
     <FadeInMotionDiv className="flex flex-col gap-2 mb-4">
         {listItems.map(listItem => (
             <div key={listItem.label} className="flex items-center gap-4">
-                {addMobileFilter ? 
+                {mobileFilters ? 
                     <Checkbox
+                        checked={mobileFilters.some(filter => filter.key === paramName && filter.value === listItem.label.toLocaleLowerCase())}
                         onCheckedChange={() => handleCheck(listItem.label.toLowerCase())}
                         id={listItem.label}
                     />

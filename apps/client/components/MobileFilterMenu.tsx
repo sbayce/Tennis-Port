@@ -10,22 +10,38 @@ import {
   } from "@/components/ui/accordion"
   import { capitalizeFirstChar } from "@/utils/capitalize-first-char"
   import { SidebarData } from "@/types/sidebar"
+import SortMenuMobile from "./SortMenuMobile"
 import { useState } from "react"
 import { useRouter, useSearchParams, usePathname } from "next/navigation"
 
-type MobileFilter = {
+export type MobileFilter = {
     key: string
     value: string
 }
 
 const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
-    const [mobileFilters, setMobileFilters] = useState<MobileFilter[]>([])
-    const { replace } = useRouter()
     const searchParams = useSearchParams()
+    const params = Array.from(searchParams.entries())
+    // remove duplicates
+    const uniqueParams = Array.from(
+        new Map(params.map(([key, value]) => [`${key}:${value}`, [key, value]])).values()
+      );
+    const initialMobileFilters = uniqueParams.map(param => ({key: param[0], value: param[1]}))
+    console.log("initialMobileFilters: ", initialMobileFilters)
+    const [mobileFilters, setMobileFilters] = useState<MobileFilter[]>(initialMobileFilters)
+    const { replace } = useRouter()
     const path = usePathname()
 
     const addMobileFilter = (filter: MobileFilter) => {
         setMobileFilters(prev => {
+            if(filter.key === "sort"){
+                const existingSortIndex = prev.findIndex(f => f.key === "sort")
+                if(existingSortIndex !== -1) {
+                    const updatedFilters = [...prev]
+                    updatedFilters[existingSortIndex].value = filter.value
+                    return updatedFilters
+                }
+            }
             const existingIndex = prev.findIndex(f => f.value === filter.value)
             if(existingIndex !== -1) {
                 const updatedFilters = prev.filter((_, i) => i !== existingIndex)
@@ -38,7 +54,7 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
     })
     }
     const applyFilters = () => {
-        const params = new URLSearchParams(searchParams)
+        const params = new URLSearchParams()
         mobileFilters.map(filter => params.append(filter.key, filter.value))
         replace(`${path}?${params.toString()}`)
     }
@@ -51,7 +67,7 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
                         <AccordionItem key={`${key}-mobile`} value={key}>
                             <AccordionTrigger>{capitalizeFirstChar(key)}</AccordionTrigger>
                             <AccordionContent>
-                                <CheckItems paramName={key} listItems={value} addMobileFilter={addMobileFilter} />
+                                <CheckItems paramName={key} listItems={value} mobileFilters={mobileFilters} addMobileFilter={addMobileFilter} />
                             </AccordionContent>
                         </AccordionItem>
                     )}
@@ -59,6 +75,12 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
                         <AccordionTrigger>Price</AccordionTrigger>
                         <AccordionContent>
                             <PriceFilter />
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="sort">
+                        <AccordionTrigger>Sort</AccordionTrigger>
+                        <AccordionContent>
+                            <SortMenuMobile addMobileFilter={addMobileFilter} mobileFilters={mobileFilters} />
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
