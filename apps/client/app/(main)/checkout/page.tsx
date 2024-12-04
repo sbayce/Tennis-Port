@@ -52,9 +52,9 @@ const ProductCheckoutPage = () => {
   
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <div className="flex gap-10">
+      <div className="flex flex-col md:flex-row gap-10 mt-4 mb-10">
         <CheckoutForm amount={params.size > 0? Number(productData?.price) : total} />
-        <div className="flex flex-col gap-2 mr-auto">
+        <div className="flex flex-col gap-2 md:mr-auto">
           {params.size === 0 && items.map(item => 
             <div key={item.id} className="flex gap-2 items-center">
               <div className="relative border rounded-lg">

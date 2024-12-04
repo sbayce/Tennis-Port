@@ -9,6 +9,7 @@ import {
   import { Product } from "@/types/product"
   import { type CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from "react"
+import { ScrollArea, Scrollbar } from "@radix-ui/react-scroll-area"
   
 const ProductCarousel = ({ productData }: { productData: Product }) => {
     const [api, setApi] = useState<CarouselApi>()
@@ -33,7 +34,8 @@ const ProductCarousel = ({ productData }: { productData: Product }) => {
   console.log("current: ", current)
   return (
     <div className="flex flex-col xl:flex-row gap-20">
-            <div className="flex flex-row order-2 xl:order-1 xl:flex-col gap-4">
+        <ScrollArea className="order-2 xl:order-1 overflow-hidden">
+          <div className="flex flex-row xl:flex-col gap-4">
                 <img onClick={() => handleImageClick(0)} className={`w-[100px] h-[100px] object-cover cursor-pointer pb-4 border-b-2 transition-colors 
                     duration-300 ${current === 0? "border-[#202223]" : "border-transparent"}`} src={productData.image} alt="main-image" />
                 <img onClick={() => handleImageClick(1)} className={`w-[100px] h-[100px] object-cover cursor-pointer pb-4 border-b-2 transition-colors 
@@ -41,7 +43,9 @@ const ProductCarousel = ({ productData }: { productData: Product }) => {
                 {productData.images.map((image, i) => <img key={`image-${i+2}`} onClick={() => handleImageClick(i+2)} 
                     className={`w-[100px] h-[100px] object-cover cursor-pointer pb-4 border-b-2 transition-colors 
                     duration-300 ${current === i+2? "border-[#202223]" : "border-transparent"}`} src={image} alt="carousel-image" />)}
-            </div>
+          </div>
+          <Scrollbar orientation="horizontal" />
+        </ScrollArea>
             <Carousel setApi={setApi} className="w-full order-1 xl:order-2">
                 <CarouselContent>
                     <CarouselItem>

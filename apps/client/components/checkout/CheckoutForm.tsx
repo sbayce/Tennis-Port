@@ -40,7 +40,7 @@ const CheckoutForm = ({ amount }: { amount: number }) => {
         }
     }
   return (
-        <form className="ml-auto" onSubmit={onSubmit}>
+        <form className="md:ml-auto" onSubmit={onSubmit}>
             <PaymentElement />
             <LinkAuthenticationElement />
             <AddressElement options={{ mode: "shipping" }} />
