@@ -99,7 +99,7 @@ const SearchMenu = () => {
   return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger><Search /></SheetTrigger>
-            <SheetContent className="pb-0 w-[97%] mx-auto rounded-b-xl p-4 md:p-6" side="top">
+            <SheetContent className="pb-0 mx-2 mt-2 rounded-xl p-4 md:p-6" side="top">
             <SheetHeader>
                 <SheetTitle />
                 <SheetDescription />

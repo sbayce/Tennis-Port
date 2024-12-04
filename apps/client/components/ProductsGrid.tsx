@@ -60,7 +60,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
     console.log("loading: ", isLoading)
     if(products.length === 0 && !isLoading) return <h1 className='text-center text-2xl font-semibold'>No products found</h1>
   return (
-    <div className={`grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-14 w-full ${isLoading && "opacity-40"}`}>
+    <div className={`px-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-14 w-full ${isLoading && "opacity-40"}`}>
         {products.map((product, index) =>
         <Link key={product.id} href={`product/${product.id}`}>
             <motion.div key={product.name} variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={index} className="flex flex-col xl:flex-col gap-4 items-center cursor-pointer" onMouseOver={() => setIsHovered(product.name)} onMouseLeave={() => setIsHovered(null)}>

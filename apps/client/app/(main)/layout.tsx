@@ -32,7 +32,7 @@ export default function RootLayout({
           <Suspense>
           <Toaster richColors position="top-center" />
           <Header />
-          <div className="mx-4 sm:mx-10 lg:mx-20 mt-28">
+          <div className="sm:mx-10 lg:mx-20 mt-28">
             {children}
           </div>
           <Footer />

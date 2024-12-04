@@ -43,14 +43,12 @@ const NavDropDown = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="flex md:hidden"><MenuIcon /></SheetTrigger>
-        <SheetContent className="max-h-[60%] min-h-[60%] ml-3 max-w-[95%] min-w-[95%] rounded-t-xl flex" side="bottom">
+        <SheetContent className="max-h-[60%] min-h-[60%] mx-2 mb-2 rounded-xl flex" side="bottom">
             <SheetHeader>
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
             {currentPage === 0 && <div className="flex flex-col gap-4 text-2xl font-semibold items-start">
-                {/* <button onClick={() => setCurrentPage(1)}>Rackets</button>
-                <button onClick={() => setCurrentPage(2)}>Shoes</button> */}
                 <Link href={`/rackets`}>Rackets</Link>
                 <Link href={`/shoes`}>Shoes</Link>
             </div>}

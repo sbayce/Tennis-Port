@@ -53,31 +53,36 @@ const CartButton = () => {
           <SheetTitle>Cart</SheetTitle>
         </SheetHeader>
           {items.length > 0? 
-            <div className='flex flex-col h-full'>
+            <motion.div exit={{opacity: 0}} className='flex flex-col h-full'>
               <ScrollArea className='h-full p-2'>
-                {items.map(item => <div key={item.id} className='flex gap-6 items-center'>
-                  <img src={item.image} alt='item-image' className='w-24' />
-                  <div>
-                    <ProductNameLink productId={item.id} name={item.name} />
-                    <p className='text-sm'>LE <span className='ml-1'>{item.price}</span></p>
-                    {item.gripSize && <p className='text-xs'>Grip: {item.gripSize}</p>}
-                    {item.stringOption && <p className='text-xs'>String: {item.stringOption}</p>}
-                    {item.size && <p className='text-xs'>Size: {item.size}</p>}
-                    {item.type && <p className='text-xs'>{item.type}</p>}
-                  </div>
-                  <div className='flex flex-col md:flex-row ml-auto mr-4 text-xs items-center'>
-                    <button onClick={() => handleDecrement(item.id)} className='hover:opacity-70 p-2'>-</button>
-                    <div className='border border-zinc-300 rounded-md py-1 px-2 text-center mx-2'>
-                    <AnimatePresence mode="wait">
-                      <motion.p key={item.quantity} initial={{y: numOfItems > prevCount? -20 : 20, opacity: 0}} 
-                        animate={{y: 0, opacity: 1}} exit={{y: numOfItems > prevCount? 20 : -20, opacity: 0}} 
-                        transition={{duration: 0.2}}>{item.quantity}</motion.p>
-                    </AnimatePresence>
+                <AnimatePresence mode="popLayout">
+                  {items.map(item => <motion.div layout exit={{opacity: 0, y: -10}} transition={{duration: 0.2}} key={item.id} className='flex gap-6 items-center'>
+                    <img src={item.image} alt='item-image' className='w-24' />
+                    <div className='flex flex-col md:flex-row w-full'>
+                      <div>
+                        <ProductNameLink productId={item.id} name={item.name} />
+                        <p className='text-sm'>LE <span className='ml-1'>{item.price}</span></p>
+                        {item.gripSize && <p className='text-xs'>Grip: {item.gripSize}</p>}
+                        {item.stringOption && <p className='text-xs'>String: {item.stringOption}</p>}
+                        {item.size && <p className='text-xs'>Size: {item.size}</p>}
+                        {item.type && <p className='text-xs'>{item.type}</p>}
+                      </div>
+                      <div className='flex md:ml-auto self-start my-2 text-xs items-center'>
+                      <button onClick={() => handleDecrement(item.id)} className='hover:opacity-70 p-2'>-</button>
+                      <div className='border border-zinc-300 rounded-md py-1 px-2 text-center mx-2'>
+                      <AnimatePresence mode="wait">
+                        <motion.p key={item.quantity} initial={{y: numOfItems > prevCount? -20 : 20, opacity: 0}} 
+                          animate={{y: 0, opacity: 1}} exit={{y: numOfItems > prevCount? 20 : -20, opacity: 0}} 
+                          transition={{duration: 0.2}}>{item.quantity}</motion.p>
+                      </AnimatePresence>
+                      </div>
+                      <button onClick={() => handleIncrement(item)} className='hover:opacity-70 p-2'>+</button>
+                      {/* <p>remove</p> */}
                     </div>
-                    <button onClick={() => handleIncrement(item)} className='hover:opacity-70 p-2'>+</button>
-                    {/* <p>remove</p> */}
-                  </div>
-                </div>)}
+                    </div>
+                    
+                  </motion.div>)}
+                  </AnimatePresence>
               </ScrollArea>
               <div className='flex flex-col border-t py-4 px-6 gap-4 mb-10'>
                 <div className='flex gap-4 items-center justify-between text-xl font-semibold text-[#202223]'>
@@ -93,7 +98,7 @@ const CartButton = () => {
                   </SheetClose>
                 </div>
               </div>
-          </div>
+          </motion.div>
           :
           <div className='flex flex-col gap-2 items-center justify-center h-full'>
             <h3 className='text-center text-lg md:text-2xl font-semibold'>Your cart is empty</h3>

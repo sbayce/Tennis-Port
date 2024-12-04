@@ -14,7 +14,7 @@ const page = async ({params}: { params: Promise<{ productId: string }> }) => {
     console.log("is racket: ", productData?.racket)
     if(!productData) return <h1>Product not found</h1>
   return (
-    <div className="flex flex-col lg:flex-row gap-20 py-16">
+    <div className="flex flex-col lg:flex-row gap-20 px-4 py-16">
         <ProductCarousel productData={productData} />
         <div className="flex flex-col gap-2 w-full">
             <h1 className="text-3xl md:text-5xl font-bold">{productData.name}</h1>

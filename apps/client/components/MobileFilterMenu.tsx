@@ -84,7 +84,7 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
-                <button onClick={applyFilters} className="absolute bottom-0 rounded-2xl bg-[#C75828] py-3 px-5 text-sm
+                <button onClick={applyFilters} className="absolute bottom-0 rounded-2xl bg-[#C75828] py-3 px-5 mb-3 text-sm
                      font-semibold text-white w-[90%]">{`Apply (${mobileFilters.length})`}</button>
         </AnimatePresence>
     )

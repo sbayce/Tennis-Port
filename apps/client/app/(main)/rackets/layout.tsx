@@ -20,7 +20,7 @@ export default async function RootLayout({
       <MainDisplay />
       <div className="flex gap-2">
         <SideBar data={sidebarData} />
-        <div className="flex flex-col gap-4 mb-20 w-full">
+        <div className="flex flex-col gap-4 mb-4 md:mb-10 w-full">
           <div className="flex justify-between mt-4">
             <ActiveFilters />
             <SortMenu />
