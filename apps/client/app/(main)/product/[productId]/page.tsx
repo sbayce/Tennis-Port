@@ -5,6 +5,7 @@ import { Check, XIcon } from "lucide-react"
 import ActionButtons from "@/components/ActionButtons"
 import ProductCarousel from "@/components/ProductCarousel"
 import ShoeSizeSelection from "@/components/ShoeSizeSelection"
+import { egp } from "@/utils/price-formatter"
 
 const page = async ({params}: { params: Promise<{ productId: string }> }) => {
     const { productId } = await params
@@ -19,7 +20,7 @@ const page = async ({params}: { params: Promise<{ productId: string }> }) => {
         <div className="flex flex-col gap-2 w-full">
             <h1 className="text-3xl md:text-5xl font-bold">{productData.name}</h1>
             <h3 className="text-xl md:text-2xl italic">{productData.brand}</h3>
-            <p>{productData.price} <span className="text-sm">EGP</span></p>
+            <p>{egp.format(productData.price)} <span className="text-sm">EGP</span></p>
             <Separator />
             {productData.racket && <PreferenceSelection />}
             {productData.shoe && <ShoeSizeSelection shoeSizes={productData.shoe.size} />}

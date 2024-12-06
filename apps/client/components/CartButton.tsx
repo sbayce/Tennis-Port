@@ -16,6 +16,7 @@ import ProductNameLink from './ProductNameLink'
 import CartItem from '@/types/cart-item'
 import { usePathname } from 'next/navigation'
 import { ScrollArea } from './ui/scroll-area'
+import { egp } from "@/utils/price-formatter"
 
 const CartButton = () => {
     const { items, numOfItems, total, addItem, removeItem } = useCart()
@@ -61,7 +62,7 @@ const CartButton = () => {
                     <div className='flex flex-col md:flex-row w-full'>
                       <div>
                         <ProductNameLink productId={item.id} name={item.name} />
-                        <p className='text-sm'>LE <span className='ml-1'>{item.price}</span></p>
+                        <p className='text-sm'>LE <span className='ml-1'>{egp.format(item.price)}</span></p>
                         {item.gripSize && <p className='text-xs'>Grip: {item.gripSize}</p>}
                         {item.stringOption && <p className='text-xs'>String: {item.stringOption}</p>}
                         {item.size && <p className='text-xs'>Size: {item.size}</p>}

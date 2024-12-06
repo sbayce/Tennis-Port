@@ -1,0 +1,1 @@
+export const egp = Intl.NumberFormat(undefined)

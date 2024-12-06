@@ -9,6 +9,7 @@ import RacketInformation from './RacketInformation'
 import { Racket } from '@/types/racket'
 import { isRacket } from '@/types/product'
 import { ShoppingBasket } from 'lucide-react'
+import { egp } from '@/utils/price-formatter'
 
 type ProductsGridProps = {
     products: Racket[] | Shoe[],
@@ -83,7 +84,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
                     <p className='text-xs md:text-sm'>{product.brand}</p>
                     <p className="text-zinc-900 text-sm md:text-base font-semibold">{product.name}</p>
                     {isRacket(product) && <p className="text-sm font-semibold">{product.racket?.type}</p>}
-                    <p className="text-sm md:text-base text-gray-500">{product.price} <span className="text-sm">EGP</span></p>
+                    <p className="text-sm md:text-base text-gray-500">{egp.format(product.price)} <span className="text-sm">EGP</span></p>
                     
                     <motion.button 
                         initial={{opacity: 0}} 
