@@ -13,7 +13,7 @@ model User {
   email     String   @unique
   password  String
   name      String
-  role UserRole
+  role      UserRole
   createdAt DateTime @default(now())
   orders    Order[]
   addresses Adress[]
@@ -66,40 +66,40 @@ enum ShoeGender {
 }
 
 model Order {
-  id          String      @id @default(cuid()) @map("_id")
-  user        User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String?
-  createdAt   DateTime    @default(now())
-  items       OrderItem[]
-  totalAmount Float
+  id            String      @id @default(cuid()) @map("_id")
+  user          User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String?
+  createdAt     DateTime    @default(now())
+  items         OrderItem[]
+  totalAmount   Float
   customerEmail String?
-  adress Adress @relation(fields: [adressId], references: [id])
-  adressId String
-  status OrderStatus
+  adress        Adress      @relation(fields: [adressId], references: [id])
+  adressId      String
+  status        OrderStatus
 }
 
 model OrderItem {
-  id        String  @id @default(cuid()) @map("_id")
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId   String
-  product   Product @relation(fields: [productId], references: [id])
-  productId String
-  quantity  Int
-  price     Float
-  gripOption GripOption?
-  stringOption StringOption?
-  shoeSize String?
+  id           String  @id @default(cuid()) @map("_id")
+  order        Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId      String
+  product      Product @relation(fields: [productId], references: [id])
+  productId    String
+  quantity     Int
+  price        Float
+  gripOption   String?
+  stringOption String?
+  shoeSize     String?
 }
 
 model Adress {
-  id String  @id @default(cuid()) @map("_id")
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String?
-  orders Order[]
-  adress1 String
-  adress2 String?
-  country String
-  city String
+  id         String  @id @default(cuid()) @map("_id")
+  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String?
+  orders     Order[]
+  adress1    String
+  adress2    String?
+  country    String
+  city       String
   postalCode String
 }
 
@@ -109,10 +109,12 @@ enum GripOption {
   THREE
   FOUR
 }
+
 enum StringOption {
   STRUNG
   UNSTRUNG
 }
+
 enum OrderStatus {
   PENDING
   SHIPPED
@@ -120,6 +122,7 @@ enum OrderStatus {
   CANCELLED
   RETURNED
 }
+
 enum UserRole {
   ADMIN
   MEMBER
