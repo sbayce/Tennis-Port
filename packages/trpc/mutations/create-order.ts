@@ -4,11 +4,13 @@ import { z } from "zod"
 const createOrderProcedure = t.procedure.input(z.object({
     customerEmail: z.string(),
     amount: z.number(),
-    productIds: z.array(z.string()),
     purchasedProducts: z.array(
         z.object({
             productId: z.string(),
-            quantity: z.number()
+            quantity: z.number(),
+            gripSize: z.string().optional(),
+            stringOption: z.string().optional(),
+            shoeSize: z.string().optional()
         })
     ),
     adress: z.object({
@@ -23,20 +25,20 @@ const createOrderProcedure = t.procedure.input(z.object({
         console.log("request: ", req)
         try{
             const { prisma } = req.ctx
-            const { customerEmail, productIds, amount, purchasedProducts, adress } = req.input
+            const { customerEmail, amount, purchasedProducts, adress } = req.input
             
-            console.log("customerEmail: ", customerEmail)
-            console.log("amount: ", amount)
-            console.log("productIds: ", productIds)
-            console.log("purchasedProducts: ", purchasedProducts)
-            const productPrices = await prisma.product.findMany({
+            const productIds = purchasedProducts.map(product => product.productId)
+            const products = await prisma.product.findMany({
                 where: {
                     id: {
                         in: productIds
                     }
                 },
                 select: {
-                    price: true
+                    id: true,
+                    price: true,
+                    image: true,
+                    name: true
                 }
             })
             const order = await prisma.order.create({
@@ -46,7 +48,10 @@ const createOrderProcedure = t.procedure.input(z.object({
                             data: purchasedProducts.map((product, i) => ({
                                 productId: product.productId,
                                 quantity: product.quantity,
-                                price: productPrices[i].price,
+                                price: products[i].price,
+                                gripOption: product.gripSize,
+                                stringOption: product.stringOption,
+                                shoeSize: product.shoeSize 
                             }))
                         }
                     },
@@ -65,9 +70,10 @@ const createOrderProcedure = t.procedure.input(z.object({
                 }
             })
         console.log("created order: ", order)
+        return { order, products }
     }catch(error: any) {
         console.log("Order creation failed: ", error.message)
-        return { status: 500, message: error.message }
+        throw new Error(error.message)
     }
 })
 

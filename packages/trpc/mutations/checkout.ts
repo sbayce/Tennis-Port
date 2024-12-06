@@ -4,24 +4,29 @@ import Stripe from "stripe"
 
 const checkoutProcedure = t.procedure.input(z.object({checkoutProducts: z.array(z.object({
     productId: z.string(),
-    quantity: z.number()
+    quantity: z.number(),
+    gripSize: z.string().optional(),
+    stringOption: z.string().optional(),
+    shoeSize: z.string().optional()
 })), amount: z.number()})).mutation(async (req) => {
     const stripe = new Stripe(String(process.env.STRIPE_SECRET_KEY), {
         typescript: true
     })
     const { checkoutProducts, amount } = req.input
     // create a dynamic metadeta obj for cases where users buy multiple products
-    const metadata = checkoutProducts.reduce((acc, { productId, quantity }, index) => {
-        acc[`product_${index + 1}_id`] = productId;
-        acc[`product_${index + 1}_quantity`] = quantity.toString();
-        return acc;
-      }, {} as Record<string, string>);
+    // const metadata = checkoutProducts.reduce((acc, { productId, quantity }, index) => {
+    //     acc[`product_${index + 1}_id`] = productId;
+    //     acc[`product_${index + 1}_quantity`] = quantity.toString();
+    //     return acc;
+    //   }, {} as Record<string, string>);
     try{
         console.log("amount: ", amount)
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount*0.020*100,
             currency: "USD",
-            metadata
+            metadata: {
+                products: JSON.stringify(checkoutProducts)
+            }
         })
         return { status: 200, clientSecret: paymentIntent.client_secret, message: "success" }
     }catch(error: any) {
