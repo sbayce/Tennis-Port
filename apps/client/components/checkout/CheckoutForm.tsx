@@ -2,12 +2,11 @@
 import { LinkAuthenticationElement, PaymentElement, useElements, useStripe, AddressElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
-const CheckoutForm = ({ amount }: { amount: number }) => {
+const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [isLoading, setIsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState<string | undefined>("")
-    console.log(amount)
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
