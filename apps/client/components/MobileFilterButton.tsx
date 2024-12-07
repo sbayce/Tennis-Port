@@ -25,12 +25,12 @@ const MobileFilterButton = ({ data }: { data: SidebarData }) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="sticky bottom-4 text-sm mx-auto text-white lg:hidden bg-[#202223] rounded-3xl py-3 px-8 flex items-center gap-2"><ListFilter className="w-5" />Filter and sort</SheetTrigger>
-        <SheetContent className="max-h-[60%] min-h-[60%] mx-2 mb-2 px-2 py-0 rounded-xl flex" side="bottom">
+        <SheetContent className="max-h-[60%] min-h-[60%] mx-2 mb-2 px-2 sm:px-10 py-0 rounded-xl flex" side="bottom">
         <SheetHeader className="hidden">
           <SheetTitle />
         <SheetDescription />
         </SheetHeader>
-        <ScrollArea className="h-96 w-full px-4">
+        <ScrollArea className="max-h-[60%] min-h-[60%] w-full px-4">
             <MobileFilterMenu data={data} />
         </ScrollArea>
         </SheetContent>

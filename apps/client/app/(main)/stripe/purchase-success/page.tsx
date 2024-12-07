@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Stripe from "stripe";
 import trpc from "@/trpcClient";
 import { egp } from "@/utils/price-formatter";
-import { getEgpRate } from "@/utils/get-egp-rate";
+import { getEgpRate } from "trpc/utils/get-egp-rate";
 
 const stripe = new Stripe(String(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY), {
     typescript: true
