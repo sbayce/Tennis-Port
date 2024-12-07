@@ -4,14 +4,14 @@ import Stripe from 'stripe'
 import trpc from "@/trpcClient"
 import { StripeMetadata } from "trpc/types/stripe-metadata"
 import { z } from 'zod'
-import { Resend } from 'resend'
-import PurchaseReceiptEmail from "@/app/email/PurchaseReceipt"
-import { getEgpRate } from "@/utils/get-egp-rate"
+// import { Resend } from 'resend'
+// import PurchaseReceiptEmail from "@/app/email/PurchaseReceipt"
+import { getEgpRate } from "trpc/utils/get-egp-rate"
 
 type StripeMetadataType = z.infer<typeof StripeMetadata>
 
 const stripe = new Stripe(String(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY))
-const resend =  new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY!)
+// const resend =  new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY!)
 
 export async function POST(req: NextRequest) {
     const event = await stripe.webhooks.constructEvent(
@@ -43,22 +43,23 @@ export async function POST(req: NextRequest) {
         }
 
         const purchasedProducts: StripeMetadataType = JSON.parse(charge.metadata.products)
+        const userId = charge.metadata.userId
 
-        const { order, products } = await trpc.createOrder.mutate({customerEmail: email, amount, purchasedProducts, adress})
-        const productsData = products.map(product => {
-            const purchasedProductIndex = purchasedProducts.findIndex(p => p.productId === product.id)
-            return {
-                ...product,
-                ...purchasedProducts[purchasedProductIndex]
-            }
-        })
-        await resend.emails.send({
-            from: process.env.NEXT_PUBLIC_SENDER_EMAIL!,
-            to: "delivered@resend.dev",
-            // to: email,
-            subject: "Order Conformation",
-            react: <PurchaseReceiptEmail products={productsData} address={adress} order={order} />
-        })
+        await trpc.createOrder.mutate({ userId,customerEmail: email, amount, purchasedProducts, adress })
+        // const productsData = products.map(product => {
+        //     const purchasedProductIndex = purchasedProducts.findIndex(p => p.productId === product.id)
+        //     return {
+        //         ...product,
+        //         ...purchasedProducts[purchasedProductIndex]
+        //     }
+        // })
+        // await resend.emails.send({
+        //     from: process.env.NEXT_PUBLIC_SENDER_EMAIL!,
+        //     to: "delivered@resend.dev",
+        //     // to: email,
+        //     subject: "Order Conformation",
+        //     react: <PurchaseReceiptEmail products={productsData} address={adress} order={order} />
+        // })
     }
     return new NextResponse()
 }

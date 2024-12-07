@@ -28,6 +28,21 @@ export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
     }
 });
 
+export const isGuestOrUser = t.middleware(async ({ ctx, next }) => {
+    const { req, res } = ctx
+    const token = req.headers['accesstoken']?.toString() ?? req.cookies.accessToken
+    if(token) {
+        const payload = jwt.verify(token, String(process.env.ACCESS_SECRET)) as jwt.JwtPayload
+        return next({
+            ctx: {
+                userId: payload.userId,
+                role: payload.role
+            }
+        })
+    }
+    return next()
+})
+
 export const isAdmin = t.middleware(async ({ ctx, next }) => {
     console.log("AUTHORIZATION: ", ctx.role)
     if (!ctx.role || ctx.role !== "ADMIN") {
@@ -38,4 +53,5 @@ export const isAdmin = t.middleware(async ({ ctx, next }) => {
 
 
 export const authProcedure = publicProcedure.use(isAuthenticated)
+export const guestOrUserProcedure = publicProcedure.use(isGuestOrUser)
 export const adminProcedure = authProcedure.use(isAdmin)

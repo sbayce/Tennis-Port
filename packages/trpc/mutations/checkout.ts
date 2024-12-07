@@ -1,8 +1,9 @@
-import { t } from "../trpc"
+import { getEgpRate } from '../utils/get-egp-rate'
 import { z } from "zod"
 import Stripe from "stripe"
+import { guestOrUserProcedure } from "../trpc"
 
-const checkoutProcedure = t.procedure.input(z.object({checkoutProducts: z.array(z.object({
+const checkoutProcedure = guestOrUserProcedure.input(z.object({checkoutProducts: z.array(z.object({
     productId: z.string(),
     quantity: z.number(),
     gripSize: z.string().optional(),
@@ -13,20 +14,18 @@ const checkoutProcedure = t.procedure.input(z.object({checkoutProducts: z.array(
         typescript: true
     })
     const { checkoutProducts, amount } = req.input
-    // create a dynamic metadeta obj for cases where users buy multiple products
-    // const metadata = checkoutProducts.reduce((acc, { productId, quantity }, index) => {
-    //     acc[`product_${index + 1}_id`] = productId;
-    //     acc[`product_${index + 1}_quantity`] = quantity.toString();
-    //     return acc;
-    //   }, {} as Record<string, string>);
+    const { userId } = req.ctx
+    console.log("user Id pay-intent: ", userId)
     try{
         console.log("amount: ", amount)
+        const usdToEgpRate = await getEgpRate()
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: amount*0.020*100,
+            amount: Math.round((amount/usdToEgpRate)*100),
             currency: "USD",
             metadata: {
-                products: JSON.stringify(checkoutProducts)
-            }
+                products: JSON.stringify(checkoutProducts),
+                userId
+            },
         })
         return { status: 200, clientSecret: paymentIntent.client_secret, message: "success" }
     }catch(error: any) {

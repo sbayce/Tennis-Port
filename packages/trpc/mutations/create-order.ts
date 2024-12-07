@@ -2,6 +2,7 @@ import { t } from "../trpc"
 import { z } from "zod"
 
 const createOrderProcedure = t.procedure.input(z.object({
+    userId: z.string().optional(),
     customerEmail: z.string(),
     amount: z.number(),
     purchasedProducts: z.array(
@@ -22,10 +23,20 @@ const createOrderProcedure = t.procedure.input(z.object({
         state: z.string()
     })
     })).mutation(async (req) => {
-        console.log("request: ", req)
         try{
             const { prisma } = req.ctx
-            const { customerEmail, amount, purchasedProducts, adress } = req.input
+            const { userId, customerEmail, amount, purchasedProducts, adress } = req.input
+
+            const userDetails: any = {}
+            if(userId) {
+                userDetails.user = {
+                    connect: {
+                        id: userId
+                    }
+                }
+            }else{
+                userDetails.customerEmail = customerEmail
+            }
             
             const productIds = purchasedProducts.map(product => product.productId)
             const products = await prisma.product.findMany({
@@ -55,7 +66,7 @@ const createOrderProcedure = t.procedure.input(z.object({
                             }))
                         }
                     },
-                    customerEmail,
+                    ...userDetails,
                     status: "PENDING",
                     totalAmount: amount,
                     adress: {
