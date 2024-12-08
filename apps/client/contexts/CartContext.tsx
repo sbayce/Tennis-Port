@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 "use client"
 import { createContext, ReactNode, useState, useContext } from "react"
-import CartItem from "@/types/cart-item";
+import CartItem from "@/types/cart-item"
 
 type CartContextType = {
-    items: CartItem[]; // Replace `any` with a more specific type if possible
-    total: number;
-    numOfItems: number;
-    addItem: Function;
+    items: CartItem[]
+    total: number
+    numOfItems: number
+    addItem: Function
     removeItem: Function
-    setItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
-    setTotal: React.Dispatch<React.SetStateAction<number>>;
-    setNumOfItems: React.Dispatch<React.SetStateAction<number>>;
-};
+    deleteItem: Function
+    setItems: React.Dispatch<React.SetStateAction<CartItem[]>>
+    setTotal: React.Dispatch<React.SetStateAction<number>>
+    setNumOfItems: React.Dispatch<React.SetStateAction<number>>
+}
 
 export const CartContext = createContext<CartContextType>({
     items: [],
@@ -20,6 +21,7 @@ export const CartContext = createContext<CartContextType>({
     numOfItems: 0,
     addItem: () => {},
     removeItem: () => {},
+    deleteItem: () => {},
     setItems: () => {},
     setTotal: () => {},
     setNumOfItems: () => {},
@@ -30,8 +32,8 @@ export function useCart() {
 }
 
 type Props = {
-    children: ReactNode;
-};
+    children: ReactNode
+}
 
 const CartContextProvider = ({ children }: Props) => {
     const [items, setItems] = useState<CartItem[]>([])
@@ -75,9 +77,16 @@ const CartContextProvider = ({ children }: Props) => {
         setNumOfItems(prev => prev-1)
         setTotal(prev => prev - items[itemIndex].price)
     }
+    const deleteItem = (id: string) => {
+        const itemIndex = items.findIndex(foundItem => foundItem.id === id)
+        const quantity = items[itemIndex].quantity
+        setItems(prev => prev.filter(item => item.id !== id))
+        setNumOfItems(prev => prev-quantity)
+        setTotal(prev => prev - items[itemIndex].price*quantity)
+    }
 
     return (
-        <CartContext.Provider value={{items, total, numOfItems, addItem, removeItem, setItems, setTotal, setNumOfItems}}>
+        <CartContext.Provider value={{items, total, numOfItems, addItem, removeItem, deleteItem, setItems, setTotal, setNumOfItems}}>
             {children}
         </CartContext.Provider>
     )
