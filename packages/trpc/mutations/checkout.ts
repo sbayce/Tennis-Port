@@ -15,15 +15,18 @@ const checkoutProcedure = guestOrUserProcedure.input(z.object({checkoutProducts:
     })
     const { checkoutProducts, amount } = req.input
     const { userId } = req.ctx
+    let metadata: any = {
+        products: JSON.stringify(checkoutProducts)
+    }
+    if(userId) {
+        metadata.userId = userId
+    }
     try{
         const usdToEgpRate = await getEgpRate()
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round((amount/usdToEgpRate)*100),
             currency: "USD",
-            metadata: {
-                products: JSON.stringify(checkoutProducts),
-                userId: userId || undefined
-            },
+            metadata,
         })
         return { status: 200, clientSecret: paymentIntent.client_secret, message: "success" }
     }catch(error: any) {
