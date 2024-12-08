@@ -32,7 +32,6 @@ const searchProductsProcedure = t.procedure.input(z.string()).query(async (req) 
         },
         take: MAX_SEARCH_RESULTS
     })
-    console.log("products found: ", products)
     return products
 })
 

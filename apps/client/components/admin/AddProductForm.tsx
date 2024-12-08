@@ -71,7 +71,6 @@ const AddProductForm = () => {
       const uploadPromises = images.map((image) => ReactS3Client.uploadFile(image));
       const uploadedImages = await Promise.all(uploadPromises);
       const imageURLs = uploadedImages.filter(response => 'location' in response).map(response => response.location);
-      console.log("Submitting data: ", data)
       data.image = imageURL
       data.image2 = image2URL
       data.images = imageURLs
@@ -90,7 +89,6 @@ const AddProductForm = () => {
       sizeRef.current.value = ""
     }
   }
-  console.log("errors: ", errors)
   return (
     <form onSubmit={handleSubmit(submitProduct)}>
         <ScrollArea className="h-[900px]">

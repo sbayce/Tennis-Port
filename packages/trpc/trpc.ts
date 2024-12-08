@@ -16,7 +16,6 @@ export const isAuthenticated = t.middleware(async ({ ctx, next }) => {
     }
     try {
         const payload = jwt.verify(token, String(process.env.ACCESS_SECRET)) as jwt.JwtPayload;
-        console.log("payload ", payload)
         return next({
             ctx: {
                 userId: payload.userId,
@@ -44,7 +43,6 @@ export const isGuestOrUser = t.middleware(async ({ ctx, next }) => {
 })
 
 export const isAdmin = t.middleware(async ({ ctx, next }) => {
-    console.log("AUTHORIZATION: ", ctx.role)
     if (!ctx.role || ctx.role !== "ADMIN") {
         throw new TRPCError({ code: "UNAUTHORIZED", message: "User not an ADMIN" })
     }

@@ -31,7 +31,6 @@ const ProductCarousel = ({ productData }: { productData: Product }) => {
       api.scrollTo(index)
     }
   }
-  console.log("current: ", current)
   return (
     <div className="flex flex-col xl:flex-row gap-20">
         <ScrollArea className="order-2 xl:order-1 overflow-hidden">

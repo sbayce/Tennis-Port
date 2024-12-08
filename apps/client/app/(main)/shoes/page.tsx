@@ -39,7 +39,6 @@ export default function ShoesPage() {
     setIsLoading(true)
   }, [searchParams])
 
-  console.log("shoes data: ", shoes)
   return (
     <>
       <div>

@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "../trpc"
 
 const getAvailableRacketsProcedure = t.procedure.query(async (req) => {
     const { prisma } = req.ctx
@@ -43,15 +43,15 @@ const getAvailableRacketsProcedure = t.procedure.query(async (req) => {
     const typesCount = typeCountRaw.map(({ _count, type }) => ({
         label: type,
         count: _count.type,
-    }));
+    }))
     const weightsCount = weightCountRaw.map(({ _count, weight }) => ({
         label: weight,
         count: _count.weight,
-    }));
+    }))
     const brandsCount = brandCountRaw.map(({ _count, brand }) => ({
         label: brand,
         count: _count.brand,
-    }));
+    }))
 
     return { typesCount, weightsCount, brandsCount }
 })

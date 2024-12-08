@@ -80,7 +80,6 @@ const createOrderProcedure = t.procedure.input(z.object({
                     }
                 }
             })
-        console.log("created order: ", order)
         return { order, products }
     }catch(error: any) {
         console.log("Order creation failed: ", error.message)

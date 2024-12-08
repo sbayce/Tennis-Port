@@ -96,7 +96,6 @@ const SearchMenu = () => {
         setOpen(false)
     }, [path])
 
-    console.log("search results: ", searchResults)
   return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger><Search /></SheetTrigger>

@@ -27,7 +27,6 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
         new Map(params.map(([key, value]) => [`${key}:${value}`, [key, value]])).values()
       );
     const initialMobileFilters = uniqueParams.map(param => ({key: param[0], value: param[1]}))
-    console.log("initialMobileFilters: ", initialMobileFilters)
     const [mobileFilters, setMobileFilters] = useState<MobileFilter[]>(initialMobileFilters)
     const { replace } = useRouter()
     const path = usePathname()
@@ -58,8 +57,6 @@ const MobileFilterMenu = ({ data }: { data: SidebarData }) => {
         mobileFilters.map(filter => params.append(filter.key, filter.value))
         replace(`${path}?${params.toString()}`)
     }
-    console.log("mobile filters: ", mobileFilters)
-    console.log("data: ", data)
     return (
         <AnimatePresence mode="popLayout">
                 <Accordion type="multiple" className="mb-20 text-sm">

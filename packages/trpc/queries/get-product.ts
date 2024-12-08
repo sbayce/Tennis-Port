@@ -13,7 +13,6 @@ const getProductProcedure = t.procedure.input(z.string()).query(async (req) => {
             shoe: true
         }
     })
-    console.log("found product: ", product)
     return product
 })
 

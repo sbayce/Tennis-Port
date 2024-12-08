@@ -11,9 +11,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
     const { brandsCount, typesCount, weightsCount } = await trpc.getAvailableRackets.query()
-    console.log(brandsCount)
-    console.log(typesCount)
-    console.log(weightsCount)
     const sidebarData = {type: typesCount, brand: brandsCount, weight: weightsCount}
   return (
     <>

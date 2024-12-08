@@ -55,11 +55,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
             cartItem.type = product.shoe?.type
         }
         cartCtx?.addItem(cartItem)
-        // toast.success("Item added")
     }
-    console.log(cartCtx?.items)
-    console.log("hover: ", isImageHovered)
-    console.log("loading: ", isLoading)
     if(products.length === 0 && !isLoading) return <h1 className='text-center text-2xl font-semibold'>No products found</h1>
   return (
     <div className={`px-4 grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 md:gap-14 w-full ${isLoading && "opacity-40"}`}>

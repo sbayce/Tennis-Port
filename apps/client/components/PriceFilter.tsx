@@ -41,7 +41,6 @@ const PriceFilter = () => {
     previousMax = type === 'max'? value : previousMax
     setPriceRange(prev => {
       const updatedPrice = [...prev]
-      console.log("updated: ", updatedPrice)
       const index = type === "min"? 0 : 1
       updatedPrice[index] = value
       return updatedPrice
@@ -54,7 +53,6 @@ const PriceFilter = () => {
 
     params.set(`price.${type}`, String(value))
     replace(`${path}?${params.toString()}`, {scroll: false})
-    console.log(params.toString())
   }
 
 function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>, ref: React.RefObject<HTMLInputElement>) {
@@ -82,7 +80,6 @@ function handleCommit(range: number[]) {
   replace(`${path}?${params.toString()}`, {scroll: false})
 }
 
-  console.log(priceRange)
   return (
       <FadeInMotionDiv className='flex flex-col gap-4 items-center px-2 mt-4'>
           <DualRangeSlider

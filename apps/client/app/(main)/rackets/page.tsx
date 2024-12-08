@@ -43,7 +43,6 @@ export default function RacketsPage() {
     fetchRackets()
   }, [searchParams])
 
-  console.log("racket data: ", rackets)
   return (
     <>
       <div>

@@ -39,7 +39,6 @@ const Header = () => {
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
       </Link>
-      {/* <SearchBar scrollDirection={scrollDirection} /> */}
       <div className='flex gap-3 md:gap-6 items-center'>
         <NavMenu />
         <SearchMenu />

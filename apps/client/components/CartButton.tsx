@@ -36,7 +36,6 @@ const CartButton = () => {
     useEffect(() => {
       setOpen(false)
     }, [path])
-    console.log("open state: ", open)
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>

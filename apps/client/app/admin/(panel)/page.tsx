@@ -10,7 +10,6 @@ const page = async() => {
   const cookieStore = cookies()
   const accessToken = cookieStore.get("accessToken")
   const refreshToken = cookieStore.get("refreshToken")
-  console.log("cookie: ", accessToken?.value)
   setToken(accessToken?.value, refreshToken?.value)
   let errorMessage = ""
   let products: ProductItem[] | undefined

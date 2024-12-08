@@ -27,7 +27,6 @@ const LoginPage = () => {
   })
 
   const onSubmit = async (data: LoginFormInputs) => {
-    console.log('Form Data:', data)
     try{
         await trpc.userLogin.mutate(data)
         replace("/rackets")

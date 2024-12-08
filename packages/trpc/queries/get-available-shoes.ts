@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { t } from "../trpc"
 
 const getAvailableShoesProcedure = t.procedure.query(async (req) => {
     const { prisma } = req.ctx
@@ -56,26 +56,21 @@ const getAvailableShoesProcedure = t.procedure.query(async (req) => {
         const typesCount = typeCountRaw.map(({ _count, type }) => ({
             label: type,
             count: _count.type,
-        }));
+        }))
         const sizeMap = sizeCountRaw
             .flatMap((shoe) => shoe.size) // Flatten the array of sizes
             .reduce((acc, size) => {
-                acc[size] = (acc[size] || 0) + 1; // Count occurrences
-                return acc;
-            }, {} as Record<string, number>);
+                acc[size] = (acc[size] || 0) + 1 // Count occurrences
+                return acc
+            }, {} as Record<string, number>)
 
             const sizeCount = Object.entries(sizeMap)
             .map(([size, count]) => ({ label: size, count }))
-            .sort((a, b) => a.label.localeCompare(b.label)); // Sort sizes
-        console.log("size: ", sizeCountRaw)
-        // const sizeCount = sizeCountRaw.map(({ _count, size }) => ({
-        //     label: size,
-        //     count: _count.size,
-        // }));
+            .sort((a, b) => a.label.localeCompare(b.label)) // Sort sizes
         const brandsCount = brandCountRaw.map(({ _count, brand }) => ({
             label: brand,
             count: _count.brand,
-        }));
+        }))
 
         return { typesCount, sizeCount, brandsCount }
     }catch(error: any) {

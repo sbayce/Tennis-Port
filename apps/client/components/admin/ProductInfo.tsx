@@ -49,12 +49,9 @@ const ProductInfo = ({ productData }: { productData: Product }) => {
             })
             const list = await ReactS3Client.listFiles()
             const folderContent = list.data.Contents.filter((file: any) => file.Key.startsWith(productData.name)).map((file: any) => file.Key)
-            console.log("list: ", folderContent)
             const deletePromises = folderContent.map((filePath: string) => ReactS3Client.deleteFile(filePath))
             const deleteResponse = await Promise.all(deletePromises)
-            console.log("res: ", deleteResponse)
             const deletedProduct = await trpc.deleteProduct.mutate(productData.id)
-            console.log("deleted product: ", deletedProduct)
         }catch(error: any) {
             toast.error(error.message)
             console.log(error.message)
@@ -70,17 +67,13 @@ const ProductInfo = ({ productData }: { productData: Product }) => {
       }
     const updateProduct = async (data: UpdateProductSchemaType) => {
         try{
-            console.log("data: ", data)
             const updatedProduct = await trpc.updateProduct.mutate({data, productId: productData.id})
-            console.log("updated: ", updatedProduct)
             toast.success("Product updated")
         }catch(error: any) {
             toast.error(error.message)
             console.log(error.message)
         }
     }
-    console.log("category: ", category)
-    console.log("errors: ", errors)
     if(!productData) return <></>
   return (
     <div className="flex flex-col p-10 items-center gap-2 mx-auto">

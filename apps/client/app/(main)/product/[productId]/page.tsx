@@ -10,9 +10,6 @@ import { egp } from "@/utils/price-formatter"
 const page = async ({params}: { params: Promise<{ productId: string }> }) => {
     const { productId } = await params
     const productData = await trpc.getProduct.query(productId)
-    console.log("racket data: ", productData)
-    console.log("is shoe: ", productData?.shoe)
-    console.log("is racket: ", productData?.racket)
     if(!productData) return <h1>Product not found</h1>
   return (
     <div className="flex flex-col lg:flex-row gap-20 px-4 py-16">

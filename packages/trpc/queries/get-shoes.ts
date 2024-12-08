@@ -18,8 +18,6 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
     const { prisma } = req.ctx
     const { page, filter, sort } = req.input
     const skip = PAGE_SIZE * (page <= 0? 1: page -1)
-    console.log("filter: ", filter)
-    console.log("sort: ", sort)
     const queryArgs = {
         brand: filter?.brand? { in: filter?.brand } : undefined,
         price: filter?.price? {
@@ -32,7 +30,6 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
             size: filter?.size ? { hasSome: filter.size } : undefined,
         },
     }
-    console.log("queryArgs: ", queryArgs)
     try{
         const [productCount, shoesData] = await prisma.$transaction([
             prisma.product.count({
@@ -59,7 +56,6 @@ const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => 
             })
         ])
         const numOfPages = Math.ceil(productCount/PAGE_SIZE)
-        console.log("productCount: ", productCount)
         return { shoesData, numOfPages, productCount }
     }catch(error: any){
         console.error("Error fetching shoes:", error.message)

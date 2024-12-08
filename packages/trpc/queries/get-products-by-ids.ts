@@ -18,7 +18,6 @@ const getProductsByIdsPrecedure = t.procedure.input(z.array(z.string())).query(a
             price: true,
         }
     })
-    console.log("found products: ", products)
     return products
 })
 

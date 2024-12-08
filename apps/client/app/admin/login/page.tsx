@@ -28,7 +28,6 @@ const AdminLoginPage = () => {
         email: formData.email,
         password: formData.password
       })
-      console.log("setting these: ", accessToken, refreshToken)
       setToken(accessToken, refreshToken)
       toast.success("Admin logged in successfully!");
       replace('/admin')

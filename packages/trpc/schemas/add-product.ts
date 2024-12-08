@@ -19,7 +19,6 @@ export const newProductSchema = z.object({
     shoeType: z.enum(["MALE", "FEMALE", "UNISEX"]).optional(),
 }).refine(
     (data) => {
-      console.log("refine: ", data.category, data.size, data.shoeType)
       return (data.category === "RACKET" &&
         data.headSize &&
         data.weight &&

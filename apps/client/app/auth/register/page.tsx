@@ -27,7 +27,6 @@ const RegisterPage = () => {
   })
 
   const onSubmit = async (data: RegisterFormInputs) => {
-    console.log('Form Data:', data)
     try{
         await trpc.userRegister.mutate(data)
         replace("/rackets")

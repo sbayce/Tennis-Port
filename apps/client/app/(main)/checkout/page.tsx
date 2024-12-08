@@ -1,17 +1,17 @@
 "use client"
 import CheckoutForm from "@/components/checkout/CheckoutForm"
-import trpc from "@/trpcClient";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useCart } from "@/contexts/CartContext";
-import { Product } from "@/types/product";
-import { egp } from "@/utils/price-formatter";
+import trpc from "@/trpcClient"
+import { Elements } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { useCart } from "@/contexts/CartContext"
+import { Product } from "@/types/product"
+import { egp } from "@/utils/price-formatter"
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!
-);
+)
 
 const ProductCheckoutPage = () => {
   const params = useSearchParams()
@@ -19,8 +19,8 @@ const ProductCheckoutPage = () => {
   const gripSize = String(params.get("gripSize"))
   const stringOption = String(params.get("stringOption"))
 
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const [productData, setProductData] = useState<Product>();
+  const [clientSecret, setClientSecret] = useState<string | null>(null)
+  const [productData, setProductData] = useState<Product>()
   const { items, total } = useCart()
 
   useEffect(() => {
@@ -35,19 +35,18 @@ const ProductCheckoutPage = () => {
           stringOption: item.stringOption,
           shoeSize: item.size
         }))
-        const res = await trpc.checkout.mutate({ checkoutProducts, amount });
-        // localStorage.setItem("paymentIntent", JSON.stringify(checkoutProducts))
+        const res = await trpc.checkout.mutate({ checkoutProducts, amount })
         if(productData) setProductData(productData)
-        setClientSecret(res.clientSecret);
+        setClientSecret(res.clientSecret)
       } catch (error) {
-        console.error("Error fetching client secret:", error);
+        console.error("Error fetching client secret:", error)
       }
-    };
-    fetchClientSecret();
-  }, []);
+    }
+    fetchClientSecret()
+  }, [])
 
   if (!clientSecret) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
   
   return (

@@ -11,9 +11,6 @@ export default async function ShoesPageLayout({
   children: React.ReactNode
 }>) {
     const { brandsCount, typesCount, sizeCount } = await trpc.getAvailableShoes.query()
-    console.log(brandsCount)
-    console.log(typesCount)
-    console.log(sizeCount)
     const sidebarData = {type: typesCount, brand: brandsCount, size: sizeCount}
   return (
     <>

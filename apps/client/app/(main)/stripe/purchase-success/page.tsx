@@ -17,10 +17,6 @@ const PurchaseSuccessPage = async ({ searchParams }: { searchParams: { payment_i
     const total = (paymentIntent.amount/100) * usdToEgpRate
     const purchasedProducts = JSON.parse(paymentIntent.metadata.products as string)
     const productIds: string[] = purchasedProducts.map((product: any) => product.productId)
-    console.log("purchasedProducts: ", purchasedProducts)
-    console.log("productIds: ", productIds)
-    console.log("adress: ", paymentIntent.shipping?.address)
-    console.log("name: ", paymentIntent.shipping?.name)
     const products = await trpc.getProductsByIds.query(productIds)
     if(products.length === 0) return notFound()
 
