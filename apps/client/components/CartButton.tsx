@@ -11,12 +11,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import SheetContentFade from './framer/SheetContentFade'
 import Link from 'next/link'
 import ProductNameLink from './ProductNameLink'
 import CartItem from '@/types/cart-item'
 import { usePathname } from 'next/navigation'
 import { ScrollArea } from './ui/scroll-area'
 import { egp } from "@/utils/price-formatter"
+import { capitalizeFirstChar } from '@/utils/capitalize-first-char'
 
 const CartButton = () => {
     const { items, numOfItems, total, addItem, removeItem } = useCart()
@@ -34,8 +36,8 @@ const CartButton = () => {
     useEffect(() => {
       setOpen(false)
     }, [path])
+    console.log("open state: ", open)
   return (
-    
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <div className='relative'>
@@ -51,13 +53,14 @@ const CartButton = () => {
       </SheetTrigger>
       <SheetContent className='w-[95%] md:w-[600px] md:min-w-[600px] rounded-xl h-[96%] mt-4 mr-3 p-0 text-sm md:text-base overflow-hidden'>
         <SheetHeader className='p-2'>
-          <SheetTitle>Cart</SheetTitle>
+          <SheetTitle><SheetContentFade>Cart</SheetContentFade></SheetTitle>
         </SheetHeader>
+        <AnimatePresence mode="popLayout">
           {items.length > 0? 
-            <motion.div exit={{opacity: 0}} className='flex flex-col h-full'>
-              <ScrollArea className='h-full p-2'>
-                <AnimatePresence mode="popLayout">
-                  {items.map(item => <motion.div layout exit={{opacity: 0, y: -10}} transition={{duration: 0.2}} key={item.id} className='flex gap-6 items-center'>
+            <SheetContentFade key={open} className='flex flex-col h-full'>
+              <ScrollArea className='h-full p-4 sm:px-10'>
+                <AnimatePresence mode="sync">
+                  {items.map(item => <motion.div layout exit={{opacity: 0, y: -10}} transition={{duration: 0.2}} key={item.id} className='flex gap-6 items-center my-4'>
                     <img src={item.image} alt='item-image' className='w-24' />
                     <div className='flex flex-col md:flex-row w-full'>
                       <div>
@@ -66,7 +69,7 @@ const CartButton = () => {
                         {item.gripSize && <p className='text-xs'>Grip: {item.gripSize}</p>}
                         {item.stringOption && <p className='text-xs'>String: {item.stringOption}</p>}
                         {item.size && <p className='text-xs'>Size: {item.size}</p>}
-                        {item.type && <p className='text-xs'>{item.type}</p>}
+                        {item.type && <p className='text-xs'>{capitalizeFirstChar(item.type)}</p>}
                       </div>
                       <div className='flex md:ml-auto self-start my-2 text-xs items-center'>
                       <button onClick={() => handleDecrement(item.id)} className='hover:opacity-70 p-2'>-</button>
@@ -88,7 +91,7 @@ const CartButton = () => {
               <div className='flex flex-col border-t py-4 px-6 gap-4 mb-10'>
                 <div className='flex gap-4 items-center justify-between text-xl font-semibold text-[#202223]'>
                   <p>Total</p>
-                  <p>{total}</p>
+                  <p>{egp.format(total)} EGP</p>
                 </div>
                 <div className='flex flex-col md:flex-row gap-2'>
                   <SheetClose asChild>
@@ -99,13 +102,16 @@ const CartButton = () => {
                   </SheetClose>
                 </div>
               </div>
-          </motion.div>
+          </SheetContentFade>
           :
-          <div className='flex flex-col gap-2 items-center justify-center h-full'>
+          <SheetContentFade className='flex flex-col gap-2 items-center justify-center h-full'>
             <h3 className='text-center text-lg md:text-2xl font-semibold'>Your cart is empty</h3>
-            <Link href={`rackets`} className='bg-[#C75828] p-4 rounded-[50px] text-md font-semibold text-white text-center'>Continue shopping</Link>
-          </div>
+            <SheetClose asChild>
+              <Link href={`rackets`} className='bg-[#C75828] p-4 rounded-[50px] text-md font-semibold text-white text-center'>Continue shopping</Link>
+            </SheetClose>
+          </SheetContentFade>
           }
+        </AnimatePresence>
       </SheetContent>
     </Sheet>
   )

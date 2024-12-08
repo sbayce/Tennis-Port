@@ -12,6 +12,7 @@ import {
   import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import SheetContentFade from "./framer/SheetContentFade"
 
 const ListVariant = {
     hidden: {
@@ -44,26 +45,28 @@ const NavDropDown = () => {
     <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="flex md:hidden"><MenuIcon /></SheetTrigger>
         <SheetContent className="max-h-[60%] min-h-[60%] mx-2 mb-2 rounded-xl flex" side="bottom">
-            <SheetHeader>
-                <SheetTitle />
-                <SheetDescription />
-            </SheetHeader>
-            {currentPage === 0 && <div className="flex flex-col gap-4 text-2xl font-semibold items-start">
-                <Link href={`/rackets`}>Rackets</Link>
-                <Link href={`/shoes`}>Shoes</Link>
-            </div>}
-            {currentPage === 1 && <div className="flex flex-col gap-4">
-                <motion.div variants={ListVariant} initial="hidden" animate="visible" className="flex flex-col gap-4 font-semibold items-start">
-                    <button className="text-3xl">Types</button>
-                    <div className="flex flex-col gap-1 items-start">
-                        {racketTypes.map(type => <Link href={`/?type=${type.toLowerCase()}`} key={type} className="text-xl text-[#202223]">{type}</Link>)}
-                    </div>
-                    <button className="text-3xl">Brands</button>
-                    <div className="flex flex-col gap-1 items-start">
-                        {racketBrands.map(brand => <Link onClick={() => setOpen(false)} href={`/?brand=${brand.brand.toLowerCase()}`} key={brand.brand} className="text-xl text-[#202223]">{brand.brand}</Link>)}
-                    </div>
-                </motion.div>
+            <SheetContentFade>
+                <SheetHeader>
+                    <SheetTitle />
+                    <SheetDescription />
+                </SheetHeader>
+                {currentPage === 0 && <div className="flex flex-col gap-4 text-2xl font-semibold items-start">
+                    <Link href={`/rackets`}>Rackets</Link>
+                    <Link href={`/shoes`}>Shoes</Link>
                 </div>}
+                {currentPage === 1 && <div className="flex flex-col gap-4">
+                    <motion.div variants={ListVariant} initial="hidden" animate="visible" className="flex flex-col gap-4 font-semibold items-start">
+                        <button className="text-3xl">Types</button>
+                        <div className="flex flex-col gap-1 items-start">
+                            {racketTypes.map(type => <Link href={`/?type=${type.toLowerCase()}`} key={type} className="text-xl text-[#202223]">{type}</Link>)}
+                        </div>
+                        <button className="text-3xl">Brands</button>
+                        <div className="flex flex-col gap-1 items-start">
+                            {racketBrands.map(brand => <Link onClick={() => setOpen(false)} href={`/?brand=${brand.brand.toLowerCase()}`} key={brand.brand} className="text-xl text-[#202223]">{brand.brand}</Link>)}
+                        </div>
+                    </motion.div>
+                    </div>}
+            </SheetContentFade>
         </SheetContent>
     </Sheet>
 

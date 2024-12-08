@@ -7,8 +7,14 @@ import {
   } from "@/components/ui/carousel"
 import Autoplay from 'embla-carousel-autoplay'
 import { useRef } from "react"
+
+type MainDisplayProps = {
+  img1: string
+  img2: string
+  img3: string
+}
   
-const MainDisplay = () => {
+const MainDisplay = ({ img1, img2, img3 }: MainDisplayProps) => {
   const plugin = useRef<any>(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   )
@@ -17,13 +23,13 @@ const MainDisplay = () => {
     <Carousel plugins={[plugin.current]}>
         <CarouselContent>
             <CarouselItem>
-                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/wilson.webp" alt="rf-wilson" className="w-full h-96 object-cover" />
+                <img src={img1} alt="rf-wilson" className="w-full h-96 object-cover" />
             </CarouselItem>
             <CarouselItem>
-                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/prince.jpg" alt="prince" className="w-full h-96 object-cover" />
+                <img src={img2} alt="prince" className="w-full h-96 object-cover" />
             </CarouselItem>
             <CarouselItem>
-                <img src="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/head.webp" alt="head" className="w-full h-96 object-cover" />
+                <img src={img3} alt="head" className="w-full h-96 object-cover" />
             </CarouselItem>
         </CarouselContent>
         {/* <CarouselPrevious />

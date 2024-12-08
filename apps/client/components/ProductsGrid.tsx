@@ -10,6 +10,7 @@ import { Racket } from '@/types/racket'
 import { isRacket } from '@/types/product'
 import { ShoppingBasket } from 'lucide-react'
 import { egp } from '@/utils/price-formatter'
+import { capitalizeFirstChar } from '@/utils/capitalize-first-char'
 
 type ProductsGridProps = {
     products: Racket[] | Shoe[],
@@ -75,7 +76,7 @@ const ProductsGrid = ({ products, isLoading }: ProductsGridProps) => {
                             alt="product-img"
                     />
                     {isRacket(product) && <RacketInformation racket={product.racket} />}
-                    {!isRacket(product) && <p className='absolute right-auto xl:right-0 bottom-0 bg-[#202223] text-white text-xs rounded-md px-1'>{product.shoe?.type}</p>}
+                    {!isRacket(product) && product.shoe && <p className='absolute right-auto xl:right-0 bottom-0 bg-[#202223] text-white text-[10px] sm:text-xs rounded-sm px-1'>{capitalizeFirstChar(product.shoe.type)}</p>}
                     <button onClick={(e) => handleAdd(product, e)}  className='absolute right-0 bottom-0 md:hidden border border-gray-300 px-1 rounded-full'>
                         <ShoppingBasket className='stroke-gray-600 w-4' />
                     </button>

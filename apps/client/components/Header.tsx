@@ -6,6 +6,7 @@ import CartButton from './CartButton';
 import NavMenu from "@/components/NavMenu";
 import SearchMenu from './SearchMenu';
 import NavDropDown from './NavDropDown';
+import { User2 } from 'lucide-react';
 
 const Header = () => {
   const { scrollY } = useScroll();
@@ -33,7 +34,7 @@ const Header = () => {
       <Link href="/rackets">
         <motion.img 
           src="/tennis-port.png" 
-          className="w-28 md:w-48"
+          className="w-32 md:w-48"
           animate={{scale: scrollDirection === 'up' || !scrollDirection ? 1 : 0.7}}
           transition={{ type: "keyframes", stiffness: 100, damping: 100, duration: 0.2 }}
         />
@@ -42,6 +43,7 @@ const Header = () => {
       <div className='flex gap-3 md:gap-6 items-center'>
         <NavMenu />
         <SearchMenu />
+        <Link href='/auth/login'><User2 /></Link>
         <CartButton />
       </div>
     </motion.div>

@@ -28,7 +28,7 @@ const ActiveFilters = () => {
             {filters.map(filter => (
                 <div key={filter} className='bg-[#41414134] p-3 rounded-3xl flex items-center'>
                     {filter}
-                    <button onClick={() => removeFilter(filter)} className='ml-2'>
+                    <button onClick={() => removeFilter(filter)} className='ml-2 p-1'>
                         X
                     </button>
                 </div>

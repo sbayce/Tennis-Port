@@ -15,6 +15,7 @@ import { Search } from "lucide-react"
 import Link from "next/link"
 import ProductNameLink from "./ProductNameLink"
 import { usePathname } from "next/navigation"
+import SheetContentFade from "./framer/SheetContentFade"
   
   type SearchResult = {
       id: string,
@@ -104,6 +105,7 @@ const SearchMenu = () => {
                 <SheetTitle />
                 <SheetDescription />
             </SheetHeader>
+            <SheetContentFade>
                 <div className="mx-4 md:mx-10 mb-4 md:mb-10">
                     <input value={searchInput} onChange={(e) => handleChange(e.target.value)} className={`w-full text-md md:text-2xl p-0 md:p-2 border-b-2 border-opacity-30 focus:outline-none
                         focus:border-b-[#202223] transition-colors duration-300 rounded-none`} type="text" placeholder="Search for..." />
@@ -125,6 +127,7 @@ const SearchMenu = () => {
                             </ScrollArea>
                     </motion.div>}
                 </AnimatePresence>
+                </SheetContentFade>
             </SheetContent>
         </Sheet>
 

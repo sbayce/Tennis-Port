@@ -17,7 +17,9 @@ export default async function RootLayout({
     const sidebarData = {type: typesCount, brand: brandsCount, weight: weightsCount}
   return (
     <>
-      <MainDisplay />
+      <MainDisplay img1="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/wilson.webp"
+        img2="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/prince.jpg"
+        img3="https://tennis-port-bucket.s3.eu-north-1.amazonaws.com/head.webp" />
       <div className="flex gap-2">
         <SideBar data={sidebarData} />
         <div className="flex flex-col gap-4 mb-4 md:mb-10 w-full">

@@ -49,13 +49,13 @@ const ProductCarousel = ({ productData }: { productData: Product }) => {
             <Carousel setApi={setApi} className="w-full order-1 xl:order-2">
                 <CarouselContent>
                     <CarouselItem>
-                        <img className="w-full h-full object-cover" src={productData.image} alt="main-carousel-image" />
+                        <img className="w-full h-full max-w-[600px] max-h-[600px] object-cover" src={productData.image} alt="main-carousel-image" />
                     </CarouselItem>
                     <CarouselItem>
-                    <img className="w-full h-full object-cover" src={productData.image2} alt="sec-carousel-image" />
+                    <img className="w-full h-full max-w-[600px] max-h-[600px] object-cover" src={productData.image2} alt="sec-carousel-image" />
                     </CarouselItem>
                     {productData.images.map((image, i) => <CarouselItem key={`carousel-image-${i}`}>
-                        <img className="w-full h-full object-cover" src={image} alt="carousel-image" />
+                        <img className="w-full h-full max-w-[600px] max-h-[600px] object-cover" src={image} alt="carousel-image" />
                     </CarouselItem>)}
                 </CarouselContent>
                 <CarouselPrevious className="ml-10 sm:ml-0" />

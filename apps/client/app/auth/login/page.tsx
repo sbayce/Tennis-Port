@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import trpc from '@/trpcClient'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { LoaderCircle } from 'lucide-react'
 
 // Define schema using Zod
 const loginSchema = z.object({
@@ -19,7 +21,7 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginFormInputs>({
     resolver: zodResolver(loginSchema),
   })
@@ -78,7 +80,29 @@ const LoginPage = () => {
           type="submit"
           className="w-full bg-[#202223] text-white py-2 rounded-md hover:bg-black transition duration-200"
         >
-          Login
+          <AnimatePresence mode="wait">
+                {isSubmitting ? (
+                    <motion.div
+                        key="loader"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 30 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                    <LoaderCircle className="mx-auto animate-spin" />
+                    </motion.div>
+                ) : (
+                    <motion.p
+                        key="loginText"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.1 }}
+                    >
+                    Login
+                    </motion.p>
+                )}
+            </AnimatePresence>
         </button>
       </form>
     </div>
