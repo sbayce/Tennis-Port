@@ -30,17 +30,6 @@ const ActionButtons = ({ productData }: { productData: Product }) => {
         cartItem.size = shoeSize
     }
     addItem(cartItem)
-      // const cartItem: CartItem = {
-      //   id: productData.id,
-      //   name: productData.name,
-      //   brand: productData.brand,
-      //   image: productData.image,
-      //   price: productData.price,
-      //   quantity: 1,
-      //   gripSize,
-      //   stringOption
-      // }
-      // addItem(cartItem)
     }
 
     if(isOutOfStock) return <div className="rounded-3xl bg-[#cfcfcf] p-4 w-full mx-4 pointer-events-none text-center text-[#202223] font-bold text-sm">Sold out</div>

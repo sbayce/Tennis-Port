@@ -5,7 +5,7 @@ import Link from 'next/link'
 const ActiveFilters = () => {
     const searchParams = useSearchParams()
     const params = new URLSearchParams(searchParams)
-    params.delete("page") // avoid displaying 'page' & 'sort' params
+    params.delete("page")
     params.delete("sort")  
     const filters = Array.from(params.values())
     const { replace } = useRouter()
