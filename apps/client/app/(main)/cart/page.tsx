@@ -1,11 +1,11 @@
 "use client"
-import { useCart } from "@/contexts/CartContext"
+import { useCartStore } from "@/store/store"
 import CartProduct from "@/components/CartProduct"
 import { egp } from "@/utils/price-formatter"
 import Link from "next/link"
 
 const CartPage = () => {
-    const { items, deleteItem, total } = useCart()
+    const { items, deleteItem, total } = useCartStore()
     
       return (
         <div className="flex flex-col items-center justify-center bg-gray-50 py-6">

@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { useCart } from "@/contexts/CartContext"
+import { useCartStore } from "@/store/store"
 import { Product } from "@/types/product"
 import { egp } from "@/utils/price-formatter"
 
@@ -21,7 +21,7 @@ const ProductCheckoutPage = () => {
 
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [productData, setProductData] = useState<Product>()
-  const { items, total } = useCart()
+  const { items, total } = useCartStore()
 
   useEffect(() => {
     const fetchClientSecret = async () => {

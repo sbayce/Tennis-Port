@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import "../globals.css"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
-import CartContextProvider from "@/contexts/CartContext"
 import { Poppins } from 'next/font/google'
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/sonner"
@@ -28,7 +27,6 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased min-h-[100vh] flex flex-col`}
       >
-        <CartContextProvider>
           <Suspense>
           <Toaster richColors position="top-center" />
           <Header />
@@ -37,7 +35,6 @@ export default function RootLayout({
           </div>
           <Footer />
           </Suspense>
-        </CartContextProvider>
       </body>
     </html>
   )

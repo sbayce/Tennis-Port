@@ -1,5 +1,5 @@
 "use client"
-import { useCart } from "@/contexts/CartContext"
+import { useCartStore } from "@/store/store"
 import { Product } from "@/types/product"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
@@ -7,7 +7,7 @@ import CartItem from "@/types/cart-item"
 import { isRacket } from "@/types/product"
 
 const ActionButtons = ({ productData }: { productData: Product }) => {
-    const { addItem } = useCart()
+    const addItem = useCartStore(state => state.addItem)
     const searchParams = useSearchParams()
     const gripSize = searchParams.get("grip") || "2"
     const stringOption = searchParams.get("string") || "unstrung"

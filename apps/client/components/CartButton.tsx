@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CartIcon from '@/icons/cart-outline.svg'
-import { useCart } from '@/contexts/CartContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Badge } from "@/components/ui/badge"
 import {
@@ -19,9 +18,10 @@ import { usePathname } from 'next/navigation'
 import { ScrollArea } from './ui/scroll-area'
 import { egp } from "@/utils/price-formatter"
 import { capitalizeFirstChar } from '@/utils/capitalize-first-char'
+import { useCartStore } from '@/store/store'
 
 const CartButton = () => {
-    const { items, numOfItems, total, addItem, removeItem } = useCart()
+    const { items, numOfItems, total, addItem, removeItem } = useCartStore()
     const [open, setOpen] = useState(false)
     const [prevCount, setPrevCount] = useState(numOfItems)
     const path = usePathname()
