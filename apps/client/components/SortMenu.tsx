@@ -6,24 +6,19 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-  import { useRouter, usePathname, useSearchParams } from "next/navigation"
+  import { useSortParam } from "@/hooks/params"
 
 const SortMenu = () => {
-    const { replace } = useRouter()
-    const path = usePathname()
-    const searchParams = useSearchParams()
-    const params = new URLSearchParams(searchParams.toString())
-    const sortParam = params.get("sort") || "featured" // get sort param (defaults to 'featured')
+    const [sort, setSort] = useSortParam()
 
     function handleChange(value: string) {
-        params.set("sort", value)
-        replace(`${path}?${params.toString()}`, {scroll: false})
+      setSort(value)
     }
 
   return (
     <div className=" gap-2 self-start items-center hidden lg:visible lg:flex ml-auto">
     <p className="font-semibold">Sort by:</p>
-    <Select value={sortParam} defaultValue={sortParam} onValueChange={handleChange}>
+    <Select value={sort || undefined} defaultValue={sort || undefined} onValueChange={handleChange}>
         <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Theme" />
         </SelectTrigger>

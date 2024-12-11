@@ -6,12 +6,12 @@ const PAGE_SIZE = 12
 const getRacketsProcedure = t.procedure.input(z.object({
     page: z.number(), 
     filter: z.object({
-        brand: z.array(z.string()).optional(),
-        type: z.array(z.string()).optional(),
-        weight: z.array(z.string()).optional(),
+        brand: z.array(z.string()).nullable(),
+        type: z.array(z.string()).nullable(),
+        weight: z.array(z.string()).nullable(),
         price: z.object({min: z.number().optional(), max: z.number().optional()}).optional()
     }).optional(),
-    sort: z.string().optional()
+    sort: z.string().nullable()
 })).query(async (req) => {
         const { prisma } = req.ctx
         const { page, filter, sort } = req.input

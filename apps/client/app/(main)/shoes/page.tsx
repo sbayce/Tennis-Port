@@ -6,18 +6,19 @@ import trpc from "@/trpcClient"
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Shoe } from "@/types/shoe";
+import { useBrandParam, useTypeParam, useSizeParam, useSortParam, useShoeTypeParam } from "@/hooks/params"
 
 export default function ShoesPage() {
   const searchParams = useSearchParams()
   const page = Number(searchParams.get("page")) || 1
-  const brand = searchParams.getAll("brand").length > 0? searchParams.getAll("brand") : undefined
-  const type = searchParams.getAll("type").length > 0? searchParams.getAll("type").map(type => type.toUpperCase()) as ("MALE" | "FEMALE" | "UNISEX")[] : undefined
-  const size = searchParams.getAll("size").length > 0? searchParams.getAll("size") : undefined
+  const [brand] = useBrandParam()
+  const [type] = useShoeTypeParam()
+  const [size] = useSizeParam()
   const minPrice = searchParams.get("price.min")?? undefined
   const min = minPrice? Number(minPrice) : undefined
   const maxPrice = searchParams.get("price.max")?? undefined
   const max = maxPrice? Number(maxPrice) : undefined
-  const sort = searchParams.get("sort") || undefined
+  const [sort] = useSortParam()
   const [shoes, setShoes] = useState<Shoe[]>([])
   const [numOfPages, setNumOfPages] = useState<number>(0)
   const [productCount, setProductCount] = useState(0)
@@ -37,7 +38,7 @@ export default function ShoesPage() {
   useEffect(() => {
     fetchShoes()
     setIsLoading(true)
-  }, [searchParams])
+  }, [searchParams, brand, type, size, sort])
 
   return (
     <>

@@ -1,43 +1,64 @@
-"use client"
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import Link from 'next/link'
+"use client";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 const ActiveFilters = () => {
-    const searchParams = useSearchParams()
-    const params = new URLSearchParams(searchParams)
-    params.delete("page")
-    params.delete("sort")  
-    const filters = Array.from(params.values())
-    const { replace } = useRouter()
+    const searchParams = useSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("page");
+    params.delete("sort");
+
+    // Parse all filters
+    const filters: { key: string; value: string }[] = Array.from(params.entries())
+        .map(([key, value]) =>
+            value.split(";").map((v) => ({ key, value: v }))
+        )
+        .flat()
+
+    const { replace } = useRouter();
     const path = usePathname();
 
-    function removeFilter(filter: string) {
+    function removeFilter(filterKey: string, filterValue: string) {
         const params = new URLSearchParams(searchParams.toString())
-        params.entries().forEach(p => {
-            if(p[1] === filter) {
-                const paramValues = params.getAll(p[0])
-                params.delete(p[0])
-                paramValues.filter(val => val !== filter).forEach(val => params.append(p[0], val))
-            }
-        })
+        const currentValues = params.get(filterKey)?.split(';') || []
+        const updatedValues = currentValues.filter((val) => val !== filterValue)
+
+        if (updatedValues.length === 0) {
+            params.delete(filterKey)
+        } else {
+            params.set(filterKey, updatedValues.join(';'))
+        }
         replace(`${path}?${params.toString()}`, { scroll: false })
     }
 
     return filters.length > 0 ? (
-        <div className='flex flex-wrap gap-2 items-center text-sm text-black px-4'>
-            {filters.map(filter => (
-                <div key={filter} className='bg-[#41414134] p-3 rounded-3xl flex items-center'>
-                    {filter}
-                    <button onClick={() => removeFilter(filter)} className='ml-2 p-1'>
+        <div className="flex flex-wrap gap-2 items-center text-sm text-black px-4">
+            {filters.map(({ key, value }) => (
+                <div
+                    key={`${key}:${value}`}
+                    className="bg-[#41414134] p-3 rounded-3xl flex items-center"
+                >
+                    {value}
+                    <button
+                        onClick={() => removeFilter(key, value)}
+                        className="ml-2 p-1"
+                    >
                         X
                     </button>
                 </div>
             ))}
-            { filters.length >= 2 && <Link className={`relative after:transition-all after:duration-300 ml-2 after:content-[''] after:absolute 
-                after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-[#202223] hover:after:w-full`} 
-                href={`${path}`} scroll={false}>Clear all</Link> }
+            {filters.length >= 2 && (
+                <Link
+                    className={`relative after:transition-all after:duration-300 ml-2 after:content-[''] after:absolute 
+                    after:left-0 after:bottom-0 after:w-0 after:h-[1px] after:bg-[#202223] hover:after:w-full`}
+                    href={`${path}`}
+                    scroll={false}
+                >
+                    Clear all
+                </Link>
+            )}
         </div>
-    ) : null
-}
+    ) : null;
+};
 
-export default ActiveFilters
+export default ActiveFilters;

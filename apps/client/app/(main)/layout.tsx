@@ -5,6 +5,7 @@ import Footer from "../../components/Footer"
 import { Poppins } from 'next/font/google'
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/sonner"
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -31,7 +32,9 @@ export default function RootLayout({
           <Toaster richColors position="top-center" />
           <Header />
           <div className="sm:mx-10 lg:mx-20 mt-28">
-            {children}
+            <NuqsAdapter>
+              {children}
+            </NuqsAdapter>
           </div>
           <Footer />
           </Suspense>

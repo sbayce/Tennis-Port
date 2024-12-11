@@ -6,12 +6,12 @@ const PAGE_SIZE = 12
 const getShoesInput = z.object({
     page: z.number(), 
     filter: z.object({
-        brand: z.array(z.string()).optional(),
-        type: z.array(z.enum(["MALE", "FEMALE", "UNISEX"])).optional(),
-        size: z.array(z.string()).optional(),
-        price: z.object({min: z.number().optional(), max: z.number().optional()}).optional()
+        brand: z.array(z.string()).nullable(),
+        type: z.array(z.enum(["MALE", "FEMALE", "UNISEX"])).nullable(),
+        size: z.array(z.string()).nullable(),
+        price: z.object({min: z.number().optional(), max: z.number().optional()}).nullable()
     }).optional(),
-    sort: z.string().optional()
+    sort: z.string().nullable()
 })
 
 const getShoesProcedure = t.procedure.input(getShoesInput).query(async (req) => {

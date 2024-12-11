@@ -1,27 +1,24 @@
 /* eslint-disable */
 "use client"
-import MainDisplay from "@/components/MainDisplay";
-import SideBar from "@/components/SideBar";
-import ProductsGrid from "@/components/ProductsGrid";
-import ActiveFilters from "@/components/ActiveFilters";
-import SortMenu from "@/components/SortMenu";
-import PaginationTab from "@/components/PaginationTab";
+import ProductsGrid from "@/components/ProductsGrid"
+import PaginationTab from "@/components/PaginationTab"
 import trpc from "@/trpcClient"
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Racket } from "@/types/racket";
+import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { Racket } from "@/types/racket"
+import { useBrandParam, useTypeParam, useWeightParam, useSortParam } from "@/hooks/params"
 
 export default function RacketsPage() {
   const searchParams = useSearchParams()
   const page = Number(searchParams.get("page")) || 1
-  const brand = searchParams.getAll("brand").length > 0? searchParams.getAll("brand") : undefined
-  const type = searchParams.getAll("type").length > 0? searchParams.getAll("type") : undefined
-  const weight = searchParams.getAll("weight").length > 0? searchParams.getAll("weight") : undefined
+  const [brand] = useBrandParam()
+  const [type] = useTypeParam()
+  const [weight] = useWeightParam()
   const minPrice = searchParams.get("price.min")?? undefined
   const min = minPrice? Number(minPrice) : undefined
   const maxPrice = searchParams.get("price.max")?? undefined
   const max = maxPrice? Number(maxPrice) : undefined
-  const sort = searchParams.get("sort") || undefined
+  const [sort] = useSortParam()
   const [rackets, setRackets] = useState<Racket[]>([])
   const [numOfPages, setNumOfPages] = useState<number>(0)
   const [productCount, setProductCount] = useState(0)
@@ -41,8 +38,7 @@ export default function RacketsPage() {
   useEffect(() => {
     setIsLoading(true)
     fetchRackets()
-  }, [searchParams])
-
+  }, [searchParams, brand, type, weight, sort])
   return (
     <>
       <div>

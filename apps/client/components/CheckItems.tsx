@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import FadeInMotionDiv from "./framer/FadeInMotionDiv"
 import { Checkbox } from "./ui/checkbox"
-import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { LabelCount } from "@/types/sidebar"
 import { capitalizeFirstChar } from "@/utils/capitalize-first-char"
 import { MobileFilter } from "./MobileFilterMenu"
+import { useQueryState, parseAsArrayOf, parseAsString } from 'nuqs'
 
 type CheckItemsProps = {
     listItems: LabelCount,
@@ -12,30 +12,24 @@ type CheckItemsProps = {
     addMobileFilter?: any,
     mobileFilters?: MobileFilter[]
 }
-
+//*************** Fix rerenders ****************** */
 const CheckItems = ({ listItems, paramName, addMobileFilter, mobileFilters }: CheckItemsProps) => {
-    const searchParams = useSearchParams();
-    const pathName = usePathname();
-    const { replace } = useRouter();
-    const checkedBoxes = searchParams.getAll(paramName);
-    const params = new URLSearchParams(searchParams);
+    const [params, setParams] = useQueryState<string[]>(paramName, parseAsArrayOf(parseAsString, ";"))
 
     function toggleCheck(weight: string) {
-        params.delete("page") // remove existing 'page' param to fetch new data from page 1
-        // Toggle the search parameter
-        if (params.has(paramName)) {
-            const weights = params.getAll(paramName);
-            if (weights.includes(weight)) {
-                weights.splice(weights.indexOf(weight), 1);
+        setParams((old) => {
+            let updated
+            if (old) {
+                if (old.includes(weight)) {
+                    updated = old.filter((value) => value !== weight)
+                } else {
+                    updated = [...old, weight]
+                }
             } else {
-                weights.push(weight);
+                updated = [weight]
             }
-            params.delete(paramName);
-            weights.forEach(weight => params.append(paramName, weight));
-        } else {
-            params.append(paramName, weight);
-        }
-        replace(`${pathName}?${params.toString()}`, {scroll: false});
+            return updated.length > 0 ? updated : null
+        })
     }
     const handleCheck = (label: string) => {
         if(addMobileFilter) {
@@ -59,7 +53,7 @@ const CheckItems = ({ listItems, paramName, addMobileFilter, mobileFilters }: Ch
                     />
                     :
                     <Checkbox
-                        checked={checkedBoxes.includes(listItem.label.toLowerCase())}
+                        checked={ params !== null && params.includes(listItem.label.toLowerCase()) }
                         onCheckedChange={() => handleCheck(listItem.label.toLowerCase())}
                         id={listItem.label}
                     />
